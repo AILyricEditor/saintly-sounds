@@ -26,20 +26,27 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: end;
-	gap: 25px;
 	background: var(--secondary);
 	border: 2px solid var(--border-color);
 	border-radius: 15px;
 	width: 95%;
 	height: 10%;
-	padding: 15px;
+	padding: 0 15px;
 	margin: 20px auto;
 }
 
 header a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	text-decoration: none;
 	color: var(--text-color);
-	float: right;
+	height: 100%;
+	width: 10%;
+}
+
+header a:hover {
+	background: rgba(255, 255, 255, 0.1);
 }
 
 header a:first-of-type {
