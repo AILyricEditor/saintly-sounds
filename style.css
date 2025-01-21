@@ -1,3 +1,10 @@
+:root {
+	--primary-color: black;
+	--secondary-color: black;
+	--accent-color: black;
+	--text-color: black;
+}
+
 * {
 	margin: 0;
 	padding: 0;
