@@ -28,7 +28,7 @@ header {
 	justify-content: end;
 	background: var(--secondary);
 	border: 2px solid var(--border-color);
-	border-radius: 15px;
+	border-radius: 10px;
 	width: 95%;
 	height: 10%;
 	padding: 0 15px;
@@ -42,10 +42,11 @@ header a {
 	text-decoration: none;
 	color: var(--text-color);
 	height: 100%;
-	width: 10%;
+	width: 15%;
 }
 
 header a:hover {
+	transition: 200ms linear;
 	background: rgba(255, 255, 255, 0.1);
 }
 
