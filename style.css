@@ -47,7 +47,7 @@ nav a {
 	text-decoration: none;
 	color: var(--text-color);
 	height: 100%;
-	width: 15%;
+	width: min(100px, 15%);
 }
 
 nav a:hover {
@@ -58,6 +58,10 @@ nav a:hover {
 nav a:first-of-type {
 	position: absolute;
 	left: 15px;
+}
+
+#menu {
+	display: none;
 }
 
 main {
@@ -107,4 +111,21 @@ footer p {
 	bottom: 5px;
 	left: 5px;
 	color: white;
+}
+
+@media (max-width: 425px) {
+	nav a:not(:first-of-type) {
+		display: none;
+	}
+
+	#menu {
+		border: none;
+		background: none;
+		display: flex;
+		transition: transform 300ms ease-in;
+	}
+
+	.rotate-icon {
+		transform: rotate(180deg);
+	}
 }
