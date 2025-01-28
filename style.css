@@ -60,6 +60,10 @@ nav a:first-of-type {
 	left: 15px;
 }
 
+.menu-button {
+	display: none;
+}
+
 #menu {
 	display: none;
 }
@@ -118,11 +122,62 @@ footer p {
 		display: none;
 	}
 
-	#menu {
+	/* #overlay {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.darken {
+		background: rgba(0, 0, 0, 0.5);
+	} */
+
+	.menu-button {
 		border: none;
 		background: none;
 		display: flex;
-		transition: transform 300ms ease-in;
+		transition: transform 200ms ease-in;
+	}
+
+	.menu-button svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	#menu {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		backdrop-filter: blur(5px);
+		border-left: 1px solid var(--border-color);
+		width: 50%;
+		height: 100%;
+		transition: transform 500ms ease-in;
+	}
+
+	#menu a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 10%;
+		color: white;
+		text-decoration: none;
+	}
+
+	#menu .menu-button {
+		width: 40px;
+		height: 40px;
+	}
+
+	.menu-slide {
+		transform: translateX(200%);
 	}
 
 	.rotate-icon {
