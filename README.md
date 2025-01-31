@@ -1,2 +1,2 @@
-# The-Watchmans-Rest
-This is the template website for The Watchmans Rest
+# Saintly Sounds
+This is the template website for Saintly Sounds
