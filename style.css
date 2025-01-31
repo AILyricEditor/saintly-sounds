@@ -86,7 +86,7 @@ section {
 	text-align: center;
 	padding: 50px;
 	border-top: none;
-	background: var(--primary);
+	/* background: var(--primary); */
 }
 
 #landing h1 {
@@ -115,6 +115,59 @@ footer p {
 	bottom: 5px;
 	left: 5px;
 	color: white;
+}
+
+/* LADNING PAGE */
+#landing-body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#song-grid {
+	display: grid;
+  width: min(80vw, 100%); /* Fixed width relative to viewport */
+  /* height: min(80vh, 100%); Fixed height relative to viewport */
+  grid-template-columns: repeat(auto-fill, minmax(8vw, 1fr)); /* Equal columns */
+  /* grid-template-rows: repeat(auto-fill, 8vw); */
+	grid-auto-rows: 1fr;
+  gap: 10px; /* Space between grid items */
+	margin-top: 0;
+	/* overflow: hidden; */
+	/* justify-content: center;
+	align-items: center; */
+}
+
+.song {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* border: 1px solid white; */
+	border-radius: 5px;
+	aspect-ratio: 1 / 1;
+	width: 100%;
+	/* background: grey; */
+}
+
+.song:hover {
+	animation: flip1 linear 1s infinite;
+}
+
+@keyframes flip1 {
+	from {
+		transform: rotateY(0deg);
+	}
+	to {
+		transform: rotateY(360deg);
+	}
+}
+
+#latest-song {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	width: min(40%, 300px);
 }
 
 @media (max-width: 425px) {
