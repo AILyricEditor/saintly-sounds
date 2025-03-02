@@ -34,7 +34,7 @@
 		<section class="music-card">
 			<div class="song-thumbnail">
 				<img src="assets/break-free.png" alt="Break Free">
-				<button>
+				<button class="play-button">
 					<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 20 20"><path fill="currentColor" d="M15.544 9.59a1 1 0 0 1-.053 1.728L6.476 16.2A1 1 0 0 1 5 15.321V4.804a1 1 0 0 1 1.53-.848l9.014 5.634Z"/></svg>
 				</button>
 			</div>
@@ -44,11 +44,11 @@
 				<p>Album: Break Free</p>
 			</div>
 			<p class="song-duration">3:45</p>
-			<audio>
-				<source src="assets/Leaf-Counter.mp3" type="audio/mpeg">
-			</audio>
+			<audio class="song-audio" src="assets/Leaf-Counter.mp3" preload="auto"></audio>
 		</section>
 	</main>
+
+	<!-- <iframe class="song-audio" style="border-radius:12px" src="https://open.spotify.com/embed/track/0jlDJT2IAtBEMXXyCDgKbR?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
 
 	<footer><p>v0.2.0-alpha</p></footer>
 	
