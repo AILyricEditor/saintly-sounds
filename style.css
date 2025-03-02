@@ -243,6 +243,10 @@ footer {
 	margin-left: auto;
 }
 
+.music-card button {
+	all: unset;
+}
+
 @media (max-width: 425px) {
 	nav a:not(:first-of-type) {
 		display: none;
