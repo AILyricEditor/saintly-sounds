@@ -210,6 +210,7 @@ footer {
 	border-radius: 15px;
 	backdrop-filter: blur(7px);
 	padding: 10px;
+	padding-right: 30px;
 	font-size: 0.8em;
 	transition: all 0.2s ease-in-out;
 }
@@ -227,6 +228,39 @@ footer {
 	bottom: 0;
 	flex-direction: column;
 }
+
+.expanded .song-section {
+	visibility: visible;
+	opacity: 1;
+	/* display: block; */
+}
+
+.song-section {
+	/* display: none; */
+	opacity: 0;
+	visibility: hidden;
+	/* background: yellow; */
+	margin-top: 10px;
+	justify-self: end;
+	width: 90%;
+	height: 100%;
+	border-top: 1px solid var(--border-color);
+	transition: all 0.2s ease-in-out;
+}
+
+.lyrics {
+	grid-row: 2;
+}
+
+.inspiration {
+	grid-row: 3;
+}
+
+.credits {
+	grid-row: 4;
+}
+
+
 
 .song-icons {
 	grid-row: 1;
@@ -259,7 +293,6 @@ footer {
 	justify-content: start;
 	align-items: center;
 	gap: 20px;
-	padding-right: 30px;
 }
 
 .song-thumbnail {
