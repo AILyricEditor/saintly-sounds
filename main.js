@@ -9,11 +9,17 @@ menuButtons.forEach(button => {
 	});
 });
 
-document.querySelector('.music-card').addEventListener('click', function(e) {
+document.querySelector('.songs-wrapper').addEventListener('click', function(e) {
   const card = e.target.closest(".music-card"); // Find the closest .music-card element
   console.log(e.target);
 
   if (!e.target.matches(".play")) {
+		document.querySelectorAll(".music-card").forEach(musicCard => {
+			if (musicCard !== card) {
+				musicCard.classList.remove("expanded");
+			}
+		});
+
     card.classList.toggle("expanded");
   }
 
