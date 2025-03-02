@@ -177,7 +177,10 @@ footer p {
 }
 
 .music-card {
-	width: 23%;
+	width: 300px;
+	flex-wrap: wrap;
+	flex-shrink: 200px;
+	flex-grow: 1;
 	height: 70%;
 	background: rgba(0, 0, 0, 0.144);
 	border: 2px solid rgba(255, 255, 255, 0.671);
