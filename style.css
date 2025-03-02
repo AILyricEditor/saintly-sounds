@@ -18,8 +18,8 @@
 }
 
 html, body {
-	height: 100vh;
-	width: 100vw;
+	height: 100%;
+	width: 100%;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
 	color: var(--text-color);
 	font-family: poppins;
 	display: grid;
-	grid-template-rows: 15% 90%;
+	grid-template-rows: 10% 90%;
 }
 
 nav {
@@ -67,11 +67,13 @@ nav a:first-of-type {
 
 #menu {
 	display: none;
+	overflow-y: auto;
 }
 
 main {
 	/* Set as the height of the nav */
 	grid-row: 2;
+	overflow-y: auto;
 }
 
 section {
@@ -102,21 +104,16 @@ section {
 }
 
 footer {
-	position: relative;
-	width: 100%;
-	height: 20%;
-	background: var(--secondary);
-	border-top: 1px solid var(--border-color);
-	color: var(--text-color);
-	padding-left: 5px;
-}
-
-footer p {
 	position: absolute;
+	bottom: -5px;
+	left: -5px;
+	width: fit-content;
+	background: var(--accent1);
+	border: 2px solid white;
+	border-top-right-radius: 10px;
+	padding: 10px;
 	font-size: 0.8em;
 	letter-spacing: 3px;
-	bottom: 5px;
-	left: 5px;
 	color: white;
 }
 
@@ -178,8 +175,6 @@ footer p {
 
 .music-card {
 	width: 300px;
-	flex-wrap: wrap;
-	flex-shrink: 200px;
 	flex-grow: 1;
 	height: 70%;
 	background: rgba(0, 0, 0, 0.144);
