@@ -211,12 +211,13 @@ footer {
 	padding: 15px;
 	padding-right: 30px;
 	font-size: 0.8em;
-	transition: all 0.2s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	overflow: hidden;
 }
 
 .expanded {
-	grid-template-rows: 100px 100px 100px 100px;
-	height: 400px;
+	grid-template-rows: 100px minmax(0, auto) minmax(0, auto) minmax(0, auto);
+	height: auto;
 }
 
 .expanded .song-section {
@@ -233,17 +234,18 @@ footer {
 	visibility: hidden;
 	margin-top: 20px;
 	justify-self: end;
-	width: 92%;
-	padding: 20px;
+	width: 100%;
+	padding: 1em;
+	padding-left: 6em;
 	height: 100%;
 	border-top: 1px solid var(--border-color);
-	transition: all 0.2s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 
 .song-section svg {
 	position: absolute;
 	top: 50%;
-	left: -55px;
+	left: 1em;
 	translate: 0 -50%;
 	width: 3em;
 	height: 3em;
@@ -380,6 +382,6 @@ footer {
 	.music-card {
 		font-size: 0.7em;
 		width: 100%;
-		height: 70px;
+		/* height: 70px; */
 	}
 }
