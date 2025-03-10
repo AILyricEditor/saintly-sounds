@@ -1,4 +1,4 @@
-function Song({song}) {
+export default function Song({song}) {
 	return (
 		<section className="music-card">
 			<div className="song-topbar">
@@ -34,5 +34,3 @@ function Song({song}) {
 		</section>
 	)
 }
-
-export default Song
