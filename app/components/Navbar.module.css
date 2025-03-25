@@ -1,0 +1,30 @@
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: var(--secondary);
+	border-bottom: 2px solid var(--border-color);
+	width: 100%;
+	height: 100%;
+	padding: 0 15px;
+	grid-row: 1;
+}
+
+.link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: var(--text-color);
+	height: 100%;
+	width: min(100px, 15%);
+}
+
+.link:hover {
+	transition: 200ms linear;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.link:first-of-type {
+	margin-right: auto;
+}
