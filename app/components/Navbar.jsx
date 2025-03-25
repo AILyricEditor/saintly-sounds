@@ -6,6 +6,7 @@ import styles from './Navbar.module.css';
 
 export default function Navbar() {
 	const [menuOpen, setMenuOpen] = useState(false);
+	
 	function toggleMenu() {
 		setMenuOpen(!menuOpen);
 	}
@@ -25,7 +26,7 @@ export default function Navbar() {
 	);
 }
 
-function MenuButton({ menuOpen, onOpen}) {
+function MenuButton({ menuOpen, onOpen }) {
 	return (
 		<button className={styles.menuButton} 
 			onClick={onOpen}

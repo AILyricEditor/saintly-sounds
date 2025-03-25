@@ -1,8 +1,28 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Song from "./Song";
+
 export default function MusicPage() {
+	const [songs, setSongs] = useState(null);
+
+	useEffect(() => {
+		fetch("/songs.json").then(res => res.json()).then(data => {
+			setSongs(data.songs);
+		});
+	}, []);
+
+	// console.log("Songs: ", songs[0]);
+
+	if (!songs) {
+    return <p>Loading...</p>; // Show a loading message if songs are not yet available
+  }
+
 	return (
-		<div>
-			<h1>Music</h1>
-			<p>Music is the universal language of mankind.</p>
-		</div>
+		<>
+			<Song song={songs[0]}/>
+			<Song song={songs[1]}/>
+			<Song song={songs[2]}/>
+		</>
 	);
 }

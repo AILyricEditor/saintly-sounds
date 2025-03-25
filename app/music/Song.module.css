@@ -1,0 +1,58 @@
+.songSection {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	margin-top: 20px;
+	justify-self: end;
+	width: 100%;
+	padding: 1em;
+	padding-left: 6em;
+	height: 100%;
+	border-top: 1px solid var(--border-color);
+	transition: all 0.3s ease-in-out;
+}
+
+.songSection svg {
+	position: absolute;
+	top: 50%;
+	left: 1em;
+	translate: 0 -50%;
+	width: 3em;
+	height: 3em;
+}
+
+.lyrics {
+	grid-row: 2;
+}
+
+.inspiration {
+	grid-row: 3;
+}
+
+.credits {
+	grid-row: 4;
+}
+
+.songTopbar {
+	grid-row: 1;
+	grid-column: 1;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+	gap: 20px;
+}
+
+.songInfo p {
+	font-weight: 500;
+	font-size: 0.8em;
+}
+
+.songDuration {
+	margin-left: auto;
+}
