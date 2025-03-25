@@ -7,3 +7,41 @@
 	--border-color: #838383;
 	--text-color: #dfdfdf;
 }
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	interpolate-size: allow-keywords;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background: var(--primary);
+	color: var(--text-color);
+	font-family: poppins;
+	display: grid;
+	grid-template-rows: 10% 90%;
+	overflow: hidden;
+}
+
+svg * {
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--accent2);
+	border-radius: 10px;
+}
