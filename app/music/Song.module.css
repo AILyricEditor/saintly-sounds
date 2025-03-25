@@ -1,3 +1,21 @@
+.musicCard {
+	box-sizing: content-box;
+	display: grid;
+	grid-template-rows: 50px 0px 0px 0px;
+	grid-template-columns: 1fr;
+	width: 80%;
+	height: 50px;
+	background: rgba(0, 0, 0, 0.144);
+	border: 2px solid rgba(255, 255, 255, 0.671);
+	border-radius: 15px;
+	backdrop-filter: blur(7px);
+	padding: 15px;
+	padding-right: 30px;
+	font-size: 0.8em;
+	transition: all 0.3s ease-in-out;
+	overflow: hidden;
+}
+
 .songSection {
 	position: relative;
 	display: flex;

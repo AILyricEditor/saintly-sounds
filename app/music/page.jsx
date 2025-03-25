@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Song from "./Song";
+import styles from "./page.module.css";
 
 export default function MusicPage() {
 	const [songs, setSongs] = useState(null);
@@ -19,10 +20,10 @@ export default function MusicPage() {
   }
 
 	return (
-		<>
+		<main className={styles.songsWrapper}>
 			<Song song={songs[0]}/>
 			<Song song={songs[1]}/>
 			<Song song={songs[2]}/>
-		</>
+		</main>
 	);
 }

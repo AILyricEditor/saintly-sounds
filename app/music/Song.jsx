@@ -4,9 +4,9 @@ import SongCover from './SongCover';
 export default function Song({ song }) {
 	console.log("Song: ", song);
 	return (
-		<section>
+		<section className={styles.musicCard}>
 			<div className={styles.songTopbar}>
-			<SongCover width={100} height={100} src={song.image} audio={song.audio} alt={song.title}/>
+			<SongCover width={50} height={50} src={song.image} audio={song.audio} alt={song.title}/>
 				<div className={styles.songInfo}>
 					<h3>{song.title}</h3>
 					<p>Artist: {song.artist}</p>
