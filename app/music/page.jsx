@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 
 export default function MusicPage() {
 	const [songs, setSongs] = useState(null);
+	const [isExpanded, setIsExpanded] = useState(0);
 
 	useEffect(() => {
 		fetch("/songs.json").then(res => res.json()).then(data => {
@@ -19,11 +20,25 @@ export default function MusicPage() {
     return <p>Loading...</p>; // Show a loading message if songs are not yet available
   }
 
+	function toggleExpand(index) {
+		if (isExpanded === index) {
+		  setIsExpanded(null);
+		} else {
+			setIsExpanded(index);
+		}
+	}
+
+	const SongElements = songs.map((song, index) => (
+		<Song key={index}
+			isExpanded={isExpanded === index}
+			onExpand={() => toggleExpand(index)} 
+			song={song}
+		/>
+	));
+
 	return (
 		<main className={styles.songsWrapper}>
-			<Song song={songs[0]}/>
-			<Song song={songs[1]}/>
-			<Song song={songs[2]}/>
+			{SongElements}
 		</main>
 	);
 }

@@ -8,7 +8,8 @@ export default function SongCover({ width, height, src, audio, alt }) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const ref = useRef(null);
 
-	function playAudio() {
+	function playAudio(e) {
+		e.stopPropagation();
 		if (isPlaying) {
 			ref.current.pause();
 		} else {
@@ -19,7 +20,7 @@ export default function SongCover({ width, height, src, audio, alt }) {
 
 	return (
 		<div className={styles.songCover} style={{ width: width, height: height }}>
-			<Image src={src} width={width} height={height} alt={alt} />
+			<img src={src} alt={alt} />
 			<button className={styles.playButton}
 				onClick={playAudio}
 			>
