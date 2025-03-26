@@ -10,10 +10,11 @@ export default function Song({ song, isExpanded, onExpand }) {
 		<section className={`${styles.musicCard} ${isExpanded && styles.expanded}`} 
 			onClick={onExpand}
 			style={isExpanded ? {
-				gridTemplateRows: "100px minmax(0, auto) minmax(0, auto) minmax(0, auto)",
-				height: "auto"
+				height: "600px",
+				gridTemplateRows: "100px 1fr 1fr 1fr"
 			} : {
-				gridTemplateRows: "50px 0px 0px 0px",
+				height: "50px",
+				gridTemplateRows: "50px 1fr 1fr 1fr"
 			}}
 		>
 			<div className={styles.songTopbar}>
