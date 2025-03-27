@@ -1,8 +1,7 @@
 import "./globals.css";
-import Image from "next/image";
-import Link from 'next/link';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CurrentSong from "./components/CurrentSong";
 
 export const metadata = {
   title: "Saintly Sounds",
@@ -14,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
        <Navbar />
+       <CurrentSong />
        <Footer />
        {children}
       </body>

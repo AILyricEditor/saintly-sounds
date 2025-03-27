@@ -4,7 +4,8 @@
 	left: -5px;
 	width: fit-content;
 	background: var(--accent1);
-	border: 2px solid white;
+	border-top: 2px solid white;
+	border-right: 2px solid white;
 	border-top-right-radius: 10px;
 	padding: 10px;
 	font-size: 0.8em;

@@ -1,5 +1,5 @@
 import styles from './Song.module.css';
-import SongCover from './SongCover';
+import SongCover from '../components/SongCover';
 import Player from "../components/Player";
 
 export default function Song({ song, isExpanded, onExpand }) {
