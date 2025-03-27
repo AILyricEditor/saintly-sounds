@@ -1,18 +1,43 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./Player.module.css"; 
 
-export default function Player({ audio, width = 35, height = 35}) {
+export default function Player({ src, width = 35, height = 35, controls = false }) {
 	const [isPlaying, setIsPlaying] = useState(false);
-	const ref = useRef(null);
+	const [currentTime, setCurrentTime] = useState(0);
+	const audioRef = useRef(null);
+	const timelineRef = useRef(null);
+
+	useEffect(() => {
+		const audio = audioRef.current;
+		const timeline = timelineRef.current;
+
+		const timePercentage = Math.floor((100 / audio.duration) * audio.currentTime);
+
+		// setCurrentTime(audio.currentTime);
+		// timeline.value = audio.currentTime;
+
+		function updateTime() {
+			setCurrentTime(audio.currentTime);
+			timeline.value = currentTime;	
+
+			console.log("Current time: ", timePercentage);
+		}
+
+		audio.addEventListener("timeupdate", updateTime);
+
+		return () => {
+			audio.removeEventListener("timeupdate", updateTime);
+		}
+	}, [currentTime]);
 
 	function playAudio(e) {
 		e.stopPropagation();
 		if (isPlaying) {
-			ref.current.pause();
+			audioRef.current.pause();
 		} else {
-			ref.current.play();
+			audioRef.current.play();
 		}
 		setIsPlaying(!isPlaying);
 	}
@@ -28,7 +53,12 @@ export default function Player({ audio, width = 35, height = 35}) {
 					: <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 20 20"><path d="M15.544 9.59a1 1 0 0 1-.053 1.728L6.476 16.2A1 1 0 0 1 5 15.321V4.804a1 1 0 0 1 1.53-.848l9.014 5.634Z"/></svg>
 				}
 			</button>
-			<audio ref={ref} className="song-audio" src={audio} preload="auto"></audio>
+			<audio ref={audioRef} className="song-audio" src={src} preload="auto"></audio>
+			{controls && 
+			<div className={styles.controls}>
+				<input ref={timelineRef} type="range" min="0" max="100" step="1"/>
+			</div>
+			}
 		</>
 	);
 }

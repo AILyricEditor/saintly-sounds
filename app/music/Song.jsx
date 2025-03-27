@@ -17,7 +17,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 		>
 			<div className={styles.songTopbar}>
 				<SongCover className={styles.songCover} width={isExpanded ? 100 : 60} height={isExpanded ? 100 : 60} src={song.image} alt={song.title}>
-					<Player audio="/Leaf-Counter.mp3" width="50%" height="50%"/>
+					<Player src="/Leaf-Counter.mp3" width="50%" height="50%" controls/>
 				</SongCover>
 				<div className={styles.songInfo}>
 					<h3>{song.title}</h3>
