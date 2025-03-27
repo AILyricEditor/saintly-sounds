@@ -2,7 +2,6 @@
 
 import { useState, useRef } from 'react';
 import styles from './SongCover.module.css';
-import Image from 'next/image';
 
 export default function SongCover({ width, height, src, audio, alt }) {
 	const [isPlaying, setIsPlaying] = useState(false);
