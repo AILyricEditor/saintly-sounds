@@ -1,5 +1,6 @@
 import styles from './Song.module.css';
 import SongCover from './SongCover';
+import Player from "../components/Player";
 
 export default function Song({ song, isExpanded, onExpand }) {
 	
@@ -15,7 +16,9 @@ export default function Song({ song, isExpanded, onExpand }) {
 			}}
 		>
 			<div className={styles.songTopbar}>
-				<SongCover className={styles.songCover} width={isExpanded ? 100 : 60} height={isExpanded ? 100 : 60} src={song.image} audio={song.audio} alt={song.title}/>
+				<SongCover className={styles.songCover} width={isExpanded ? 100 : 60} height={isExpanded ? 100 : 60} src={song.image} alt={song.title}>
+					<Player audio="/Leaf-Counter.mp3" width="50%" height="50%"/>
+				</SongCover>
 				<div className={styles.songInfo}>
 					<h3>{song.title}</h3>
 					<p>Artist: {song.artist}</p>
