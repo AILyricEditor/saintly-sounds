@@ -3,7 +3,7 @@ import SongCover from '../components/SongCover';
 import Player from "../components/Player";
 
 export default function Song({ song, isExpanded, onExpand }) {
-	
+
 	return (
 		<section className={`${styles.musicCard} ${isExpanded && styles.expanded}`} 
 			onClick={onExpand}
@@ -17,7 +17,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 		>
 			<div className={styles.songTopbar}>
 				<SongCover className={styles.songCover} width={isExpanded ? 100 : 60} height={isExpanded ? 100 : 60} src={song.image} alt={song.title}>
-					<Player src="/Leaf-Counter.mp3" width="50%" height="50%" controls/>
+					<Player song={song} width="50%" height="50%" />
 				</SongCover>
 				<div className={styles.songInfo}>
 					<h3>{song.title}</h3>
