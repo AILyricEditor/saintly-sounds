@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Song from "./Song";
 import styles from "./page.module.css";
+import { useSong } from "../contexts/SongContext";
 
 export default function MusicPage() {
 	const [songs, setSongs] = useState(null);

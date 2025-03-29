@@ -1,8 +1,10 @@
 import styles from './Song.module.css';
 import SongCover from '../components/SongCover';
 import Player from "../components/Player";
+import { useSong } from '../contexts/SongContext';
 
 export default function Song({ song, isExpanded, onExpand }) {
+	const { currentSong, setCurrentSong } = useSong("currentSong");
 
 	return (
 		<section className={`${styles.musicCard} ${isExpanded && styles.expanded}`} 
@@ -17,7 +19,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 		>
 			<div className={styles.songTopbar}>
 				<SongCover className={styles.songCover} width={isExpanded ? 100 : 60} height={isExpanded ? 100 : 60} src={song.image} alt={song.title}>
-					<Player song={song} width="50%" height="50%" />
+					<Player width="50%" height="50%" song={song}/>
 				</SongCover>
 				<div className={styles.songInfo}>
 					<h3>{song.title}</h3>
