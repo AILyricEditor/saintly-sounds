@@ -5,10 +5,20 @@
 	background: grey;
 }
 
+
+.timeBar, .timeBar > * {
+	user-select: none;
+	transition: background-color 0.2s ease-in-out, scale 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.timeBar:hover > * {
+	background-color: color-mix(in srgb, var(--accent2) 80%, red 50%);
+}
+
 .timeBarFill {
 	height: inherit;
 	border-radius: 999px;
-	background: var(--accent2);
+	background-color: var(--accent2);
 }
 
 .timeThumb {
@@ -18,10 +28,6 @@
 	width: 15px;
 	height: 15px;
 	border-radius: 999px;
-	background: var(--accent2);
+	background-color: var(--accent2);
 	box-shadow: 0 0 10px 1px black;
-}
-
-.timeBar:hover > *  {
-	background: color-mix(in srgb, var(--accent2) 80%, red 50%);
 }
