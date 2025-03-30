@@ -1,7 +1,6 @@
 .songCover {
 	position: relative;
 	aspect-ratio: 1 / 1;
-	border: 1px solid var(--border-color);
 	border-radius: 10px;
 	overflow: hidden;
 	display: flex;
@@ -14,4 +13,11 @@
 	width: inherit;
 	height: inherit;
 	border-radius: inherit;
+}
+
+.songCover button {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
 }

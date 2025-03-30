@@ -1,10 +1,10 @@
 import styles from './SongCover.module.css';
 
-export default function SongCover({ width = 100, height = 100, src, alt, children }) {
+export default function SongCover({ size = 75, song, children, style }) {
 
 	return (
-		<div className={styles.songCover} style={{ width: width, height: height }}>
-			<img src={src} alt={alt} />
+		<div className={styles.songCover} style={{ ...style, width: size, height: size }}>
+			<img src={song.image} alt={song.title} />
 			{children}
 		</div>
 	);

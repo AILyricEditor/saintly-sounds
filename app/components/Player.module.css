@@ -1,10 +1,6 @@
 .playButton {
 	background: none;
 	border: none;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	translate: -50% -50%;
 	width: 50%;
 	height: 50%;
 	display: flex;
