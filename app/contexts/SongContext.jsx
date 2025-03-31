@@ -11,6 +11,7 @@ export const useSong = () => {
 export default function SongProvider({ children }) {
 	const [currentSong, setCurrentSong] = useState(null);
 	const [isPlaying, setIsPlaying] = useState(false);
+	const [allSongs, setAllSongs] = useState(null);
 
 	function togglePlay() {
 		setIsPlaying(!isPlaying);

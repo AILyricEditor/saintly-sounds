@@ -29,3 +29,20 @@
 	translate: -50% 0;
 	width: 50%
 }
+
+.timeline {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 10px;
+	width: 100%;
+}
+
+.timeline {
+	user-select: none;         /* Prevent text selection */
+}
+
+.time {
+	font-size: 1em;
+	font-weight: 600;
+}
