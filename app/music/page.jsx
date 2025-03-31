@@ -3,16 +3,11 @@
 import { useState, useEffect } from "react";
 import Song from "./Song";
 import styles from "./page.module.css";
+import useSongs from "../hooks/useSongs";
 
 export default function MusicPage() {
-	const [songs, setSongs] = useState(null);
+	const songs = useSongs();
 	const [isExpanded, setIsExpanded] = useState(null);
-
-	useEffect(() => {
-		fetch("/songs.json").then(res => res.json()).then(data => {
-			setSongs(data.songs);
-		});
-	}, []);
 	
 	if (!songs) {
     return <p>Loading...</p>; // Show a loading message if songs are not yet available

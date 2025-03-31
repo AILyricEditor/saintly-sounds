@@ -5,19 +5,18 @@ import Player from './Player';
 import SongCover from './SongCover';
 import { useRef, useEffect, useState } from 'react';
 import { useSong } from '../contexts/SongContext';
+import useSongs from '../hooks/useSongs';
 import Slider from './Slider';
 
 export default function CurrentSong() {
-	const { currentSong, setCurrentSong, isPlaying, togglePlay } = useSong();
+	const { currentSong, setCurrentSong, isPlaying } = useSong();
+	const allSongs = useSongs();
 	const ref = useRef(null);
 	const [currentTime, setCurrentTime] = useState(0);
-
-	const secondsDuration = Math.round(ref.current?.duration)
-	const duration = formatTime(secondsDuration);
+	const [isDragging, setIsDragging] = useState(false);
 
 	if (ref.current?.currentTime >= ref.current?.duration) {
-		setCurrentSong()
-		togglePlay();
+		setCurrentSong(allSongs[allSongs.indexOf(currentSong) + 1]);
 	}
 
 	function seekTo(time) {
@@ -48,16 +47,18 @@ export default function CurrentSong() {
 				<div className={styles.timeline}>
 					<p className={styles.time}>{formatTime(currentTime)}</p>
 					<Slider width="100%" 
-						max={secondsDuration} 
+						max={ref.current?.duration} 
 						value={currentTime} 
 						onSlide={(value) => {
+							setIsDragging(true);
 							setCurrentTime(value);
 						}}
 						onStop={(value) => {
+							setIsDragging(false);
 							seekTo(value);
 						}}
 					/>
-					<p className={styles.time}>{duration}</p>
+					<p className={styles.time}>{formatTime(Math.round(ref.current?.duration))}</p>
 				</div>
 			</div>
 			<audio 
@@ -66,7 +67,7 @@ export default function CurrentSong() {
 				src={currentSong.audio}
 				preload="auto"
 				onTimeUpdate={() => {
-					setCurrentTime(ref.current.currentTime);
+					if (!isDragging) setCurrentTime(ref.current?.currentTime);
 				}}
 			>
 			</audio>

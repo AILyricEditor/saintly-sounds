@@ -40,12 +40,13 @@ export default function Slider({ width = 100, min = 0, max = 100, value = 0, onS
 			setIsDragging(false);
 			if (onStop) onStop(mousePosition.approximate(e));
 			document.removeEventListener('mouseup', onMouseUp);
+			document.removeEventListener('mousemove', onMouseMove);
 		}
 
 		document.addEventListener('mousemove', onMouseMove);
 
 		return () => {
-		  document.removeEventListener('mousemove', onMouseMove);
+			document.removeEventListener('mousemove', onMouseMove);
 		}
 	}, [isDragging]);
 
@@ -64,6 +65,7 @@ export default function Slider({ width = 100, min = 0, max = 100, value = 0, onS
 				setIsDragging(true);
 				setFillWidth(mousePosition.precise(e));
 			}}
+			// onMouseUp={}
 		>
 			<div className={styles.timeBar} style={{
 				width: width,
