@@ -11,11 +11,11 @@ export default function Slider({ width = 100, min = 0, max = 100, value = 0, onS
 
 	const mousePosition = {
 		precise: function(e) {
-			const { left, width: elementWidth } = ref.current.getBoundingClientRect();
+			const { left, width: elementWidth } = ref.current?.getBoundingClientRect();
 			return Math.max(0, Math.min(e.clientX - left, elementWidth));
 		},
 		approximate: function(e) {
-			const { width: elementWidth } = ref.current.getBoundingClientRect();
+			const { width: elementWidth } = ref.current?.getBoundingClientRect();
 			if (this.precise(e) >= elementWidth) return max;
 			else if (this.precise(e) <= 0) return min;
 			else return Math.ceil((this.precise(e) / elementWidth) * (max - min)) + min
@@ -23,33 +23,37 @@ export default function Slider({ width = 100, min = 0, max = 100, value = 0, onS
 	}
 
 	function calculateWidth(width) {
-	  const { width: elementWidth } = ref.current.getBoundingClientRect();
+	  const { width: elementWidth } = ref.current?.getBoundingClientRect();
 		return (elementWidth / max) * width;
 	}
 
 	useEffect(() => {
+		function onMouseDown(e) {
+			document.addEventListener('mousemove', onMouseMove);
+			document.addEventListener('mouseup', onMouseUp);
+			setIsDragging(true);
+			setFillWidth(mousePosition.precise(e));
+		}
+
 		function onMouseMove(e) {
-			if (isDragging) {
-				setFillWidth(mousePosition.precise(e));
-				if (onSlide) onSlide(mousePosition.approximate(e));
-				document.addEventListener('mouseup', onMouseUp);
-			}
+			setFillWidth(mousePosition.precise(e));
+			if (onSlide) onSlide(mousePosition.approximate(e));
 		}
 
 		function onMouseUp(e) {
+			document.removeEventListener('mouseup', onMouseUp);
+			document.removeEventListener("mousemove", onMouseMove);
 			setIsDragging(false);
 			if (onStop) onStop(mousePosition.approximate(e));
-			document.removeEventListener('mouseup', onMouseUp);
-			document.removeEventListener('mousemove', onMouseMove);
 		}
 
-		document.addEventListener('mousemove', onMouseMove);
+		const element = ref.current;
+		element.addEventListener("mousedown", onMouseDown);
 
 		return () => {
-			document.removeEventListener('mousemove', onMouseMove);
+			element.removeEventListener("mousedown", onMouseDown)
 		}
 	}, [isDragging]);
-
 
 	useEffect(() => {
 	  if (!isDragging) setFillWidth(calculateWidth(value));
@@ -61,11 +65,6 @@ export default function Slider({ width = 100, min = 0, max = 100, value = 0, onS
 			style={{width: width}}
 			onMouseOver={() => setHovering(true)}
 			onMouseOut={() => setHovering(false)}
-			onMouseDown={(e) => {
-				setIsDragging(true);
-				setFillWidth(mousePosition.precise(e));
-			}}
-			// onMouseUp={}
 		>
 			<div className={styles.timeBar} style={{
 				width: width,

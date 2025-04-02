@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "./Player.module.css"; 
 import { useSong } from '../contexts/SongContext';
 
-export default function Player({ width = 35, height = 35, song, style}) {
+export default function Player({ width = 35, height = 35, song, style }) {
 	const { togglePlay, isPlaying, currentSong, setCurrentSong } = useSong("currentSong");
 
   return (

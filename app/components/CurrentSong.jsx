@@ -7,21 +7,18 @@ import { useRef, useEffect, useState } from 'react';
 import { useSong } from '../contexts/SongContext';
 import useSongs from '../hooks/useSongs';
 import Slider from './Slider';
+import formatTime from '../tools/formatTime';
 
 export default function CurrentSong() {
 	const { currentSong, setCurrentSong, isPlaying } = useSong();
 	const allSongs = useSongs();
 	const ref = useRef(null);
 	const [currentTime, setCurrentTime] = useState(0);
-	const [isDragging, setIsDragging] = useState(false);
-
-	if (ref.current?.currentTime >= ref.current?.duration) {
-		setCurrentSong(allSongs[allSongs.indexOf(currentSong) + 1]);
-	}
+	const [duration, setDuration] = useState(0);
 
 	function seekTo(time) {
 		const element = ref.current;
-		if (isFinite(time)) element.currentTime = Math.round(time);
+		element.currentTime = time;
 	}
 
 	useEffect(() => {
@@ -30,7 +27,7 @@ export default function CurrentSong() {
 		} else if (ref.current) {
 			ref.current.pause();
 		}
-	}, [ref.current, isPlaying, currentSong]);
+	}, [isPlaying, currentSong]);
 
 	if (!currentSong) return null;
 
@@ -47,36 +44,33 @@ export default function CurrentSong() {
 				<div className={styles.timeline}>
 					<p className={styles.time}>{formatTime(currentTime)}</p>
 					<Slider width="100%" 
-						max={ref.current?.duration} 
+						max={duration} 
 						value={currentTime} 
 						onSlide={(value) => {
-							setIsDragging(true);
-							setCurrentTime(value);
+							// seekTo(value);
 						}}
 						onStop={(value) => {
-							setIsDragging(false);
 							seekTo(value);
 						}}
 					/>
-					<p className={styles.time}>{formatTime(Math.round(ref.current?.duration))}</p>
+					<p className={styles.time}>{formatTime(duration)}</p>
 				</div>
 			</div>
 			<audio 
 				ref={ref}
-				className="song-audio"
 				src={currentSong.audio}
 				preload="auto"
+				onLoadedMetadata={(e) => {
+					setDuration(e.currentTarget.duration);
+				}}
 				onTimeUpdate={() => {
-					if (!isDragging) setCurrentTime(ref.current?.currentTime);
+					setCurrentTime(ref.current.currentTime);
+					if (ref.current.currentTime >= ref.current.duration) {
+						setCurrentSong(allSongs[allSongs.indexOf(currentSong) + 1]);
+					}
 				}}
 			>
 			</audio>
 		</div>
 	)
-}
-
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  return `${minutes}:${Math.round(remainingSeconds).toString().padStart(2, '0')}`;
 }
