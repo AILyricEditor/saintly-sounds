@@ -52,7 +52,7 @@ export default function CurrentSong() {
 					setCurrentTime(ref.current.currentTime);
 					if (ref.current.currentTime >= ref.current.duration - 1) {
 						// setCurrentSong(allSongs[(allSongs.indexOf(currentSong) + 1) % allSongs.length]);
-						setCurrentSong(previousSong);
+						setCurrentSong(nextSong);
 
 						// nextSong();
 					}

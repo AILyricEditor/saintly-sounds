@@ -10,8 +10,7 @@
 }
 
 .songCover img {
-	width: inherit;
-	height: inherit;
+	height: 100%;
 	border-radius: inherit;
 }
 
