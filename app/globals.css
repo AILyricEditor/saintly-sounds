@@ -48,3 +48,22 @@ svg * {
 	background: var(--accent2);
 	border-radius: 10px;
 }
+
+.iconButton {
+	background: none;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.iconButton svg {
+	cursor: pointer;
+}
+
+.hoverBG:hover {
+	background: rgba(255, 0, 170, 0.733);
+
+	transition: background-color 0.2s ease-in-out;
+	border-radius: 5px;
+}

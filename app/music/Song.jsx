@@ -28,7 +28,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 				}}></audio>
 			<div className={styles.songTopbar}>
 				<SongCover style={{border: "1px solid var(--border-color)"}} song={song} className={styles.songCover} size={isExpanded ? 100 : 60}>
-					<Player width="50%" height="50%" song={song} />
+					<Player size="50%" song={song} />
 				</SongCover>
 				<div className={styles.songInfo}>
 					<h3>{song.title}</h3>

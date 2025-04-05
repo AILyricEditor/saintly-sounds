@@ -31,6 +31,15 @@
 	width: 50%
 }
 
+.controlButtons {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+}
+
 .timeline {
 	display: flex;
 	align-items: center;

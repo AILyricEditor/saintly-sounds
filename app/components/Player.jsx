@@ -1,16 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./Player.module.css"; 
 import { useSong } from '../contexts/SongContext';
 
-export default function Player({ width = 35, height = 35, song, style }) {
+export default function Player({ size = 35, song, style }) {
 	const { togglePlay, isPlaying, currentSong, setCurrentSong } = useSong("currentSong");
 
   return (
 		<>
 			<button className={styles.playButton}
-				style={{...style, width: width, height: height}}
+				style={{...style, width: size, height: size}}
 				onClick={(e) => {
 					e.stopPropagation();
 					setCurrentSong(song);
