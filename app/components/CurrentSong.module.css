@@ -11,6 +11,7 @@
 	height: 15%;
 	background: rgba(0, 0, 0, 0.85);
 	border-top: 1px solid var(--border-color);
+	box-shadow: 0 0 25px 10px black;
 }
 
 .songInfo {

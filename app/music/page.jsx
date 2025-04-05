@@ -3,13 +3,13 @@
 import { useState, useEffect } from "react";
 import Song from "./Song";
 import styles from "./page.module.css";
-import useSongs from "../hooks/useSongs";
+import useAllSongs from "../hooks/useSongs";
 
 export default function MusicPage() {
-	const songs = useSongs();
 	const [isExpanded, setIsExpanded] = useState(null);
+	const allSongs = useAllSongs(); // Fetch all songs using the custom hook
 	
-	if (!songs) {
+	if (!allSongs) {
     return <p>Loading...</p>; // Show a loading message if songs are not yet available
   }
 
@@ -21,7 +21,7 @@ export default function MusicPage() {
 		}
 	}
 
-	const SongElements = songs.map((song, index) => (
+	const SongElements = allSongs.map((song, index) => (
 		<Song key={index}
 			isExpanded={isExpanded === index}
 			onExpand={() => toggleExpand(index)} 

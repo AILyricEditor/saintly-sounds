@@ -42,4 +42,9 @@
 	border-radius: 999px;
 	background-color: var(--accent2);
 	box-shadow: 0 0 10px 1px black;
+	opacity: 0;
+}
+
+.targetContainer:hover .timeThumb {
+	opacity: 1;
 }

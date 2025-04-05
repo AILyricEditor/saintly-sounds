@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function useSongs() {
+export default function useAllSongs() {
 	const [songs, setSongs] = useState(null);
 	
 	useEffect(() => {
