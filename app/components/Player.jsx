@@ -1,10 +1,10 @@
 "use client";
 
 import styles from "./Player.module.css"; 
-import { useSong } from '../contexts/SongContext';
+import { useCurrentSong } from '../contexts/CurrentSongContext';
 
 export default function Player({ size = 35, song, style }) {
-	const { togglePlay, isPlaying, currentSong, setCurrentSong } = useSong("currentSong");
+	const { isPlaying, currentSong, setCurrentSong, controls } = useCurrentSong("currentSong");
 
   return (
 		<>
@@ -16,7 +16,7 @@ export default function Player({ size = 35, song, style }) {
 					if (song !== currentSong && isPlaying) {
 						return;
 					}	else { 
-						togglePlay();
+						controls.togglePlay();
 					}
 				}}
 			>

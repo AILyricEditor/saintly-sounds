@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Song from "./Song";
 import styles from "./page.module.css";
-import useAllSongs from "../hooks/useSongs";
+import useAllSongs from "../hooks/useAllSongs";
 
 export default function MusicPage() {
 	const [isExpanded, setIsExpanded] = useState(null);

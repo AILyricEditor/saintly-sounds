@@ -2,13 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./Slider.module.css";
-import { useSong } from "../contexts/SongContext";
 
-export default function Slider({ width = 100, min = 0, max = 100, value = 0, onSlide, onStop, syncRef = { current: null }, disabled = false }) {
-	const { isPlaying } = useSong();
+export default function Slider({ 
+	width = 100, 
+	min = 0, 
+	max = 100, 
+	value = 0, 
+	onSlide, 
+	onStop, 
+	disabled = false }
+) {
 	const [fillWidth, setFillWidth] = useState(value);
 	const [isDragging, setIsDragging] = useState(false);
-	const [isHovering, setHovering] = useState(false);
 	const ref = useRef(null);
 
 	const mousePosition = {
@@ -21,6 +26,10 @@ export default function Slider({ width = 100, min = 0, max = 100, value = 0, onS
 			return Math.max(min, Math.min(max, Math.ceil((this.precise(e) / elementWidth) * (max - min)) + min));
 		}
 	}
+
+	useEffect(() => {
+		if (!isDragging) setFillWidth(calculateWidth(value));
+	}, [value]);
 
 	function calculateWidth(time) {
 	  const { width: elementWidth } = ref.current.getBoundingClientRect();
@@ -41,7 +50,6 @@ export default function Slider({ width = 100, min = 0, max = 100, value = 0, onS
 		}
 
 		function onMouseUp(e) {
-			setFillWidth(mousePosition.precise(e));
 			document.removeEventListener('mouseup', onMouseUp);
 			document.removeEventListener("mousemove", onMouseMove);
 			setIsDragging(false);
@@ -55,23 +63,6 @@ export default function Slider({ width = 100, min = 0, max = 100, value = 0, onS
 			if (!disabled) element.removeEventListener("mousedown", onMouseDown);
 		}
 	}, [isDragging]);
-
-	useEffect(() => {
-		if (!syncRef.current || disabled) return;
-		const syncElement = syncRef.current;
-
-		function onTimeUpdate() {
-			if (!isDragging) {
-				setFillWidth(calculateWidth(syncElement.currentTime));
-			}
-		}
-
-	  syncElement.addEventListener("timeupdate", onTimeUpdate);
-
-		return () => {
-			if (syncElement) syncElement.removeEventListener("timeupdate", onTimeUpdate);
-		}
-	}, [isDragging, syncRef.current]);
 
   return (
 		// This wrapper element is to give the slider a bigger hit area for touch events

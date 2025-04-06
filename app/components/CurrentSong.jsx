@@ -4,19 +4,16 @@ import styles from './CurrentSong.module.css';
 import Player from './Player';
 import SongCover from './SongCover';
 import { useRef, useEffect, useState } from 'react';
-import { useSong } from '../contexts/SongContext';
-import useAllSongs from '../hooks/useSongs';
+import { useCurrentSong } from '../contexts/CurrentSongContext';
+import useAllSongs from '../hooks/useAllSongs';
 import Slider from './Slider';
 import { formatTime } from '../tools/tools';
-import Image from 'next/image';
 
 export default function CurrentSong() {
-	const { currentSong, setCurrentSong, isPlaying } = useSong();
+	const { currentSong, setCurrentSong, isPlaying, controls } = useCurrentSong();
 	const ref = useRef(null);
 	const [currentTime, setCurrentTime] = useState(0);
-	const allSongs = useAllSongs(); // Fetch all songs using the custom hook
-	const nextSong = allSongs ? allSongs[(allSongs.indexOf(currentSong) + 1)] || allSongs[0] : null;
-	const prevSong = allSongs ? allSongs[(allSongs.indexOf(currentSong) - 1)] || allSongs[allSongs.length - 1] : null;
+	const allSongs = useAllSongs(); // Fetch all songs using the custom hook : null;
 
 	useEffect(() => {
 		if (ref.current && isPlaying) {
@@ -37,8 +34,9 @@ export default function CurrentSong() {
 				onTimeUpdate={() => {
 					setCurrentTime(ref.current.currentTime);
 					if (ref.current.currentTime >= ref.current.duration - 1) {
-						setCurrentSong(nextSong);
-						if (loop) ref.current.currentTime = 0;
+						// setCurrentSong(nextSong);
+						controls.next();
+						// if (loop) ref.current.currentTime = 0;
 					}
 				}}
 			></audio>
@@ -52,11 +50,13 @@ export default function CurrentSong() {
 				<div className={styles.songControls}>
 					<div className={styles.controlButtons}>
 						<button className="iconButton hoverBG" onClick={() => {
-							setCurrentSong(prevSong);
+							// setCurrentSong(prevSong);
+							controls.previous();
 						}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M220-240v-480h80v480h-80Zm520 0L380-480l360-240v480Z"/></svg></button>
 						<Player song={currentSong} />
 						<button className="iconButton hoverBG" onClick={() => {
-							setCurrentSong(nextSong);
+							// setCurrentSong(nextSong);
+							controls.next();
 						}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Z"/></svg></button>
 					</div>
 					<div className={styles.timeline}>
@@ -69,7 +69,8 @@ export default function CurrentSong() {
 							onStop={(value) => {
 								ref.current.currentTime = value;
 							}}
-							syncRef={ref}
+							value={currentTime}
+							// syncRef={ref}
 						/> : <Slider key="disabled" width="100%" disabled/>}
 						<p className={styles.time}>{formatTime(ref.current.duration)}</p>
 					</div>

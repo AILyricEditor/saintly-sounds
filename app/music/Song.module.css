@@ -12,7 +12,6 @@
 	padding-right: 30px;
 	font-size: 0.8em;
 	transition: all 0.2s ease-in-out;
-	overflow-y: hidden;
 }
 
 .songSection {
@@ -75,5 +74,8 @@
 @media (max-width: 425px) {
 	.musicCard {
 		font-size: 0.65em;
+	}
+	::-webkit-scrollbar {
+		display: none;
 	}
 }

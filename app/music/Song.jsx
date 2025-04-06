@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import styles from './Song.module.css';
 import SongCover from '../components/SongCover';
 import Player from "../components/Player";
-import { useSong } from '../contexts/SongContext';
+import { useSong } from '../contexts/CurrentSongContext';
 import { formatTime } from '../tools/tools';
 
 export default function Song({ song, isExpanded, onExpand }) {
@@ -16,6 +16,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 			onClick={onExpand}
 			style={isExpanded ? {
 				height: "600px",
+				overflowY: "auto",
 				gridTemplateRows: "100px 1fr 1fr 1fr"
 			} : {
 				height: "50px",
