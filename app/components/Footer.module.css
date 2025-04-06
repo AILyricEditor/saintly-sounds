@@ -1,12 +1,9 @@
 .footer {
 	position: absolute;
 	bottom: -5px;
-	left: -5px;
+	right: -5px;
+	z-index: 2;
 	width: fit-content;
-	background: var(--accent1);
-	border-top: 2px solid white;
-	border-right: 2px solid white;
-	border-top-right-radius: 10px;
 	padding: 10px;
 	font-size: 0.8em;
 	letter-spacing: 3px;

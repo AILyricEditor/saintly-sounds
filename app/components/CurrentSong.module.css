@@ -1,6 +1,5 @@
 .currentSong {
 	display: flex;
-	/* grid-template-columns: 7% 25% 25% 25%; */
 	align-items: center;
 	padding: 0 1em;
 	position: absolute;
@@ -11,11 +10,10 @@
 	height: 15%;
 	background: rgba(0, 0, 0, 0.85);
 	border-top: 1px solid var(--border-color);
-	box-shadow: 0 0 25px 10px black;
+	box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.411);
 }
 
 .songInfo {
-	grid-column: 2;
 	font-size: 0.8em;
 	margin-left: 20px;
 }
@@ -28,7 +26,7 @@
 	position: absolute;
 	left: 50%;
 	translate: -50% 0;
-	width: 50%
+	width: 50%;
 }
 
 .controlButtons {
@@ -40,12 +38,23 @@
 	width: 100%;
 }
 
+.controlButtons svg:hover {
+	cursor: pointer;
+	transition: 100ms ease-in-out;
+	fill: rgb(196, 196, 196);
+}
+
+.controlButtons svg:active {
+	transition: 100ms ease-in-out;
+	scale: 1.2;
+}
+
 .timeline {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 	gap: 10px;
-	width: 100%;
+	width: 600px;
 }
 
 .timeline {
@@ -53,6 +62,7 @@
 }
 
 .time {
+  width: 40px;
 	font-size: 0.9em;
 	text-wrap: nowrap;
 	font-weight: 600;

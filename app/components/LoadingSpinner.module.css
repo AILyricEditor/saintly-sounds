@@ -1,0 +1,19 @@
+.loadingSpinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	border-radius: 50%;
+	border: 5px solid transparent;
+  border-top: 5px solid #3498db;
+	animation: spin 800ms ease-in-out infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

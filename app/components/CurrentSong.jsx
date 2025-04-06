@@ -5,15 +5,13 @@ import Player from './Player';
 import SongCover from './SongCover';
 import { useRef, useEffect, useState } from 'react';
 import { useCurrentSong } from '../contexts/CurrentSongContext';
-import useAllSongs from '../hooks/useAllSongs';
 import Slider from './Slider';
 import { formatTime } from '../tools/tools';
 
 export default function CurrentSong() {
-	const { currentSong, setCurrentSong, isPlaying, controls } = useCurrentSong();
+	const { currentSong, isPlaying, controls } = useCurrentSong();
 	const ref = useRef(null);
 	const [currentTime, setCurrentTime] = useState(0);
-	const allSongs = useAllSongs(); // Fetch all songs using the custom hook : null;
 
 	useEffect(() => {
 		if (ref.current && isPlaying) {
@@ -33,10 +31,8 @@ export default function CurrentSong() {
 				preload="auto"
 				onTimeUpdate={() => {
 					setCurrentTime(ref.current.currentTime);
-					if (ref.current.currentTime >= ref.current.duration - 1) {
-						// setCurrentSong(nextSong);
+					if (ref.current.currentTime >= ref.current.duration) {
 						controls.next();
-						// if (loop) ref.current.currentTime = 0;
 					}
 				}}
 			></audio>
@@ -50,18 +46,17 @@ export default function CurrentSong() {
 				<div className={styles.songControls}>
 					<div className={styles.controlButtons}>
 						<button className="iconButton hoverBG" onClick={() => {
-							// setCurrentSong(prevSong);
 							controls.previous();
 						}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M220-240v-480h80v480h-80Zm520 0L380-480l360-240v480Z"/></svg></button>
 						<Player song={currentSong} />
 						<button className="iconButton hoverBG" onClick={() => {
-							// setCurrentSong(nextSong);
 							controls.next();
 						}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Z"/></svg></button>
 					</div>
 					<div className={styles.timeline}>
 						<p className={styles.time}>{formatTime(currentTime)}</p>
-						{ref.current.duration ? <Slider key="active" width="100%" 
+						{ref.current.duration ? <Slider width="100%" 
+							value={currentTime}
 							max={ref.current.duration}
 							onSlide={(value) => {
 								setCurrentTime(value);
@@ -69,9 +64,7 @@ export default function CurrentSong() {
 							onStop={(value) => {
 								ref.current.currentTime = value;
 							}}
-							value={currentTime}
-							// syncRef={ref}
-						/> : <Slider key="disabled" width="100%" disabled/>}
+						/> : <Slider width="100%" disabled/>}
 						<p className={styles.time}>{formatTime(ref.current.duration)}</p>
 					</div>
 				</div>

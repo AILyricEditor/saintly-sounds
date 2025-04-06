@@ -2,7 +2,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CurrentSong from "./components/CurrentSong";
-import SongProvider from "./contexts/SongContext";
+import CurrentSongProvider from "./contexts/CurrentSongContext";
 
 export const metadata = {
   title: "Saintly Sounds",
@@ -13,12 +13,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <SongProvider>
+        <CurrentSongProvider>
           <Navbar />
           <CurrentSong />
           <Footer />
           {children}
-        </SongProvider>
+        </CurrentSongProvider>
       </body>
     </html>
   );

@@ -37,11 +37,15 @@ svg * {
 }
 
 ::-webkit-scrollbar {
-	width: 10px;
+	width: 7px;
+}
+
+::-webkit-scrollbar-button {
+	background: transparent;
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--primary);
+	background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -59,11 +63,4 @@ svg * {
 
 .iconButton svg {
 	cursor: pointer;
-}
-
-.hoverBG:hover {
-	background: rgba(255, 0, 170, 0.733);
-
-	transition: background-color 0.2s ease-in-out;
-	border-radius: 5px;
 }

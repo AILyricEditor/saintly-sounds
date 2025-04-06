@@ -9,7 +9,7 @@ export const useCurrentSong = () => {
 	return useContext(CurrentSongContext);
 }
 
-export default function SongProvider({ children }) {
+export default function CurrentSongProvider({ children }) {
 	const [currentSong, setCurrentSong] = useState(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [currentSongIndex, setCurrentSongIndex] = useState(0);
