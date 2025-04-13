@@ -12,6 +12,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 	const audioRef = useRef(null);
 	const cardRef = useRef(null);
 
+	// TODO: when de-expanding the card when it is scrolled, the scroll position is not reset to the top
 	return (
 		<section ref={cardRef} className={`${styles.musicCard} ${isExpanded && styles.expanded}`} 
 			onClick={onExpand}
