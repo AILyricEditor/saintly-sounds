@@ -26,13 +26,14 @@
 	position: absolute;
 	left: 50%;
 	translate: -50% 0;
-	width: 50%;
+	width: 60%;
 }
 
 .controlButtons {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	flex-wrap: nowrap;
 	align-items: center;
 	gap: 10px;
 	width: 100%;

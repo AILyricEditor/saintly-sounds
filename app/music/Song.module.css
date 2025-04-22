@@ -80,6 +80,11 @@
 	margin-left: auto;
 }
 
+.currentSong {
+	border: 2px solid var(--accent2);
+	width: 83%;
+}
+
 /* ::-webkit-scrollbar {
 	width: 7px;
 	padding: 20px;

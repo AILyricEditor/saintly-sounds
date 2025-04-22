@@ -1,19 +1,13 @@
 import styles from "./ToggleButton.module.css";
-import { useState } from "react";
 
-export default function ToggleButton({ states, onClick }) {
-	const [currentState, setCurrentState] = useState(0);
+export default function ToggleButton({ states, value, onChange }) {
 
 	return (
 		<button className={styles.toggleButton} onClick={() => {
-			setCurrentState((currentState + 1) % states.length);
-			if (onClick && Array.isArray(onClick)) {
-				if (onClick[currentState]) onClick[currentState]();
-			} else if (onClick) {
-			  onClick();
-			}
+			const nextState = (value + 1) % states.length;
+			onChange(nextState);
 		}}>
-			{states[currentState]}
+			{states[value]}
 		</button>
 	);
 }

@@ -4,7 +4,7 @@ import styles from "./Player.module.css";
 import { useCurrentSong } from '../contexts/CurrentSongContext';
 
 export default function Player({ size = 35, song, style }) {
-	const { isPlaying, currentSong, setCurrentSong, controls } = useCurrentSong("currentSong");
+	const { isPlaying, currentSong, changeSong, controls } = useCurrentSong("currentSong");
 
   return (
 		<>
@@ -12,7 +12,7 @@ export default function Player({ size = 35, song, style }) {
 				style={{...style, width: size, height: size}}
 				onClick={(e) => {
 					e.stopPropagation();
-					setCurrentSong(song);
+					changeSong(song);
 					if (song !== currentSong && isPlaying) {
 						return;
 					}	else { 

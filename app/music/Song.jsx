@@ -6,15 +6,17 @@ import SongCover from '../components/SongCover';
 import Player from "../components/Player";
 import { formatTime } from '../tools/tools';
 import LoadingSpinner from "../components/LoadingSpinner";
+import { useCurrentSong } from '../contexts/CurrentSongContext';
 
 export default function Song({ song, isExpanded, onExpand }) {
 	const [duration, setDuration] = useState(0);
+	const { currentSong, isPlaying, controls } = useCurrentSong();
 	const audioRef = useRef(null);
 	const cardRef = useRef(null);
 
 	// TODO: when de-expanding the card when it is scrolled, the scroll position is not reset to the top
 	return (
-		<section ref={cardRef} className={`${styles.musicCard} ${isExpanded && styles.expanded}`} 
+		<section ref={cardRef} className={`${styles.musicCard} ${isExpanded && styles.expanded} ${currentSong?.id === song.id && styles.currentSong}`} 
 			onClick={onExpand}
 			style={isExpanded ? {
 				height: "400px",
