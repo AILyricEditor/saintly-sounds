@@ -2,6 +2,7 @@
 
 import { useState, createContext, useContext, useEffect } from 'react';
 import useAllSongs from '../hooks/useAllSongs';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const CurrentSongContext = createContext();
 
@@ -12,32 +13,22 @@ export const useCurrentSong = () => {
 export default function CurrentSongProvider({ children }) {
 	const [currentSong, setCurrentSong] = useState(null);
 	const [isPlaying, setIsPlaying] = useState(false);
-	const [currentSongIndex, setCurrentSongIndex] = useState(0);
-	const [songHistory, setSongHistory] = useState(new Set());
+	const [songQueue, setSongQueue] = useState(null);
+	const [songRef, setSongRef] = useState(0);
+	const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
 	const allSongs = useAllSongs(); // Fetch all songs using the custom hook
 
-	console.log(songHistory);
-
-	const nextSong = allSongs ? allSongs[currentSongIndex + 1] || allSongs[0] : null;
-	const prevSong = allSongs ? allSongs[currentSongIndex - 1] || allSongs[allSongs.length - 1] : null;
+	const songIndex = currentSong ? songQueue.findIndex(song => song.id === currentSong.id) : -1;
+	const nextSong = songQueue ? songQueue[songIndex + 1] || songQueue[0] : null;
+	const prevSong = songQueue ? songQueue[songIndex - 1] || songQueue[songQueue.length - 1] : null;
 
 	function changeSong(song) {
-		const newSongHistory = new Set(songHistory);
-		newSongHistory.add(song.id);
-		// if (!songHistory.has(song)) {
-		// 	newSongHistory.add(song); // Add the new song to history
-		// } else {
-		// 	newSongHistory.delete(song); // Remove the song if it's already in history
-		// }
-		setSongHistory(new Set([...songHistory, song.id])); // Update the state with the new history
-
-		if (songHistory.size >= allSongs.length) { 
-			setSongHistory(new Set([song.id])); // Reset history if all songs have been played
-		}
-
 		setCurrentSong(song);
-		setCurrentSongIndex(allSongs.findIndex(thisSong => thisSong.id === song.id));
 	}
+
+	useEffect(() => {
+		setSongQueue(allSongs);
+	}, [allSongs])
 
 	const controls = {
 		play: () => setIsPlaying(true),
@@ -45,25 +36,38 @@ export default function CurrentSongProvider({ children }) {
 		togglePlay: () => setIsPlaying(!isPlaying),
 		next: () => changeSong(nextSong),
 		previous: () => changeSong(prevSong),
-		previousHistory: () => {
-			if (songHistory.size < 2) return;
-			changeSong(allSongs.find(song => [...songHistory][songHistory.size - 2].id === song.id)); // Get the second last song from history
-			// setSongHistory(new Set([...songHistory].slice(0, -1))); // Remove the last song from history
+		shuffle: () => setSongQueue(shuffle(allSongs)),
+		unShuffle: () => setSongQueue(allSongs),
+		replay: () => {
+			console.log(songRef)
+			songRef.current.currentTime = 0;
+			// controls.play();
 		},
-		random: () => {
-			// const playedIds = new Set([...songHistory].map(song => song.id));
+		loopOnce: () => {
+			if (!hasPlayedOnce) controls.replay();
+			setHasPlayedOnce(!hasPlayedOnce);
+		},
+	}
 
-			const playableSongs = allSongs.filter(song => songHistory.has(song.id) === false);
-
-			let nextSong = playableSongs[Math.floor(Math.random() * playableSongs.length)] ||
-				allSongs[Math.floor(Math.random() * allSongs.length)];
-
-			changeSong(nextSong);
+	function shuffle(array) {
+		let copiedArray = array.slice();
+		let shuffledArray = [];
+		while (copiedArray.length > 0) {
+			const random = Math.floor(Math.random() * (copiedArray.length));
+			shuffledArray.push(copiedArray.splice(random, 1)[0]);
 		}
+		return shuffledArray;
 	}
 
 	return (
-		<CurrentSongContext.Provider value={{ currentSong, changeSong, isPlaying, controls }}>
+		<CurrentSongContext.Provider value={{ 
+			currentSong,
+			changeSong,
+			isPlaying,
+			controls,
+			songRef,
+			setSongRef
+		}}>
 			{children}
 			<div style={{
 				position: 'absolute',
@@ -76,15 +80,17 @@ export default function CurrentSongProvider({ children }) {
 				zIndex: 1000,
 			}}>
 				<h2>Song History</h2>
-				{[...songHistory].map((song, index) => {
+				{songQueue && currentSong ? songQueue.map((song, index) => {
 					return ( 
 						<div key={index}
 						style={{
 							padding: '5px',
 							cursor: 'pointer',
-						}}>{index + 1}. {allSongs[index].title}</div> 
+							color: song.id === currentSong.id ? "var(--accent2)" : "white"
+						}}>{index + 1}. {song.title}
+						</div> 
 					)
-				})}
+				}) : <h5>No song played yet</h5>}
 			</div>
 		</CurrentSongContext.Provider>
 	);
