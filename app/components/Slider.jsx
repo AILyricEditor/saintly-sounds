@@ -4,13 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./Slider.module.css";
 
 export default function Slider({ 
-	width = 100, 
+	className,
+	width = 100,
+	height = 7,
 	min = 0, 
 	max = 100, 
 	value = 0, 
 	onSlide, 
 	onStop, 
-	disabled = false }
+	disabled = false}
 ) {
 	const [fillWidth, setFillWidth] = useState(value);
 	const [isDragging, setIsDragging] = useState(false);
@@ -62,31 +64,38 @@ export default function Slider({
 		return () => {
 			if (!disabled) element.removeEventListener("mousedown", onMouseDown);
 		}
-	}, [isDragging]);
+	}, [isDragging, disabled, onSlide, onStop]);
 
   return (
 		// This wrapper element is to give the slider a bigger hit area for touch events
-		<div ref={ref} className={styles.targetContainer} 
-			style={{width: width}}
+		<div ref={ref} className={`${styles.targetContainer} ${disabled && styles.disabled} ${className}`}
+			style={{
+				width: width,
+				height: height + 15,
+			}}
 		>
 			<div className={styles.timeBar} style={{
-				width: width,
+				height: height,
 				background: isDragging && "color-mix(in srgb, grey 80%, black 10%)",
 			}}
 			>
 				<div className={styles.timeBarFill} style={{
 					width: fillWidth,
-					background: isDragging && "color-mix(in srgb, var(--accent2) 80%, red 50%)" || disabled && "color-mix(in srgb, var(--accent2) 50%, grey 100%)",
-					scale: isDragging ? "1 1.1" : "1"
+					background: isDragging && "color-mix(in srgb, var(--accent2) 80%, red 50%)",
+					// scale: isDragging ? "1 1.1" : "1"
+					scale: isDragging ? "1 1.3" : "1",
 				}}>
 				</div>
-				<div className={styles.timeThumb} style={{
+				{!disabled && <div className={styles.timeThumb} style={{
 					left: fillWidth,
 					background: isDragging && "color-mix(in srgb, var(--accent2) 80%, red 80%)",
 					boxShadow: isDragging && "0 0 10px 2px black",
-					scale: isDragging ? "1.2" : "1",
+					scale: isDragging ? "1.5" : "1",
+					opacity: isDragging ? 0 : 1,
+					height: height + 8,
+					width: height + 8,
 				}}>
-				</div>
+				</div>}
 			</div>
 		</div>
 	);

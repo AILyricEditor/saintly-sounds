@@ -7,12 +7,15 @@ import Player from "../components/Player";
 import { formatTime } from '../tools/tools';
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useCurrentSong } from '../contexts/CurrentSongContext';
+import Slider from "../components/Slider";
 
 export default function Song({ song, isExpanded, onExpand }) {
 	const [duration, setDuration] = useState(0);
-	const { currentSong, isPlaying, controls } = useCurrentSong();
+	const { currentSong, status, controls } = useCurrentSong();
 	const audioRef = useRef(null);
 	const cardRef = useRef(null);
+
+	const isPlaying = currentSong && song.id === currentSong.id && status.isPlaying;
 
 	// TODO: when de-expanding the card when it is scrolled, the scroll position is not reset to the top
 	return (
@@ -23,7 +26,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 				overflowY: "auto",
 				gridTemplateRows: "100px 1fr 1fr 1fr"
 			} : {
-				height: "50px",
+				height: isPlaying ? "75px" : "55px",
 				gridTemplateRows: "50px 1fr 1fr 1fr"
 			}}
 		>
@@ -35,13 +38,24 @@ export default function Song({ song, isExpanded, onExpand }) {
 			{audioRef.current ?
 				<>
 					<div className={styles.songTopbar}>
-						<SongCover style={{border: "1px solid var(--border-color)"}} song={song} className={styles.songCover} size={isExpanded ? 100 : 60}>
+						<SongCover 
+							style={{
+								border: "1px solid var(--border-color)",
+								gridRow: "1 span 2",
+								gridColumn: "1"
+							}} 
+							song={song} className={styles.songCover} 
+							size={isExpanded ? 100 : isPlaying ? 75 : 60}
+						>
 							<Player size="50%" song={song} />
 						</SongCover>
 						<div className={styles.songInfo}>
 							<h3>{song.title}</h3>
 							<p>Artist: {song.artist}</p>
 							<p>Album: {song.album}</p>
+							{isPlaying && 
+								<Slider className={styles.progress} width="90%" height={2} value={status.currentTime} max={status.getDuration()} disabled />
+							}
 						</div>
 						<p className={styles.songDuration}>{formatTime(duration)}</p>
 					</div>
@@ -68,8 +82,8 @@ function SongSection({ type, isExpanded, children }) {
 	return (
 		<div className={`${styles[type]} ${styles.songSection}`}
 			style={isExpanded ? {
+				opacity: "1",
 				visibility: "visible",
-				opacity: "1"
 			} : {
 				visibility: "hidden",
 				opacity: "0"
