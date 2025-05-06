@@ -1,0 +1,17 @@
+.playButton {
+	background: none;
+	border: none;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.playButton svg {
+	width: 100%;
+	height: 100%;
+	opacity: 0.8;
+	cursor: pointer;
+	fill: white;
+}

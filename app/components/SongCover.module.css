@@ -1,0 +1,22 @@
+.songCover {
+	position: relative;
+	aspect-ratio: 1 / 1;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease-in-out
+}
+
+.songCover img {
+	height: 100%;
+	border-radius: inherit;
+}
+
+.songCover button {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+}
