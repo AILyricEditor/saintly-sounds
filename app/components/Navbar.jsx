@@ -12,17 +12,26 @@ export default function Navbar() {
 	}
 
 	return (
-		<nav className={styles.nav}>
-			<MenuButton menuOpen={menuOpen} onOpen={toggleMenu}/>
-			<div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
-				<MenuButton menuOpen={menuOpen} onOpen={toggleMenu}/>
-				<Link className={styles.link} href="/">Home</Link>
-				<Link className={styles.link} href="/">Shop</Link>
-				<Link className={styles.link} href="/music">Music</Link>
-				<Link className={styles.link} href="/">News</Link>
-				<Link className={styles.link} href="/">About</Link>
+		<>
+			<div className={styles.overlay} onClick={toggleMenu}
+				style={{
+					opacity: menuOpen ? 0.5 : 0,
+					visibility: menuOpen ? "visible" : "hidden",
+					pointerEvents: menuOpen ? "all" : "none",
+				}}>
 			</div>
-		</nav>
+			<nav className={styles.nav}>
+				<MenuButton menuOpen={menuOpen} onOpen={toggleMenu}/>
+				<div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
+					<MenuButton menuOpen={menuOpen} onOpen={toggleMenu}/>
+					<Link className={styles.link} href="/" onClick={toggleMenu}>Home</Link>
+					<Link className={styles.link} href="/" onClick={toggleMenu}>Shop</Link>
+					<Link className={styles.link} href="/music" onClick={toggleMenu}>Music</Link>
+					<Link className={styles.link} href="/" onClick={toggleMenu}>News</Link>
+					<Link className={styles.link} href="/" onClick={toggleMenu}>About</Link>
+				</div>
+			</nav>
+		</>
 	);
 }
 
