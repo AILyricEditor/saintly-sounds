@@ -15,7 +15,7 @@ export default function Navbar() {
 		<>
 			<div className={styles.overlay} onClick={toggleMenu}
 				style={{
-					opacity: menuOpen ? 0.5 : 0,
+					opacity: menuOpen ? 0.4 : 0,
 					visibility: menuOpen ? "visible" : "hidden",
 					pointerEvents: menuOpen ? "all" : "none",
 				}}>
