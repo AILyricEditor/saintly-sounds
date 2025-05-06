@@ -8,17 +8,22 @@ import Slider from './Slider';
 import { formatTime } from '../tools/tools';
 import LoadingSpinner from './LoadingSpinner';
 import ToggleButton from './ToggleButton';
+import { useState } from 'react';
 
 export default function CurrentSong() {
 	const { currentSong, status, controls} = useCurrentSong();
+	const [isExpanded, setIsExpanded] = useState(false);
 
 	if (!currentSong) return null;
 
 	return (
 		<>
-			<div className={styles.currentSong}>
+			<div className={`${styles.currentSong} ${isExpanded && styles.expanded}`} onClick={e => {
+				if (e.target.matches('button') || e.target.matches('svg')) return;
+				setIsExpanded(!isExpanded);
+			}}>
 				{status.isLoaded ? <>
-					<SongCover song={currentSong}/>
+					<SongCover song={currentSong} className={styles.songCover} />
 					<div className={styles.songInfo}>
 						<h3>{currentSong.title}</h3>
 						<p>Artist: {currentSong.artist}</p>
@@ -26,7 +31,7 @@ export default function CurrentSong() {
 					</div>
 					<div className={styles.songControls}>
 						<div className={styles.controlButtons}>
-							<ToggleButton states={[
+							<ToggleButton className={`iconButton`} states={[
 									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M560-160v-80h104L537-367l57-57 126 126v-102h80v240H560Zm-344 0-56-56 504-504H560v-80h240v240h-80v-104L216-160Zm151-377L160-744l56-56 207 207-56 56Z"/></svg>,
 									<svg style={{fill: "var(--accent2)"}} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M560-160v-80h104L537-367l57-57 126 126v-102h80v240H560Zm-344 0-56-56 504-504H560v-80h240v240h-80v-104L216-160Zm151-377L160-744l56-56 207 207-56 56Z"/></svg>
 								]}
@@ -36,11 +41,11 @@ export default function CurrentSong() {
 									controls.setShuffle(!status.shuffle);
 								}}
 							/>
-							<button className="iconButton hoverBG" onClick={() => {
+							<button className={`iconButton hoverBG`} onClick={() => {
 								controls.previous();
 							}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M220-240v-480h80v480h-80Zm520 0L380-480l360-240v480Z"/></svg></button>
 							<Player song={currentSong} />
-							<button className="iconButton hoverBG" onClick={() => {
+							<button className={`iconButton hoverBG`} onClick={() => {
 								controls.next();
 								controls.play();
 							}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Z"/></svg></button>
@@ -55,7 +60,8 @@ export default function CurrentSong() {
 						</div>
 						<div className={styles.timeline}>
 							<p className={styles.time}>{formatTime(status.currentTime)}</p>
-							<Slider width="100%" 
+							<Slider 
+								width="100%" 
 								value={status.currentTime}
 								max={status.getDuration()}
 								onSlide={(value) => {

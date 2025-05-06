@@ -90,7 +90,7 @@ export default function CurrentSongProvider({ children }) {
 			status,
 			controls
 		}}>
-			<div style={{
+			{/* <div style={{
 				position: 'absolute',
 				top: 0,
 				right: 0,
@@ -112,7 +112,7 @@ export default function CurrentSongProvider({ children }) {
 						</div> 
 					)
 				}) : <h5>No song played yet</h5>}
-			</div>
+			</div> */}
 			{currentSong && <audio
 				ref={songRef}
 				src={currentSong.audio}

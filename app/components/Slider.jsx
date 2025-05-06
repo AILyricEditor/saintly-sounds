@@ -6,7 +6,7 @@ import styles from "./Slider.module.css";
 export default function Slider({ 
 	className,
 	width = 100,
-	height = 7,
+	height = 6,
 	min = 0, 
 	max = 100, 
 	value = 0, 
@@ -42,8 +42,14 @@ export default function Slider({
 		function onMouseDown(e) {
 			setFillWidth(mousePosition.precise(e));
 			setIsDragging(true);
-			document.addEventListener('mousemove', onMouseMove);
-			document.addEventListener('mouseup', onMouseUp);
+			if (e.type == "mousedown") {
+				document.addEventListener('mousemove', onMouseMove);
+				document.addEventListener('mouseup', onMouseUp);
+			}
+			if (e.type == "touchstart") {
+				document.addEventListener('touchmove', onMouseMove);
+				document.addEventListener('touchend', onMouseUp);
+			}
 		}
 
 		function onMouseMove(e) {
@@ -52,17 +58,29 @@ export default function Slider({
 		}
 
 		function onMouseUp(e) {
-			document.removeEventListener('mouseup', onMouseUp);
-			document.removeEventListener("mousemove", onMouseMove);
+			if (e.type == "mouseup") {
+				document.removeEventListener('mouseup', onMouseUp);
+				document.removeEventListener("mousemove", onMouseMove);
+			}
+			if (e.type == "touchend") {
+				document.removeEventListener("touchmove", onMouseMove);
+				document.removeEventListener('touchend', onMouseUp);
+			}
 			setIsDragging(false);
 			if (onStop) onStop(mousePosition.approximate(e));
 		}
 
 		const element = ref.current;
-		if (!disabled) element.addEventListener("mousedown", onMouseDown);
+		if (!disabled) {
+			element.addEventListener("mousedown", onMouseDown);
+			element.addEventListener("touchstart", onMouseDown);
+		}
 
 		return () => {
-			if (!disabled) element.removeEventListener("mousedown", onMouseDown);
+			if (!disabled) {
+				element.removeEventListener("mousedown", onMouseDown);
+				element.removeEventListener("touchstart", onMouseDown);
+			}
 		}
 	}, [isDragging, disabled, onSlide, onStop]);
 

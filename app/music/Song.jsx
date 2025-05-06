@@ -54,7 +54,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 							<p>Artist: {song.artist}</p>
 							<p>Album: {song.album}</p>
 							{isPlaying && 
-								<Slider className={styles.progress} width="90%" height={2} value={status.currentTime} max={status.getDuration()} disabled />
+								<Slider className={styles.progress} width="95%" height={2} value={status.currentTime} max={status.getDuration()} disabled />
 							}
 						</div>
 						<p className={styles.songDuration}>{formatTime(duration)}</p>
