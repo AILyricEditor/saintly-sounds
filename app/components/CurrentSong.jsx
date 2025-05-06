@@ -19,7 +19,7 @@ export default function CurrentSong() {
 	return (
 		<>
 			<div className={`${styles.currentSong} ${isExpanded && styles.expanded}`} onClick={e => {
-				if (e.target.matches('button') || e.target.matches('svg')) return;
+				if (e.target.matches('button') || e.target.matches('svg') || e.target.matches(`.${styles.timeline} *`)) return;
 				setIsExpanded(!isExpanded);
 			}}>
 				{status.isLoaded ? <>

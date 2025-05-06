@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./Slider.module.css";
+import { getClientX } from "../tools/tools";
 
 export default function Slider({ 
 	className,
@@ -21,7 +22,7 @@ export default function Slider({
 	const mousePosition = {
 		precise: function(e) {
 			const { left, width: elementWidth } = ref.current.getBoundingClientRect();
-			return Math.max(min, Math.min(e.clientX - left, elementWidth));
+			return Math.max(min, Math.min(getClientX(e) - left, elementWidth));
 		},
 		approximate: function(e) {
 			const { width: elementWidth } = ref.current.getBoundingClientRect();
@@ -100,7 +101,6 @@ export default function Slider({
 				<div className={styles.timeBarFill} style={{
 					width: fillWidth,
 					background: isDragging && "color-mix(in srgb, var(--accent2) 80%, red 50%)",
-					// scale: isDragging ? "1 1.1" : "1"
 					scale: isDragging ? "1 1.3" : "1",
 				}}>
 				</div>
