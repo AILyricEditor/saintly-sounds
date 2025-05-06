@@ -108,8 +108,8 @@ export default function Slider({
 					left: fillWidth,
 					background: isDragging && "color-mix(in srgb, var(--accent2) 80%, red 80%)",
 					boxShadow: isDragging && "0 0 10px 2px black",
-					scale: isDragging ? "1.5" : "1",
-					opacity: isDragging ? 0 : 1,
+					scale: isDragging && 1.5,
+					opacity: isDragging && 0,
 					height: height + 8,
 					width: height + 8,
 				}}>
