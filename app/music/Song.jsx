@@ -44,7 +44,8 @@ export default function Song({ song, isExpanded, onExpand }) {
 								gridRow: "1 span 2",
 								gridColumn: "1"
 							}} 
-							song={song} className={styles.songCover} 
+							song={song} 
+							className={styles.songCover} 
 							size={isExpanded ? 100 : isPlaying ? 75 : 60}
 						>
 							<Player size="50%" song={song} />
