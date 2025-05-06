@@ -4,11 +4,16 @@ import { useState, useEffect } from "react";
 
 export default function useAllSongs() {
 	const [songs, setSongs] = useState(null);
-	
+
 	useEffect(() => {
-		fetch("./songs.json").then(res => res.json()).then(data => {
-			setSongs(data.songs);
-		});
+		fetch("/songs.json")
+			.then(res => res.json())
+			.then(data => {
+				setSongs(data.songs);
+			})
+			.catch(err => {
+				console.error("Failed to fetch songs.json:", err);
+			});
 	}, []);
 
 	return songs;
