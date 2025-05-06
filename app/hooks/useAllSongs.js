@@ -6,7 +6,7 @@ export default function useAllSongs() {
 	const [songs, setSongs] = useState(null);
 
 	useEffect(() => {
-		fetch("/songs.json")
+		fetch("https://ailyriceditor.github.io/saintly-sounds/songs.json")
 			.then(res => res.json())
 			.then(data => {
 				setSongs(data.songs);
