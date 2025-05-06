@@ -6,7 +6,7 @@ export default function useAllSongs() {
 	const [songs, setSongs] = useState(null);
 	
 	useEffect(() => {
-		fetch("/songs.json").then(res => res.json()).then(data => {
+		fetch("./songs.json").then(res => res.json()).then(data => {
 			setSongs(data.songs);
 		});
 	}, []);
