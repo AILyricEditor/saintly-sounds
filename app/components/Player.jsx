@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./Player.module.css"; 
+import styles from "./styles/Player.module.css"; 
 import { useCurrentSong } from '../contexts/CurrentSongContext';
 
-export default function Player({ size = 35, song, style, className = '' }) {
+export default function Player({ size = 35, song, style }) {
 	const { currentSong, status, controls } = useCurrentSong("currentSong");
 
   return (

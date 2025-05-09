@@ -1,6 +1,7 @@
 "use client";
 
-import styles from './CurrentSong.module.css';
+import styles from './styles/CurrentSong.module.css';
+import { useState } from 'react';
 import Player from './Player';
 import SongCover from './SongCover';
 import { useCurrentSong } from '../contexts/CurrentSongContext';
@@ -8,7 +9,6 @@ import Slider from './Slider';
 import { formatTime } from '../tools/tools';
 import LoadingSpinner from './LoadingSpinner';
 import ToggleButton from './ToggleButton';
-import { useState } from 'react';
 
 export default function CurrentSong() {
 	const { currentSong, status, controls} = useCurrentSong();
@@ -23,7 +23,7 @@ export default function CurrentSong() {
 				setIsExpanded(!isExpanded);
 			}}>
 				{status.isLoaded ? <>
-					<SongCover song={currentSong} className={styles.songCover} />
+					<SongCover song={currentSong} />
 					<div className={styles.songInfo}>
 						<h3>{currentSong.title}</h3>
 						<p>Artist: {currentSong.artist}</p>

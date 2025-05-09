@@ -1,4 +1,4 @@
-import styles from "./ToggleButton.module.css";
+import styles from "./styles/ToggleButton.module.css";
 
 export default function ToggleButton({ states, value, onChange, className }) {
 

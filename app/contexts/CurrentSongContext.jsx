@@ -2,7 +2,6 @@
 
 import { useState, createContext, useContext, useEffect, useRef } from 'react';
 import useAllSongs from '../hooks/useAllSongs';
-import LoadingSpinner from '../components/LoadingSpinner';
 
 const CurrentSongContext = createContext();
 
@@ -50,13 +49,13 @@ export default function CurrentSongProvider({ children }) {
 		previous: () => setCurrentSong(prevSong),
 		shuffle: () => setSongQueue(shuffle(allSongs)),
 		unShuffle: () => setSongQueue(allSongs),
+		replay: () => controls.seekTo(0),
+		setLoop: (value) => setLoopState(value),
+		setShuffle: (value) => setShuffleState(value),
 		seekTo: (time) => {
 			setCurrentTime(time);
 			if (isLoaded) songRef.current.currentTime = time;
-		},
-		replay: () => controls.seekTo(0),
-		setLoop: (value) => setLoopState(value),
-		setShuffle: (value) => setShuffleState(value)
+		}
 	}
 
 	const status = {
