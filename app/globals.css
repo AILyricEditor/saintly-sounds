@@ -29,9 +29,10 @@ body {
 	color: var(--text-color);
 	font-family: poppins;
 	display: grid;
-	grid-template-rows: 10% 90%;
+	grid-template-columns: 13% 87%;
 	overflow: hidden;
 	color: white;
+	user-select: none;
 }
 
 svg * {
