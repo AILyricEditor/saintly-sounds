@@ -33,6 +33,7 @@ body {
 	overflow: hidden;
 	color: white;
 	user-select: none;
+	position: relative;
 }
 
 svg * {
@@ -68,4 +69,11 @@ svg * {
 
 .iconButton svg {
 	cursor: pointer;
+}
+
+@media (max-width: 425px) {
+	body {
+		grid-template-columns: 1fr;
+		grid-template-rows: 90% 10%;
+	}
 }

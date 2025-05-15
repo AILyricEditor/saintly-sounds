@@ -45,10 +45,11 @@ export default function Navbar() {
 			<nav className={styles.nav}>
 				<img src="/saintly-sounds4.png" alt="Saintly Sounds" className={styles.logo} />
 				<div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
-					{links.map((link) => {
+					{links.map((link, index) => {
 						return (
 							<Link className={`${styles.link} ${pathname === link.href ? styles.active : ''}`} 
 								href={link.href} 
+								key={index}
 							>
 								{pathname === link.href ? link.active : link.icon}
 								<p>{link.label}</p>

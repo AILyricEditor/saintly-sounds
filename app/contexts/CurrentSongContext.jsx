@@ -19,12 +19,15 @@ export default function CurrentSongProvider({ children }) {
 	const [loopState, setLoopState] = useState(0);
 	const [shuffleState, setShuffleState] = useState(false);
 	const [seeking, setSeeking] = useState(false);
+	const [isControlling, setIsControlling] = useState(false);
 	const songRef = useRef(null);
 	const allSongs = useAllSongs(); // Fetch all songs using the custom hook
 
 	const songIndex = currentSong ? songQueue.findIndex(song => song.id === currentSong.id) : -1;
 	const nextSong = songQueue ? songQueue[songIndex + 1] || songQueue[0] : null;
 	const prevSong = songQueue ? songQueue[songIndex - 1] || songQueue[songQueue.length - 1] : null;
+
+	let timeout;
 
 	useEffect(() => {
 		setSongQueue(allSongs);
@@ -64,9 +67,21 @@ export default function CurrentSongProvider({ children }) {
 		shuffle: shuffleState,
 		currentTime: currentTime,
 		isPlaying: isPlaying,
-		setSeeking: (value) => setSeeking(value),
+		isSeeking: seeking,
+		isControlling: isControlling,
+		setSeeking: (value) => {
+			setSeeking(value);
+			status.setControlling();
+		},
 		getDuration: () => isLoaded ? songRef.current.duration : null,
 		setTime: (time) => !seeking && setCurrentTime(time),
+		setControlling: () => {
+			if (timeout) clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				setIsControlling(false);
+			}, 500);
+			setIsControlling(true)
+		},
 	}
 
 	useEffect(() => {

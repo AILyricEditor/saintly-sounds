@@ -19,6 +19,7 @@ export default function Player({ size = 35, song, style }) {
 					return;
 				}	else { 
 					controls.togglePlay();
+					status.setControlling();
 				}
 			}}
 		>
