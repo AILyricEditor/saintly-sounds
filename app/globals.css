@@ -29,7 +29,7 @@ body {
 	color: var(--text-color);
 	font-family: poppins;
 	display: grid;
-	grid-template-columns: 13% 87%;
+	grid-template-columns: 14% 87%;
 	overflow: hidden;
 	color: white;
 	user-select: none;
@@ -74,6 +74,6 @@ svg * {
 @media (max-width: 425px) {
 	body {
 		grid-template-columns: 1fr;
-		grid-template-rows: 90% 10%;
+		grid-template-rows: 89% 11%;
 	}
 }

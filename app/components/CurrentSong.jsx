@@ -22,11 +22,11 @@ export default function CurrentSong() {
 				setIsExpanded(false);
 			}, 3000);
 		} else if (status.isControlling === true) {
-			clearTimeout(timeout);
+			if (timeout) clearTimeout(timeout);
 		}
 
 		return () => {
-			clearTimeout(timeout);
+			if (timeout) clearTimeout(timeout);
 		};
 	}, [isExpanded, status.isControlling]);
 
