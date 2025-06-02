@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './styles/Navbar.module.css';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
+	const [activeLink, setActiveLink] = useState(null);
+	const [activeSubLink, setActiveSubLink] = useState(null);
 	const pathname = usePathname();
 	const section = pathname.split('/')[1]; // e.g. "music"
 	const pageRegExp = new RegExp(`^/${section}(/|$)`, 'i');
@@ -29,9 +31,9 @@ export default function Navbar() {
 			icon: <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M360-120H200q-33 0-56.5-23.5T120-200v-280q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480v280q0 33-23.5 56.5T760-120H600v-320h160v-40q0-117-81.5-198.5T480-760q-117 0-198.5 81.5T200-480v40h160v320Zm-80-240h-80v160h80v-160Zm400 0v160h80v-160h-80Zm-400 0h-80 80Zm400 0h80-80Z"/></svg>,
 			activeIcon: <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M360-120H200q-33 0-56.5-23.5T120-200v-280q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480v280q0 33-23.5 56.5T760-120H600v-320h160v-40q0-117-81.5-198.5T480-760q-117 0-198.5 81.5T200-480v40h160v320Z"/></svg>,
 			sublinks: [
-				{ href: '/music/singles', label: 'Singles' },
+				{ href: '/music', label: 'Songs' },
 				{ href: '/music/albums', label: 'Albums' },
-				{ href: '/music/songs', label: 'Songs' },
+				{ href: '/music/singles', label: 'Singles' },
 			]
 		},
 		{ href: '/',
@@ -46,6 +48,14 @@ export default function Navbar() {
 		}
 	]
 
+	useEffect(() => {
+		const matchedLink = links.find(link => pageRegExp.test(link.href));
+		if (matchedLink) {
+			setActiveLink(matchedLink.href);
+			setActiveSubLink(pathname);
+		}
+	}, [pathname])
+
 	return (
 		<>
 			<nav className={styles.nav}>
@@ -54,29 +64,35 @@ export default function Navbar() {
 					{links.map((link, index) => {
 						return (
 							<div className={`
-									${pageRegExp.test(link.href) ? styles.active : ''}
+									${link.href === activeLink ? styles.active : ''}
 									${styles.tab}
+									${link.href === activeLink && link.sublinks ? styles.expanded : ''}
 								`}
+								key={index}
 							>
-								{pathname === link.href ? link.activeIcon : link.icon}
+								{link.href === activeLink ? link.activeIcon : link.icon}
 								<p>{link.label}</p>
-								<Link
+								{!pageRegExp.test(link.href) && <Link
+									onClick={() => setActiveLink(link.href)}
 									href={link.href} 
-									key={index}
-								></Link>
+								></Link>}
 
 								{link.sublinks && <div className={styles.subTabs}>
 									{link.sublinks.map((link, index) => {
 										return (
-											<div className={`
+											<div key={index} 
+												className={`
 													${styles.subTab}
-													${pathname === link.href ? styles.active : ''} 
-												`}>
-												{pathname === link.href ? link.activeIcon : link.icon}
+													${link.href === activeSubLink ? styles.active : ''} 
+												`}
+											>
 												<p>{link.label}</p>
 												<Link
+													onClick={(e) => {
+														e.stopPropagation();
+														setActiveSubLink(link.href);
+													}}
 													href={link.href} 
-													key={index}
 												></Link>
 											</div>
 										);

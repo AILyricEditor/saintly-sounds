@@ -17,6 +17,7 @@ export default function Slider({
 ) {
 	const [fillWidth, setFillWidth] = useState(value);
 	const [isDragging, setIsDragging] = useState(false);
+	const [showThumb, setShowThumb] = useState(false);
 	const ref = useRef(null);
 
 	const finiteFillWidth = Number.isFinite(fillWidth) ? fillWidth : 0;
@@ -47,6 +48,7 @@ export default function Slider({
 		function onMouseDown(e) {
 			setFillWidth(mousePosition.precise(e));
 			setIsDragging(true);
+			setShowThumb(true);
 			if (e.type == "mousedown") {
 				document.addEventListener('mousemove', onMouseMove);
 				document.addEventListener('mouseup', onMouseUp);
@@ -72,6 +74,7 @@ export default function Slider({
 				document.removeEventListener('touchend', onMouseUp);
 			}
 			setIsDragging(false);
+			// setTimeout(() => setShowThumb(false), 3000);
 			if (onStop) onStop(mousePosition.approximate(e));
 		}
 
@@ -99,20 +102,22 @@ export default function Slider({
 		>
 			<div className={styles.timeBar} style={{
 				height: height,
+				scale: isDragging ? "1 1.5" : "1",
 				background: isDragging && "color-mix(in srgb, grey 80%, black 10%)",
 			}}
 			>
 				<div className={styles.timeBarFill} style={{
 					width: finiteFillWidth,
+					borderRadius: isDragging ? "999px 0 0 999px" : "999px",
 					background: isDragging && "color-mix(in srgb, var(--accent2) 80%, red 50%)",
-					scale: isDragging ? "1 1.3" : "1",
+					// scale: isDragging ? "1 1.5" : "1",
 				}}>
 				</div>
 				{!disabled && <div className={styles.timeThumb} style={{
 					left: finiteFillWidth,
 					background: isDragging && "color-mix(in srgb, var(--accent2) 80%, red 80%)",
 					boxShadow: isDragging && "0 0 10px 2px black",
-					scale: isDragging && 1.5,
+					scale: isDragging && 0,
 					opacity: isDragging && 0,
 					height: height + 8,
 					width: height + 8,
@@ -122,3 +127,5 @@ export default function Slider({
 		</div>
 	);
 }
+
+// TODO: Make the show thumb appear when the user hovers over the slider for a few seconds

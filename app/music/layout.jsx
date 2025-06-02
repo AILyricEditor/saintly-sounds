@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Song from "./Song";
-import styles from "./page.module.css";
+import Navigation from "./Navigation";
+import styles from "./layout.module.css";
 import useAllSongs from "../hooks/useAllSongs";
 import LoadingSpinner from "../components/LoadingSpinner"; // Import the LoadingSpinner component
 
@@ -33,8 +34,9 @@ export default function MusicPage() {
 	));
 
 	return (
-		<main className={styles.songsWrapper}>
-			{SongElements}
-		</main>
+			<main className={styles.main}>
+				<Navigation />
+				{SongElements}
+			</main>
 	);
 }
