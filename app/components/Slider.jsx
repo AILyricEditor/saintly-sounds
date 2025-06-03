@@ -17,7 +17,6 @@ export default function Slider({
 ) {
 	const [fillWidth, setFillWidth] = useState(value);
 	const [isDragging, setIsDragging] = useState(false);
-	const [showThumb, setShowThumb] = useState(false);
 	const ref = useRef(null);
 
 	const finiteFillWidth = Number.isFinite(fillWidth) ? fillWidth : 0;
@@ -48,7 +47,6 @@ export default function Slider({
 		function onMouseDown(e) {
 			setFillWidth(mousePosition.precise(e));
 			setIsDragging(true);
-			setShowThumb(true);
 			if (e.type == "mousedown") {
 				document.addEventListener('mousemove', onMouseMove);
 				document.addEventListener('mouseup', onMouseUp);
@@ -74,7 +72,6 @@ export default function Slider({
 				document.removeEventListener('touchend', onMouseUp);
 			}
 			setIsDragging(false);
-			// setTimeout(() => setShowThumb(false), 3000);
 			if (onStop) onStop(mousePosition.approximate(e));
 		}
 

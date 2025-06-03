@@ -1,16 +1,27 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import styles from './styles/Navbar.module.css';
-import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
-	const [activeLink, setActiveLink] = useState(null);
-	const [activeSubLink, setActiveSubLink] = useState(null);
+	const [tempPath, setTempPath] = useState(null);
 	const pathname = usePathname();
-	const section = pathname.split('/')[1]; // e.g. "music"
-	const pageRegExp = new RegExp(`^/${section}(/|$)`, 'i');
+	const section = tempPath ? tempPath.split('/')[1] : pathname.split('/')[1]; // e.g. "music"
+	const pageRegExp = new RegExp(`^/${section}(/|$)`, 'i'); // To prevent user from re-navigating to the same page
+
+	function isActiveLink(link) {
+		if (link.sublinks && link.sublinks.some(sub => sub.href === tempPath)) {
+			return true;
+		} else if (tempPath === link.href) {
+			return true;
+		}
+	}
+
+	useEffect(() => {
+		setTempPath(pathname);
+	}, [pathname]);
 
 	const links = [
 		{ 
@@ -23,7 +34,7 @@ export default function Navbar() {
 			href: '/music-dashboard',			 
 			label: 'Shop',
 			icon: <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg>,
-			activeIcon: <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM208-800h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Z"/></svg>
+			activeIcon: <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM208-800h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Z"/></svg>,
 		},
 		{ 
 			href: '/music',
@@ -48,14 +59,6 @@ export default function Navbar() {
 		}
 	]
 
-	useEffect(() => {
-		const matchedLink = links.find(link => pageRegExp.test(link.href));
-		if (matchedLink) {
-			setActiveLink(matchedLink.href);
-			setActiveSubLink(pathname);
-		}
-	}, [pathname])
-
 	return (
 		<>
 			<nav className={styles.nav}>
@@ -64,16 +67,16 @@ export default function Navbar() {
 					{links.map((link, index) => {
 						return (
 							<div className={`
-									${link.href === activeLink ? styles.active : ''}
 									${styles.tab}
-									${link.href === activeLink && link.sublinks ? styles.expanded : ''}
+									${isActiveLink(link) ? styles.active : ''}
+									${isActiveLink(link) ? styles.expanded : ''}
 								`}
 								key={index}
 							>
-								{link.href === activeLink ? link.activeIcon : link.icon}
+								{isActiveLink(link) ? link.activeIcon : link.icon}
 								<p>{link.label}</p>
 								{!pageRegExp.test(link.href) && <Link
-									onClick={() => setActiveLink(link.href)}
+									onClick={() => setTempPath(link.href)}
 									href={link.href} 
 								></Link>}
 
@@ -83,14 +86,14 @@ export default function Navbar() {
 											<div key={index} 
 												className={`
 													${styles.subTab}
-													${link.href === activeSubLink ? styles.active : ''} 
+													${isActiveLink(link) ? styles.active : ''} 
 												`}
 											>
 												<p>{link.label}</p>
 												<Link
 													onClick={(e) => {
 														e.stopPropagation();
-														setActiveSubLink(link.href);
+														setTempPath(link.href);
 													}}
 													href={link.href} 
 												></Link>
@@ -106,3 +109,5 @@ export default function Navbar() {
 		</>
 	);
 }
+
+// DONE: this component is cleaned up and fixed
