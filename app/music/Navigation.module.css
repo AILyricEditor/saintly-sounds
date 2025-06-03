@@ -32,3 +32,9 @@
 .link:hover {
 	background: rgba(133, 133, 133, 0.315);
 }
+
+@media (max-width: 425px) {
+	.nav {
+		grid-column: 1;
+	}
+}

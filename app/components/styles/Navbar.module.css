@@ -1,3 +1,4 @@
+/* The highest level wrapper of the Navbar */
 .nav {
 	display: flex;
 	flex-direction: column;
@@ -10,11 +11,13 @@
 	grid-column: 1;
 }
 
+/* Saintly Sounds Logo */
 .logo {
 	width: 175px;
 	height: auto;
 }
 
+/* Wrapper of all tabs */
 .tabs {
 	width: 100%;
 	height: 45%;
@@ -24,10 +27,12 @@
 	justify-content: space-between;
 }
 
+/* Every child of the tabs wrapper */
 .tabs * {
 	transition: 200ms ease-in-out;
 }
 
+/* All Next Link elements */
 .tabs a {
 	position: absolute;
 	top: 0;
@@ -42,6 +47,7 @@
 	font-weight: 600;
 }
 
+/* Class givin to all tabs (not sub-tabs) on the Navbar individually */
 .tab {
 	display: grid;
 	grid-template-columns: 40px 1fr;
@@ -52,31 +58,36 @@
 	width: 88%;
 	height: 65px;
 	padding: 20px 0;
-	border-color: var(--border-color);
 }
 
+/* When a tab has been expanded */
 .expanded.tab {
 	height: 150px;
 }
 
+/* tabs and sub-tabs */
 .tab, .subTab {
 	position: relative;
 	border-top-right-radius: 15px;
 	border-bottom-right-radius: 15px;
 }
 
+/* When hovering over all tabs not currently active */
 .tab:not(.active):hover {
 	background: rgba(68, 68, 68, 0.247);
 }
 
+/* When clicking on all tabs not currently active */
 .tab:not(.active):active {
 	background: rgba(116, 116, 116, 0.247);
 }
 
+/* Tab label */
 .tab p {
 	grid-column: 2;
 }
 
+/* Tab icon */
 .tab svg {
 	grid-row: 1;
 	justify-self: end;
@@ -85,11 +96,13 @@
 	fill: var(--text-color);
 }
 
+/* Wrapper of all sub-tabs */
 .subTabs {
 	opacity: 0;
 	visibility: hidden;
 }
 
+/* The sub-tab wrapper when parent tab has been expanded */
 .expanded .subTabs {
 	opacity: 1;
 	visibility: visible;
@@ -101,45 +114,54 @@
 	justify-content: space-between;
 }
 
+/* Class givin to all sub-tabs (not tabs) on the Navbar individually */
 .subTab {
 	padding-left: 30px;
 	padding-right: 15px;
 }
 
+/* When hovering over all sub-tabs that are not active */
 .subTab:not(.active):hover {
 	background: rgba(95, 95, 95, 0.315);
 }
 
+/* When clicking on all sub-tabs that are not active */
 .subTab:not(.active):active {
 	background: rgba(134, 134, 134, 0.315);
 }
 
+/* Active color of label */
 .active > p { 
 	color: var(--accent2);
 }
 
+/* Styles for tab when tab is active */
 .active.tab {
 	width: 94%;
 	background: rgba(255, 255, 255, 0.1);
 }
 
+/* Styles for sub-tabs when parent tab is active  */
 .active.subTab {
 	width: 80%;
 	background: rgba(102, 102, 102, 0.315);
 }
 
+/* Styles for both tab and sub-tabs when parent tab is active */
 .active.tab, .active.subTab {
 	border: 1px solid var(--border-color);
 	box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.267);
 }
 
+/* Active color for icons */
 .active svg {
 	fill: var(--accent2);
 }
 
 
-
+/* Mobile styling */
 @media (max-width: 425px) {
+	/* What the Navbar wrapper should look like on mobile screens */
 	.nav {
 		grid-row: 2;
 		position: absolute;
@@ -149,40 +171,65 @@
 		padding-top: 5px;
 	}
 
-	.links {
+	/* Styling the tabs wrapper for mobile devices */
+	.tabs {
 		flex-direction: row;
-		width: 100%;
+		width: 95%;
 		height: 100%;
-		justify-content: center;
 		align-items: end;
 	}
 
-	.link {
-		padding-left: 0;
-		margin-right: 0;
-		justify-content: center;
-		border-top-left-radius: 15px;
-		border-bottom-right-radius: 0;
-		/* 100% makes all tabs equal */
-		height: 97%;
-		width: 100%;
-	}
-
-	.active {
-		margin-left: 0;
-	}
-
-	.link:active {
-		transition: 50ms ease-in;
-		padding-bottom: 15px;
-		padding-right: 0;
-	}
-
-	.link p {
+	/* Don't display sub-tabs on mobile devices */
+	.subTab {
 		display: none;
 	}
 
+	/* Styling for the tab on mobile screen */
+	.tab {
+		padding: 0;
+		border-top-left-radius: 15px;
+		border-bottom-right-radius: 0;
+		/* 100% makes all tabs equal */
+		height: 90%;
+		width: 100%;
+	}
+
+	/* Center the icon absolute in the tab */
+	.tab svg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+	}
+
+
+	/* Some styling when tab is active (keep the width: 100%) */
+	.active.tab {
+		width: 100%;
+		border-bottom: none;
+	}
+
+	/* Change the size and position of the icon when active */
+	.active.tab svg {
+		top: 45%;
+		width: 30px;
+		height: 30px;
+	}
+
+	/* Increase the height of the tab when active */
+	.active.tab {
+		height: 100%;
+	}
+
+	/* Don't show tab labels on mobile devices */
+	.tab p {
+		display: none;
+	}
+
+	/* Don't show the Saintly Sounds logo on mobile devices */
 	.logo {
 		display: none;
 	}
 }
+
+/* DONE: This style-sheet is fully cleaned up */

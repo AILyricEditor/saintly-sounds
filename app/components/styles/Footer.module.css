@@ -26,10 +26,9 @@
 
 @media (max-width: 425px) {
 	.footer {
-		font-size: 0.65em;
-		top: 5px;
-		left: 5px;
-		bottom: 0;
+		/* grid-row: 1 / 2; */
+		font-size: 0.45em;
+		top: -7px;
 		right: 0;
 	}
 }
