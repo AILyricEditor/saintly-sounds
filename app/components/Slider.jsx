@@ -7,7 +7,7 @@ import { getClientX } from "../tools/tools";
 export default function Slider({ 
 	className,
 	width = 100,
-	height = 6,
+	height = 5,
 	min = 0, 
 	max = 100, 
 	value = 0, 
@@ -98,8 +98,7 @@ export default function Slider({
 			}}
 		>
 			<div className={styles.timeBar} style={{
-				height: height,
-				scale: isDragging ? "1 1.5" : "1",
+				height: isDragging ? height + 6 : height,
 				background: isDragging && "color-mix(in srgb, grey 80%, black 10%)",
 			}}
 			>
@@ -107,7 +106,6 @@ export default function Slider({
 					width: finiteFillWidth,
 					borderRadius: isDragging ? "999px 0 0 999px" : "999px",
 					background: isDragging && "color-mix(in srgb, var(--accent2) 80%, red 50%)",
-					// scale: isDragging ? "1 1.5" : "1",
 				}}>
 				</div>
 				{!disabled && <div className={styles.timeThumb} style={{

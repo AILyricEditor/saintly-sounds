@@ -55,3 +55,10 @@
 /* .targetContainer:hover .timeThumb {
 	opacity: 1;
 } */
+
+@media (max-width: 425px) {
+	.timeThumb {
+		opacity: 1;
+		scale: 1;
+	}
+}

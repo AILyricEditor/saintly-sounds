@@ -37,4 +37,8 @@
 	.nav {
 		grid-column: 1;
 	}
+	
+	.link {
+		padding: 10px 15px;
+	}
 }

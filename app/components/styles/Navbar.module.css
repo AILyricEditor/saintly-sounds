@@ -100,12 +100,6 @@
 .subTabs {
 	opacity: 0;
 	visibility: hidden;
-}
-
-/* The sub-tab wrapper when parent tab has been expanded */
-.expanded .subTabs {
-	opacity: 1;
-	visibility: visible;
 	grid-row: 2;
 	grid-column: 1 / 3;
 	display: flex;
@@ -114,10 +108,17 @@
 	justify-content: space-between;
 }
 
+/* The sub-tab wrapper when parent tab has been expanded */
+.expanded .subTabs {
+	opacity: 1;
+	visibility: visible;
+}
+
 /* Class givin to all sub-tabs (not tabs) on the Navbar individually */
 .subTab {
 	padding-left: 30px;
 	padding-right: 15px;
+	border: 1px solid transparent;
 }
 
 /* When hovering over all sub-tabs that are not active */
