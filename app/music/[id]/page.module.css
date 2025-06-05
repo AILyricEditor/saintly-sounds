@@ -1,28 +1,68 @@
 .container {
- 	backdrop-filter: blur(100px);
+ 	backdrop-filter: blur(80px);
+	z-index: 2;
 }
 
-.background {
-	position: fixed;
-	top: 0;
-	left: 0;
+/* .background {
+	pointer-events: unset;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
-	z-index: -1;
-	filter: blur(100px);
+	filter: blur(80px) brightness(1.5) saturate(1.5);
 	background-repeat: no-repeat;
 	background-size: cover;
-}
+	background-position: center;
+} */
+
+/* @keyframes ambience {
+	0% {
+		background-position: 50% 50%;
+	}
+	10% {
+		background-position: 54% 47%;
+	}
+	20% {
+		background-position: 46% 55%;
+	}
+	30% {
+		background-position: 52% 52%;
+	}
+	40% {
+		background-position: 47% 48%;
+	}
+	50% {
+		background-position: 53% 56%;
+	}
+	60% {
+		background-position: 56% 50%;
+	}
+	70% {
+		background-position: 48% 53%;
+	}
+	80% {
+		background-position: 51% 47%;
+	}
+	90% {
+		background-position: 45% 51%;
+	}
+	100% {
+		background-position: 50% 50%;
+	}
+} */
 
 .main {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	z-index: 3;
 	display: grid;
 	grid-template-columns: auto 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
 	gap: 15px;
 	width: 90%;
 	height: 80%;
-	margin: auto;
+	/* margin: auto; */
 	margin-top: 80px;
 }
 

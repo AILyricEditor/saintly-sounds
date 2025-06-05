@@ -1,0 +1,14 @@
+.title {
+	text-decoration: none;
+	color: var(--text-color);
+}
+
+.title:hover {
+ text-decoration: underline;
+}
+
+@media (max-width: 425px) {
+	.title {
+		font-size: 0.7rem;
+	}
+}

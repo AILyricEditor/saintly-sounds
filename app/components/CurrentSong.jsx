@@ -9,6 +9,7 @@ import Slider from './Slider';
 import { formatTime } from '../tools/tools';
 import LoadingSpinner from './LoadingSpinner';
 import ToggleButton from './ToggleButton';
+import SongTitle from './SongTitle';
 
 export default function CurrentSong() {
 	const { currentSong, status, controls } = useCurrentSong();
@@ -45,7 +46,7 @@ export default function CurrentSong() {
 				{status.isLoaded ? <>
 					<SongCover song={currentSong} />
 					<div className={styles.songInfo}>
-						<h3>{currentSong.title}</h3>
+						<SongTitle song={currentSong} />
 						<p>Artist: {currentSong.artist}</p>
 						<p>Album: {currentSong.album}</p>
 					</div>

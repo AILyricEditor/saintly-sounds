@@ -8,6 +8,7 @@ import { formatTime } from '../tools/tools';
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useCurrentSong } from '../contexts/CurrentSongContext';
 import Slider from "../components/Slider";
+import SongTitle from '../components/SongTitle';
 
 export default function Song({ song, isExpanded, onExpand }) {
 	const [duration, setDuration] = useState(0);
@@ -50,7 +51,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 							<Player size="50%" song={song} />
 						</SongCover>
 						<div className={styles.songInfo}>
-							<h3>{song.title}</h3>
+							<SongTitle song={song} />
 							<p>Artist: {song.artist}</p>
 							<p>Album: {song.album}</p>
 							{isPlaying && 

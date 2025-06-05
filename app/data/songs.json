@@ -109,6 +109,17 @@
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"id": 10
+		},
+		{
+			"title": "Cozy Place",
+			"artist": "Keys of Moon",
+			"album": "Album 10",
+			"image": "/Song-10.png",
+			"audio": "/cozy-place.mp3",
+			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
+			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
+			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
+			"id": 11
 		}
 	]
 }
