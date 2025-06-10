@@ -1,101 +1,54 @@
-/* 
-@property --animation-speed {
-  syntax: '<time>';
-  inherits: false;
-  initial-value: 15s;
-}
-
-.background {
-	pointer-events: unset;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	filter: blur(80px) brightness(1.5) saturate(1.5);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-  animation-name: ambience;
-  animation-duration: 15s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-	transition: --animation-speed 1s ease-out;
-}
-
-@keyframes ambience {
+@keyframes ambientMoveBG {
   0% {
     background-position: 50% 50%;
-    filter: blur(80px) brightness(1.5) saturate(1.5);
+    filter: blur(30px) brightness(1.5) saturate(1.5);
   }
   10% {
-    background-position: 58% 43%;
-    filter: blur(82px) brightness(1.65) saturate(1.55);
+    background-position: 70% 30%;
+    filter: blur(50px) brightness(1.8) saturate(1.9);
   }
-  20% {
-    background-position: 42% 57%;
-    filter: blur(78px) brightness(1.35) saturate(1.45);
-  }
-  30% {
-    background-position: 55% 55%;
-    filter: blur(81px) brightness(1.7) saturate(1.52);
+  25% {
+    background-position: 80% 10%;
+    filter: blur(40px) brightness(1.7) saturate(1.7);
   }
   40% {
-    background-position: 45% 45%;
-    filter: blur(79px) brightness(1.3) saturate(1.48);
+    background-position: 20% 80%;
+    filter: blur(30px) brightness(1.9) saturate(2);
   }
   50% {
-    background-position: 60% 60%;
-    filter: blur(83px) brightness(1.6) saturate(1.5);
+    background-position: 70% 30%;
+    filter: blur(35px) brightness(1.6) saturate(1.6);
   }
-  60% {
-    background-position: 55% 42%;
-    filter: blur(77px) brightness(1.4) saturate(1.53);
+  65% {
+    background-position: 10% 20%;
+    filter: blur(60px) brightness(1.8) saturate(1.9);
   }
-  70% {
-    background-position: 43% 53%;
-    filter: blur(80px) brightness(1.67) saturate(1.47);
-  }
-  80% {
-    background-position: 56% 48%;
-    filter: blur(78px) brightness(1.33) saturate(1.54);
+  75% {
+    background-position: 80% 70%;
+    filter: blur(65px) brightness(1.9) saturate(1.8);
   }
   90% {
-    background-position: 44% 55%;
-    filter: blur(82px) brightness(1.7) saturate(1.46);
+    background-position: 40% 60%;
+    filter: blur(50px) brightness(1.5) saturate(1.5);
   }
   100% {
-    background-position: 50% 50%;
-    filter: blur(80px) brightness(1.5) saturate(1.5);
+    background-position: 50% 40%;
+    filter: blur(30px) brightness(1.5) saturate(1.5);
   }
-}
- */
-
- @property --bg-x {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 50%;
-}
-@property --bg-y {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 50%;
 }
 
 .background {
-  width: 100%;
+  width: 125%;
   height: 100%;
-  pointer-events: unset;
-  background-repeat: no-repeat;
-  background-size: 125% 125%;
-  background-position: var(--bg-x) var(--bg-y);
-  filter: blur(80px) brightness(1.5) saturate(1.5);
-  transform: scale(1);
-  transition:
-    --bg-x 5s ease-in-out,
-    --bg-y 5s ease-in-out,
-    filter 5s ease-in-out,
-    transform 5s ease-in-out;
-    scale: 5s ease-in-out;
+  pointer-events: none;
+  background-size: 100% 100%;
+  filter: blur(30px) brightness(1.5) saturate(1.5);
+  animation: ambientMoveBG 15s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.animation {
+  animation-play-state: running;
 }
 
 @media (max-width: 425px) {

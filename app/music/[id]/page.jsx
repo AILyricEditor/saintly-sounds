@@ -1,15 +1,13 @@
 import styles from "./page.module.css";
-import { songs as allSongs } from "../../data/songs.json";
 import SongCover from "../../components/SongCover";
-// import { useCurrentSong } from "../../contexts/CurrentSongContext";
 import ClientSide from "./ClientSide";
+import { songs as allSongs } from "../../data/songs.json"; // Import the songs data
 
 export function generateStaticParams() {
   return allSongs.map(song => ({ id: "song-" + song.id.toString() }));
 }
 
 export default function Song({ params }) {
-	// const { status } = useCurrentSong();
 	const song = allSongs.find(s => "song-" + s.id.toString() === params.id);
 
 	return (

@@ -1,6 +1,7 @@
 .container {
  	backdrop-filter: blur(80px);
 	z-index: 2;
+	/* overflow: hidden; */
 }
 
 /* .background {

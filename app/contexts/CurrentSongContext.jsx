@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, createContext, useContext, useEffect, useRef } from 'react';
-import useAllSongs from '../hooks/useAllSongs';
-
+import { useAllSongs } from './AllSongsContext';
 const CurrentSongContext = createContext();
 
 export const useCurrentSong = () => {
@@ -21,7 +20,7 @@ export default function CurrentSongProvider({ children }) {
 	const [seeking, setSeeking] = useState(false);
 	const [isControlling, setIsControlling] = useState(false);
 	const songRef = useRef(null);
-	const allSongs = useAllSongs(); // Fetch all songs using the custom hook
+	const allSongs = useAllSongs();
 
 	const songIndex = currentSong ? songQueue.findIndex(song => song.id === currentSong.id) : -1;
 	const nextSong = songQueue ? songQueue[songIndex + 1] || songQueue[0] : null;

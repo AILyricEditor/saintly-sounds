@@ -3,10 +3,12 @@
 import { useState } from "react";
 import Song from "./Song";
 import styles from "./layout.module.css";
-import { songs as allSongs } from "../data/songs.json"; // Import the songs data
+// import { songs as allSongs } from "../data/songs.json"; // Import the songs data
+import { useAllSongs } from "../contexts/AllSongsContext"; // Import the context to get all songs
 import LoadingSpinner from "../components/LoadingSpinner"; // Import the LoadingSpinner component
 
 export default function MusicPage() {
+	const allSongs = useAllSongs();
 	const [isExpanded, setIsExpanded] = useState(null);
 	
 	if (!allSongs) {

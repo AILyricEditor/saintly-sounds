@@ -1,3 +1,5 @@
+import { usePathname } from "next/navigation";
+
 export function formatTime(seconds) {
 	if (!seconds == null || isNaN(seconds)) return '--:--';
   const minutes = Math.floor(seconds / 60);
@@ -14,4 +16,12 @@ export function getClientX(e) {
     return e.clientX;
   }
   return 0; // fallback
+}
+
+export function isOnPage(targetHref, exceptions = []) {
+  // Set exact to true if you want to check for an exact match
+  const pathname = usePathname();
+
+  if (exceptions.includes(pathname)) return false;
+  return pathname === targetHref || pathname.startsWith(`${targetHref}/`);
 }
