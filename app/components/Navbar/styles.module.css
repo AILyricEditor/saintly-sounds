@@ -60,11 +60,6 @@
 	padding: 20px 0;
 }
 
-/* When a tab has been expanded */
-.expanded.tab {
-	height: 150px;
-}
-
 /* tabs and sub-tabs */
 .tab, .subTab {
 	position: relative;
@@ -109,7 +104,7 @@
 }
 
 /* The sub-tab wrapper when parent tab has been expanded */
-.expanded .subTabs {
+.active .subTabs {
 	opacity: 1;
 	visibility: visible;
 }
@@ -131,21 +126,16 @@
 	background: rgba(134, 134, 134, 0.315);
 }
 
+/* ACTIVE THEME */
+
+/* Active color for icons */
+.active svg {
+	fill: var(--accent2);
+}
+
 /* Active color of label */
 .active > p { 
 	color: var(--accent2);
-}
-
-/* Styles for tab when tab is active */
-.active.tab {
-	width: 94%;
-	background: rgba(255, 255, 255, 0.1);
-}
-
-/* Styles for sub-tabs when parent tab is active  */
-.active.subTab {
-	width: 80%;
-	background: rgba(102, 102, 102, 0.315);
 }
 
 /* Styles for both tab and sub-tabs when parent tab is active */
@@ -154,9 +144,17 @@
 	box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.267);
 }
 
-/* Active color for icons */
-.active svg {
-	fill: var(--accent2);
+/* Styles for tab when tab is active */
+.active.tab {
+	width: 94%;
+	height: 150px;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* Styles for sub-tabs when parent tab is active  */
+.active.subTab {
+	width: 80%;
+	background: rgba(102, 102, 102, 0.315);
 }
 
 

@@ -10,10 +10,16 @@ import { formatTime } from '../tools/tools';
 import LoadingSpinner from './LoadingSpinner';
 import ToggleButton from './ToggleButton';
 import SongTitle from './SongTitle';
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export default function CurrentSong() {
 	const { currentSong, status, controls } = useCurrentSong();
 	const [isExpanded, setIsExpanded] = useState(false);
+	const router = useRouter();
+	const pathname = usePathname();
+	const [songCoverStyle, setSongCoverStyle] = useState({});
+	// const [songCoverClicked, setSongCoverClicked] = useState(false);
 
 	let timeout;
 
@@ -32,19 +38,57 @@ export default function CurrentSong() {
 	}, [isExpanded, status.isControlling]);
 
 	// useEffect(() => {
-	// 	if (!status.isControlling && isExpanded) setIsExpanded(!isExpanded);
-	// }, [status.isControlling, isExpanded]);
+	// 	if (!currentSong || !songCoverClicked) return;
 
-	if (!currentSong) return null;
+	// 	const songPageCover = document.querySelector(`.songCover-${currentSong.id}`);
+	// 	const {x, y, width, height } = songPageCover.getBoundingClientRect();
+
+	// 	setSongCoverStyle({
+	// 		x: x,
+	// 		y: y,
+	// 		width: width,
+	// 		height: height,
+	// 		position: 'absolute',
+	// 	});
+
+	// 	router.push(`/music/song-${currentSong.id}`);
+
+	// 	setSongCoverClicked(false);
+	// }, [songCoverClicked, currentSong]);
+
+	function openSongPage() {
+		// const songPageCover = document.querySelectorAll(`.songCover`)[currentSong.id - 1];
+		// const x = songPageCover?.getBoundingClientRect().x;
+		// const y = songPageCover?.getBoundingClientRect().y;
+		// const width = songPageCover?.getBoundingClientRect().width;
+		// const height = songPageCover?.getBoundingClientRect().height;
+
+		// setSongCoverStyle({
+		// 	x: x,
+		// 	y: y,
+		// 	width: width,
+		// 	height: height,
+		// 	position: 'fixed',
+		// 	zIndex: 1000,
+		// });
+
+		router.push(`/music/song-${currentSong.id}`);
+	}
 
 	return (
 		<>
-			<div className={`${styles.currentSong} ${isExpanded && styles.expanded}`} onClick={e => {
+			<div className={`${styles.currentSong} ${!currentSong && styles.hidden} ${pathname.startsWith(`/music/song-${currentSong?.id}`) && styles.hidden} ${isExpanded && styles.expanded}`} onClick={e => {
 				if (e.target.matches('button') || e.target.matches('svg') || e.target.matches(`.${styles.timeline} *`)) return;
 				setIsExpanded(!isExpanded);
-			}}>
+			}}
+			>
 				{status.isLoaded ? <>
-					<SongCover song={currentSong} />
+					<SongCover 
+						className={`${styles.songCover}`}
+						song={currentSong} 
+						style={songCoverStyle}
+						onClick={openSongPage}
+					/>
 					<div className={styles.songInfo}>
 						<SongTitle song={currentSong} />
 						<p>Artist: {currentSong.artist}</p>

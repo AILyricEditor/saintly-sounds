@@ -21,6 +21,7 @@ export default function Song({ params }) {
 			<ClientSide song={song} />
 			<main className={styles.main}>
 				<SongCover
+					className={`${styles.songCover} songCover`}
 					size={250}
 					song={song}
 				/>

@@ -20,6 +20,20 @@
 	overflow: hidden;
 }
 
+/* .currentSong :global(.SongCover) {
+	view-transition-name: morphable;
+} */
+
+.songCover {
+	transition: all 0.3s ease-in-out;
+}
+
+.hidden {
+	opacity: 0;
+	pointer-events: none;
+	visibility: hidden;
+}
+
 .songInfo {
 	grid-column: 2;
 	font-size: 0.8em;

@@ -1,55 +1,7 @@
 .container {
  	backdrop-filter: blur(80px);
 	z-index: 2;
-	/* overflow: hidden; */
 }
-
-/* .background {
-	pointer-events: unset;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	filter: blur(80px) brightness(1.5) saturate(1.5);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-} */
-
-/* @keyframes ambience {
-	0% {
-		background-position: 50% 50%;
-	}
-	10% {
-		background-position: 54% 47%;
-	}
-	20% {
-		background-position: 46% 55%;
-	}
-	30% {
-		background-position: 52% 52%;
-	}
-	40% {
-		background-position: 47% 48%;
-	}
-	50% {
-		background-position: 53% 56%;
-	}
-	60% {
-		background-position: 56% 50%;
-	}
-	70% {
-		background-position: 48% 53%;
-	}
-	80% {
-		background-position: 51% 47%;
-	}
-	90% {
-		background-position: 45% 51%;
-	}
-	100% {
-		background-position: 50% 50%;
-	}
-} */
 
 .main {
 	position: absolute;
@@ -63,11 +15,12 @@
 	gap: 15px;
 	width: 90%;
 	height: 80%;
-	/* margin: auto; */
 	margin-top: 80px;
 }
 
-.main :global(.SongCover) {
+.songCover {
+	width: 250px;
+	height: 250px;
 	border: 1px solid var(--border-color);
 }
 

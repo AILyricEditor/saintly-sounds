@@ -1,5 +1,5 @@
 import "./globals.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer";
 import CurrentSong from "./components/CurrentSong";
 import CurrentSongProvider from "./contexts/CurrentSongContext";
