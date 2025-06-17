@@ -20,10 +20,6 @@
 	overflow: hidden;
 }
 
-/* .currentSong :global(.SongCover) {
-	view-transition-name: morphable;
-} */
-
 .songCover {
 	transition: all 0.3s ease-in-out;
 }
@@ -50,46 +46,9 @@
 	align-items: center;
 }
 
-.controlButtons {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex-wrap: nowrap;
-	align-items: center;
-	gap: 10px;
-	width: 100%;
-}
-
-.controlButtons svg:hover {
-	cursor: pointer;
-	transition: 100ms ease-in-out;
-	fill: rgb(196, 196, 196);
-}
-
-.controlButtons svg:active {
-	transition: 100ms ease-in-out;
-	scale: 1.2;
-}
-
 .timeline {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	gap: 10px;
 	width: 100%;
-}
-
-.timeline {
-	user-select: none;  
-	transition: all 0.3s ease-in-out;       /* Prevent text selection */
-}
-
-.time {
-  width: 40px;
-	font-size: 0.8em;
-	text-wrap: nowrap;
-	font-weight: 600;
-	text-align: center;
+	transition: all 0.3s ease-in-out;
 }
 
 @media (max-width: 600px) {
@@ -126,6 +85,7 @@
 
 	.expanded .timeline {
 		bottom: 5px;
+
 	}
 
 	.timeline {

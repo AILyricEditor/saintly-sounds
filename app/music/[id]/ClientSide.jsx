@@ -1,19 +1,18 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import styles from "./ClientSide.module.css";
-import { useCurrentSong } from "../../contexts/CurrentSongContext";
+import styles from './page.module.css';
+import SongControls from '../../components/shared/SongControls/SongControls';
+import { useCurrentSong } from '../../contexts/CurrentSongContext';
 
-export default function AmbientSongBackground({ song }) {
-  const { status } = useCurrentSong();
-  const ref = useRef(null);
+export default function ClientSide({ song }) {
+	const { currentSong } = useCurrentSong();
 
-  return (
-    <div
-      ref={ref}
-      className={`${styles.background} ${status.isPlaying ? styles.animation : ""}`}
-      // src={song.image}
-      style={{ backgroundImage: `url(${song.image})` }}
-    />
-  );
+	return (
+		<>
+			{currentSong?.id === song.id && <SongControls 
+				className={styles.songControls} 
+				sliderHeight={7}
+			/>}
+		</>
+	)
 }

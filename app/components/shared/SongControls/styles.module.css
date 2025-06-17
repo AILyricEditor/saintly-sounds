@@ -1,0 +1,42 @@
+.songControls {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.controlButtons {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: 10px;
+}
+
+.controlButtons svg:hover {
+	cursor: pointer;
+	transition: 100ms ease-in-out;
+	fill: rgb(179, 179, 179);
+}
+
+.controlButtons svg:active {
+	transition: 100ms ease-in-out;
+	scale: 1.2;
+}
+
+.timeline {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 10px;
+	user-select: none;  
+}
+
+.time {
+  width: 40px;
+	font-size: 0.8em;
+	text-wrap: nowrap;
+	font-weight: 600;
+	text-align: center;
+}

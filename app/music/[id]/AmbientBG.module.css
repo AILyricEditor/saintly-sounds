@@ -38,7 +38,10 @@
 }
 
 .background {
-  width: 125%;
+  position: absolute;
+  z-index: 2;
+  justify-self: end;
+  width: 87%;
   height: 100%;
   pointer-events: none;
   background-size: 100% 100%;
@@ -53,6 +56,8 @@
 
 @media (max-width: 425px) {
   .background {
+    height: 91%;
+    width: 100%;
     background-size: cover;
   }
 }

@@ -1,7 +1,8 @@
 import styles from "./page.module.css";
 import SongCover from "../../components/SongCover";
-import ClientSide from "./ClientSide";
+import AmbientBG from "./AmbientBG";
 import { songs as allSongs } from "../../data/songs.json"; // Import the songs data
+import ClientSide from "./ClientSide";
 
 export function generateStaticParams() {
   return allSongs.map(song => ({ id: "song-" + song.id.toString() }));
@@ -11,14 +12,8 @@ export default function Song({ params }) {
 	const song = allSongs.find(s => "song-" + s.id.toString() === params.id);
 
 	return (
-		<div className={styles.container}>
-			{/* <div className={styles.background}
-				style={{
-					animation: status && "ambience 10s ease-in-out infinite",
-					backgroundImage: `url(${song.image})`,
-				}}>
-			</div> */}
-			<ClientSide song={song} />
+		<>
+			<AmbientBG song={song} />
 			<main className={styles.main}>
 				<SongCover
 					className={`${styles.songCover} songCover`}
@@ -26,7 +21,8 @@ export default function Song({ params }) {
 					song={song}
 				/>
 				<h1 className={styles.title}>{song.title}</h1>
+				<ClientSide song={song} />
 			</main>
-		</div>
+		</>
 	);
 }

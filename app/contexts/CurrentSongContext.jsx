@@ -2,6 +2,10 @@
 
 import { useState, createContext, useContext, useEffect, useRef } from 'react';
 import { useAllSongs } from './AllSongsContext';
+import { useRouter } from 'next/navigation';
+// import { isOnPage } from '../tools/tools';
+import { usePathname } from 'next/navigation';
+
 const CurrentSongContext = createContext();
 
 export const useCurrentSong = () => {
@@ -21,6 +25,8 @@ export default function CurrentSongProvider({ children }) {
 	const [isControlling, setIsControlling] = useState(false);
 	const songRef = useRef(null);
 	const allSongs = useAllSongs();
+	const router = useRouter();
+	const pathname = usePathname();
 
 	const songIndex = currentSong ? songQueue.findIndex(song => song.id === currentSong.id) : -1;
 	const nextSong = songQueue ? songQueue[songIndex + 1] || songQueue[0] : null;
@@ -42,13 +48,31 @@ export default function CurrentSongProvider({ children }) {
 		}
 	}, [isPlaying, currentSong, currentTime, isLoaded]);
 
+	useEffect(() => {
+		if (pathname === `/music/song-${currentSong?.id}`) {
+			router.prefetch(`/music/song-${nextSong?.id}`)
+		}
+	}, [currentSong])
+
+	function changeSongPage(song) {
+	  if (pathname === `/music/song-${currentSong.id}`) {
+			router.push(`/music/song-${song.id}`);
+		}
+	}
+
 	const controls = {
 		play: () => setIsPlaying(true),
 		pause: () => setIsPlaying(false),
 		togglePlay: () => setIsPlaying(!isPlaying),
 		setSong: (song) => setCurrentSong(song),
-		next: () => setCurrentSong(nextSong),
-		previous: () => setCurrentSong(prevSong),
+		next: () => {
+			setCurrentSong(nextSong);
+			changeSongPage(nextSong);
+		},
+		previous: () => {
+			setCurrentSong(prevSong);
+			changeSongPage(prevSong);
+		},
 		shuffle: () => setSongQueue(shuffle(allSongs)),
 		unShuffle: () => setSongQueue(allSongs),
 		replay: () => controls.seekTo(0),

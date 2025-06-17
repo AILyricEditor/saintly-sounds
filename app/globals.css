@@ -77,4 +77,8 @@ svg * {
 		grid-template-columns: 1fr;
 		grid-template-rows: 89% 11%;
 	}
+
+	::-webkit-scrollbar {
+		display: none;
+	}
 }
