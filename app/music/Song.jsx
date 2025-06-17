@@ -9,6 +9,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { useCurrentSong } from '../contexts/CurrentSongContext';
 import Slider from "../components/Slider";
 import SongTitle from '../components/SongTitle';
+import SongCoverPlayer from "../components/shared/SongCoverPlayer";
 
 export default function Song({ song, isExpanded, onExpand }) {
 	const [duration, setDuration] = useState(0);
@@ -39,6 +40,15 @@ export default function Song({ song, isExpanded, onExpand }) {
 			{audioRef.current ?
 				<>
 					<div className={styles.songTopbar}>
+						{/* <SongCoverPlayer 
+							style={{
+								border: "1px solid var(--border-color)",
+								gridRow: "1 span 2",
+								gridColumn: "1"
+							}} 
+							song={song} 
+							size={isExpanded ? 100 : isPlaying ? 75 : 60}
+						></SongCoverPlayer> */}
 						<SongCover 
 							style={{
 								border: "1px solid var(--border-color)",

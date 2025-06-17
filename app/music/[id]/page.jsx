@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-import SongCover from "../../components/SongCover";
 import AmbientBG from "./AmbientBG";
 import { songs as allSongs } from "../../data/songs.json"; // Import the songs data
 import ClientSide from "./ClientSide";
@@ -15,11 +14,6 @@ export default function Song({ params }) {
 		<>
 			<AmbientBG song={song} />
 			<main className={styles.main}>
-				<SongCover
-					className={`${styles.songCover} songCover`}
-					size={250}
-					song={song}
-				/>
 				<h1 className={styles.title}>{song.title}</h1>
 				<ClientSide song={song} />
 			</main>

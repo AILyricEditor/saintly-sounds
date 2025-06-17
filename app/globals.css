@@ -71,7 +71,6 @@ svg * {
 	cursor: pointer;
 }
 
-
 @media (max-width: 425px) {
 	body {
 		grid-template-columns: 1fr;
