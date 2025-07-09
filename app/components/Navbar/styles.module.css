@@ -103,6 +103,15 @@
 	justify-content: space-between;
 }
 
+/* .expanded {
+	height: 150px;
+}
+
+.expanded .subTabs {
+	opacity: 1;
+	visibility: visible;
+} */
+
 /* The sub-tab wrapper when parent tab has been expanded */
 .active .subTabs {
 	opacity: 1;
@@ -146,8 +155,8 @@
 
 /* Styles for tab when tab is active */
 .active.tab {
-	width: 94%;
 	height: 150px;
+	width: 94%;
 	background: rgba(255, 255, 255, 0.1);
 }
 

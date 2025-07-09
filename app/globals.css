@@ -69,6 +69,17 @@ svg * {
 
 .iconButton svg {
 	cursor: pointer;
+	width: 100%;
+	height: 100%;
+}
+
+.hoverUnderline:hover {
+ 	text-decoration: underline;
+	cursor: pointer;
+}
+
+.pointer {
+	cursor: pointer;
 }
 
 @media (max-width: 425px) {

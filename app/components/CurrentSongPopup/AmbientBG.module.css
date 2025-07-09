@@ -40,8 +40,11 @@
 .background {
   position: absolute;
   z-index: 2;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
   justify-self: end;
-  width: 87%;
+  width: 100%;
   height: 100%;
   pointer-events: none;
   background-size: 100% 100%;

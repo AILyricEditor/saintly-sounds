@@ -8,16 +8,16 @@ import { formatTime } from '../tools/tools';
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useCurrentSong } from '../contexts/CurrentSongContext';
 import Slider from "../components/Slider";
-import SongTitle from '../components/SongTitle';
+import SongTitle from '../components/SongTitleLink';
 import SongCoverPlayer from "../components/shared/SongCoverPlayer";
 
 export default function Song({ song, isExpanded, onExpand }) {
 	const [duration, setDuration] = useState(0);
-	const { currentSong, status, controls } = useCurrentSong();
+	const { currentSong, status, tools } = useCurrentSong();
 	const audioRef = useRef(null);
 	const cardRef = useRef(null);
 
-	const isPlaying = currentSong && song.id === currentSong.id && status.isPlaying;
+	const isPlaying = currentSong && tools.isCurrentSong(song) && status.isPlaying;
 
 	// TODO: when de-expanding the card when it is scrolled, the scroll position is not reset to the top
 	return (
@@ -40,7 +40,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 			{audioRef.current ?
 				<>
 					<div className={styles.songTopbar}>
-						{/* <SongCoverPlayer 
+						<SongCoverPlayer 
 							style={{
 								border: "1px solid var(--border-color)",
 								gridRow: "1 span 2",
@@ -48,20 +48,9 @@ export default function Song({ song, isExpanded, onExpand }) {
 							}} 
 							song={song} 
 							size={isExpanded ? 100 : isPlaying ? 75 : 60}
-						></SongCoverPlayer> */}
-						<SongCover 
-							style={{
-								border: "1px solid var(--border-color)",
-								gridRow: "1 span 2",
-								gridColumn: "1"
-							}} 
-							song={song} 
-							size={isExpanded ? 100 : isPlaying ? 75 : 60}
-						>
-							<Player size="50%" song={song} />
-						</SongCover>
+						></SongCoverPlayer>
 						<div className={styles.songInfo}>
-							<SongTitle song={song} />
+							<SongTitle song={song}/>
 							<p>Artist: {song.artist}</p>
 							<p>Album: {song.album}</p>
 							{isPlaying && 

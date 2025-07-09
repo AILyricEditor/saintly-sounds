@@ -1,9 +1,9 @@
 import styles from './styles/SongTitle.module.css';
 import Link from 'next/link';
 
-export default function SongTitle({ song }) {
+export default function SongTitleLink({ href, song }) {
 	return (
-		<Link href={`/music/song-${song.id}`}
+		<Link href={href || `/song/${song.id}`}
 			className={`${styles.title} SongTitle`}
 			onClick={e => e.stopPropagation()}
 		>

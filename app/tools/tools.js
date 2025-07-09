@@ -23,5 +23,11 @@ export function isOnPage(targetHref, exceptions = []) {
   const pathname = usePathname();
 
   if (exceptions.includes(pathname)) return false;
-  return pathname === targetHref || pathname.startsWith(`${targetHref}/`);
+
+  // if (Array.isArray(targetHref)) {
+  //   return [targetHref].includes(pathname) ||
+  //    targetHref.some((href) => pathname.startsWith(`${href}/`));
+  // } else {
+    return pathname === targetHref || pathname.startsWith(`${targetHref}/`);
+  // }
 }

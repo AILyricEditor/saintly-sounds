@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer";
 import CurrentSong from "./components/CurrentSong/CurrentSong";
+import CurrentSongPopup from "./components/CurrentSongPopup/CurrentSongPopup";
 import CurrentSongProvider from "./contexts/CurrentSongContext";
 import AllSongsProvider from "./contexts/AllSongsContext";
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
           <CurrentSongProvider>
             <Navbar />
             <CurrentSong />
+            <CurrentSongPopup />
             <Footer />
             {children}
           </CurrentSongProvider>

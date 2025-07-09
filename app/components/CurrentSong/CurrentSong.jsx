@@ -4,8 +4,7 @@ import styles from './styles.module.css';
 import { useState, useEffect } from 'react';
 import SongCover from '../SongCover';
 import { useCurrentSong } from '../../contexts/CurrentSongContext';
-import LoadingSpinner from '../LoadingSpinner';
-import SongTitle from '../SongTitle';
+import SongTitle from '../SongTitleLink';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import SongTimeline from '../shared/SongControls/SongTimeline';
@@ -14,7 +13,6 @@ import SongControlButtons from '../shared/SongControls/SongControlButtons';
 export default function CurrentSong() {
 	const { currentSong, status, controls } = useCurrentSong();
 	const [isExpanded, setIsExpanded] = useState(false);
-	const router = useRouter();
 	const pathname = usePathname();
 
 	let timeout;
@@ -30,28 +28,38 @@ export default function CurrentSong() {
 
 		return () => {
 			if (timeout) clearTimeout(timeout);
-		};
+		}
 	}, [isExpanded, status.isControlling]);
 
 	function openSongPage() {
-		router.push(`/music/song-${currentSong.id}`);
+		controls.openCurrent();
 	}
 
 	return (
 		<>
-			<div className={`${styles.currentSong} ${!currentSong && styles.hidden} ${pathname.startsWith(`/music/song-${currentSong?.id}`) && styles.hidden} ${isExpanded ? styles.expanded : ""}`} onClick={e => {
+			<div className={`
+				${styles.currentSong} 
+				${!currentSong && styles.hidden} 
+				${pathname === `song/${currentSong?.id}` && styles.hidden} 
+				${isExpanded ? styles.expanded : ""}
+				${status.isOpened && styles.hidden}
+				${status.pendCurrentPage && styles.hidden}
+			`} 
+			onClick={e => {
 				if (e.target.matches('button') || e.target.matches('svg') || e.target.matches(`.${styles.timeline} *`)) return;
 				setIsExpanded(!isExpanded);
 			}}
 			>
-				{status.isLoaded ? <>
+				{currentSong && <>
 					<SongCover 
-						className={`${styles.songCover}`}
+						className={`${styles.songCover} pointer`}
 						song={currentSong} 
 						onClick={openSongPage}
 					/>
 					<div className={styles.songInfo}>
-						<SongTitle song={currentSong} />
+						<h3 className="hoverUnderline" 
+							onClick={() => controls.openCurrent()}>{currentSong.title}
+						</h3>
 						<p>Artist: {currentSong.artist}</p>
 						<p>Album: {currentSong.album}</p>
 					</div>
@@ -59,7 +67,7 @@ export default function CurrentSong() {
 						<SongControlButtons />
 						<SongTimeline className={styles.timeline} />
 					</div>
-				</> : <LoadingSpinner size={20}/>}
+				</>}
 			</div>
 		</>
 	)

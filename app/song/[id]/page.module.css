@@ -24,14 +24,6 @@
 	text-wrap: nowrap;
 }
 
-.songControls {
-	justify-self: center;
-	position: absolute;
-	bottom: 25px;
-	gap: 10px;
-	width: 80%
-}
-
 @media (max-width: 425px) { 
 	.main {
 		padding: 0;
@@ -42,11 +34,6 @@
 
 	.main :global(.SongCover) {
 		margin: auto;
-	}
-
-	.songControls {
-		width: 80%; 
-		margin-top: 100px;
 	}
 
 	.songCover {

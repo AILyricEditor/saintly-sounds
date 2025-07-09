@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, createContext, useContext, useEffect, useRef } from 'react';
+import { useState, createContext, useContext, useEffect, useRef, useMemo } from 'react';
 import { useAllSongs } from './AllSongsContext';
 import { useRouter } from 'next/navigation';
-// import { isOnPage } from '../tools/tools';
 import { usePathname } from 'next/navigation';
+import { startTransition } from 'react';
 
 const CurrentSongContext = createContext();
 
@@ -23,6 +23,9 @@ export default function CurrentSongProvider({ children }) {
 	const [shuffleState, setShuffleState] = useState(false);
 	const [seeking, setSeeking] = useState(false);
 	const [isControlling, setIsControlling] = useState(false);
+	const [pendCurrentPage, setPendCurrentPage] = useState(false);
+	const [loadedSong, setLoadedSong] = useState(null);
+	const [isOpened, setIsOpened] = useState(false);
 	const songRef = useRef(null);
 	const allSongs = useAllSongs();
 	const router = useRouter();
@@ -48,43 +51,61 @@ export default function CurrentSongProvider({ children }) {
 		}
 	}, [isPlaying, currentSong, currentTime, isLoaded]);
 
+	const ifSongLoaded = (doThis) => { if (isLoaded) { doThis() } }
+
 	useEffect(() => {
-		if (pathname === `/music/song-${currentSong?.id}`) {
-			router.prefetch(`/music/song-${nextSong?.id}`)
+		if (currentSong && isLoaded && pathname === `/song/${currentSong?.id}`) {
+			controls.goToCurrentPage();
 		}
-	}, [currentSong])
+	}, [currentSong, pathname]);
 
-	function changeSongPage(song) {
-	  if (pathname === `/music/song-${currentSong.id}`) {
-			router.push(`/music/song-${song.id}`);
+	useEffect(() => {
+		// If the path changes close Current Song Popup
+		controls.closeCurrent();
+	}, [pathname]);
+
+	useEffect(() => {
+		if (currentSong !== loadedSong && isLoaded) {
+			setLoadedSong(currentSong);
 		}
-	}
+	}, [currentSong, isLoaded]);
 
-	const controls = {
-		play: () => setIsPlaying(true),
-		pause: () => setIsPlaying(false),
-		togglePlay: () => setIsPlaying(!isPlaying),
+	const tools = {
+		isCurrentSong: (song) => {
+			if (isLoaded) {
+				return song.id === currentSong.id;
+			}
+		}
+	};
+
+	const controls = useMemo(() => ({
+		play: () => ifSongLoaded(() => setIsPlaying(true)),
+		pause: () => ifSongLoaded(() => setIsPlaying(false)),
+		togglePlay: () => ifSongLoaded(() => setIsPlaying(!isPlaying)),
 		setSong: (song) => setCurrentSong(song),
 		next: () => {
 			setCurrentSong(nextSong);
-			changeSongPage(nextSong);
 		},
 		previous: () => {
 			setCurrentSong(prevSong);
-			changeSongPage(prevSong);
 		},
 		shuffle: () => setSongQueue(shuffle(allSongs)),
 		unShuffle: () => setSongQueue(allSongs),
-		replay: () => controls.seekTo(0),
+		replay: () => {
+			setCurrentTime(0);
+			ifSongLoaded(() => songRef.current.currentTime = time);
+		},
 		setLoop: (value) => setLoopState(value),
 		setShuffle: (value) => setShuffleState(value),
 		seekTo: (time) => {
 			setCurrentTime(time);
-			if (isLoaded) songRef.current.currentTime = time;
-		}
-	}
+			ifSongLoaded(() => songRef.current.currentTime = time);
+		},
+		openCurrent: () => setIsOpened(true),
+		closeCurrent: () => setIsOpened(false),
+	}), [isPlaying, nextSong, prevSong, allSongs, isLoaded]);
 
-	const status = {
+	const status = useMemo(() => ({
 		isLoaded: isLoaded,
 		loop: loopState,
 		shuffle: shuffleState,
@@ -92,6 +113,7 @@ export default function CurrentSongProvider({ children }) {
 		isPlaying: isPlaying,
 		isSeeking: seeking,
 		isControlling: isControlling,
+		isOpened: isOpened,
 		setSeeking: (value) => {
 			setSeeking(value);
 			status.setControlling();
@@ -105,7 +127,7 @@ export default function CurrentSongProvider({ children }) {
 			}, 500);
 			setIsControlling(true)
 		},
-	}
+	}), [isLoaded, loopState, shuffleState, currentTime, isPlaying, seeking, isControlling, pendCurrentPage]);
 
 	useEffect(() => {
 		setIsLoaded(false); // Reset load state when song changes
@@ -125,7 +147,8 @@ export default function CurrentSongProvider({ children }) {
 		<CurrentSongContext.Provider value={{ 
 			currentSong,
 			status,
-			controls
+			controls,
+			tools
 		}}>
 			{/* <div style={{
 				position: 'absolute',
@@ -174,6 +197,21 @@ export default function CurrentSongProvider({ children }) {
 				}}
 				onLoadedMetadata={(e) => setIsLoaded(true)}
 			></audio>}
+			{/* This preloads the next and prev songs audio */}
+			{nextSong && nextSong !== currentSong && (
+				<audio
+					src={nextSong.audio}
+					preload="auto"
+					style={{ display: "none" }}
+				/>
+			)}
+			{prevSong && prevSong !== currentSong && (
+				<audio
+					src={prevSong.audio}
+					preload="auto"
+					style={{ display: "none" }}
+				/>
+			)}
 			{children}
 		</CurrentSongContext.Provider>
 	);
