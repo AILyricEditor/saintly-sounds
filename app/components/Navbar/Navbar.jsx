@@ -8,7 +8,6 @@ import { useCurrentSong } from '../../contexts/CurrentSongContext'; // Import th
 
 export default function Navbar() {
 	const [clicked, setClicked] = useState(false);
-	const { controls } = useCurrentSong();
 
 	return (
 		<>
@@ -24,7 +23,7 @@ export default function Navbar() {
 								className={`
 									${styles.tab}
 									${link.active() && styles.active}
-									${link.sublinks && link.sublinks.some(link => link.active()) || clicked && styles.expanded}
+									${link.active()  && styles.expanded}
 								`}
 							>
 								{link.sublinks &&

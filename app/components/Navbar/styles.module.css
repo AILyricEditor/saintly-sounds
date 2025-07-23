@@ -103,17 +103,17 @@
 	justify-content: space-between;
 }
 
-/* .expanded {
+.expanded {
 	height: 150px;
 }
 
-.expanded .subTabs {
+/* .expanded .subTabs {
 	opacity: 1;
 	visibility: visible;
 } */
 
 /* The sub-tab wrapper when parent tab has been expanded */
-.active .subTabs {
+.expanded .subTabs {
 	opacity: 1;
 	visibility: visible;
 }
@@ -123,11 +123,6 @@
 	padding-left: 30px;
 	padding-right: 15px;
 	border: 1px solid transparent;
-}
-
-/* When hovering over all sub-tabs that are not active */
-.subTab:not(.active):hover {
-	background: rgba(95, 95, 95, 0.315);
 }
 
 /* When clicking on all sub-tabs that are not active */
@@ -155,7 +150,7 @@
 
 /* Styles for tab when tab is active */
 .active.tab {
-	height: 150px;
+	/* height: 150px; */
 	width: 94%;
 	background: rgba(255, 255, 255, 0.1);
 }

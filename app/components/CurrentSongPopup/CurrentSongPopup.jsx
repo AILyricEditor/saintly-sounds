@@ -7,11 +7,12 @@ import AmbientBG from './AmbientBG';
 import SongControls from '../../components/shared/SongControls/SongControls';
 import SongCover from '../../components/SongCover';
 
-export default function currentSongPopup() {
+export default function CurrentSongPopup() {
 	const { currentSong, status, controls } = useCurrentSong();
 	const [animating, setAnimating] = useState(false);
 	const [animating2, setAnimating2] = useState(false);
 	const [lastSong, setLastSong] = useState(currentSong);
+	const [showPopup, setShowPopup] = useState(false);
 
 	useEffect(() => {
 		setAnimating(true);
@@ -25,11 +26,17 @@ export default function currentSongPopup() {
 		}, 500);
 	}, [currentSong]);
 
-	if (!status.isOpened) return null;
+	useEffect(() => {
+		if (status.isOpened) {
+			setShowPopup(true);
+		} else if (status.isOpened === false) {
+			setShowPopup(false);
+		}
+	}, [status.isOpened]);
 
 	return (
 		<>
-			<main className={styles.container}>
+			{showPopup && <main className={styles.container}>
 				<AmbientBG 
 					song={lastSong} 
 					style={{
@@ -64,7 +71,7 @@ export default function currentSongPopup() {
 						sliderHeight={7}
 					/>
 				</div>
-			</main>
+			</main>}
 		</>
 	)
 }

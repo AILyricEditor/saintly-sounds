@@ -20,6 +20,10 @@
 	overflow: hidden;
 }
 
+.handle {
+	display: none;
+}
+
 .songCover {
 	transition: all 0.3s ease-in-out;
 }
@@ -62,6 +66,19 @@
 		grid-column: 1;
 	}
 
+	.handle {
+		display: block;
+		position: absolute;
+		top: 8px;
+		left: 50%;
+		translate: -50% 0;
+		height: 3px;
+		background: var(--border-color);
+		border-radius: 10px;
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+	}
+
 	.songInfo {
 		font-size: 0.5em;
 		margin-left: 0;
@@ -79,12 +96,12 @@
 
 	.expanded {
 		padding-top: 5px;
-		height: 15%;
+		height: 100px;
 		padding-bottom: 30px;
 	}
 
 	.expanded .timeline {
-		bottom: 5px;
+		bottom: 10px;
 
 	}
 

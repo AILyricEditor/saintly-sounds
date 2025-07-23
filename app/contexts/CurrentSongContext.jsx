@@ -23,12 +23,10 @@ export default function CurrentSongProvider({ children }) {
 	const [shuffleState, setShuffleState] = useState(false);
 	const [seeking, setSeeking] = useState(false);
 	const [isControlling, setIsControlling] = useState(false);
-	const [pendCurrentPage, setPendCurrentPage] = useState(false);
 	const [loadedSong, setLoadedSong] = useState(null);
 	const [isOpened, setIsOpened] = useState(false);
 	const songRef = useRef(null);
 	const allSongs = useAllSongs();
-	const router = useRouter();
 	const pathname = usePathname();
 
 	const songIndex = currentSong ? songQueue.findIndex(song => song.id === currentSong.id) : -1;
@@ -53,11 +51,11 @@ export default function CurrentSongProvider({ children }) {
 
 	const ifSongLoaded = (doThis) => { if (isLoaded) { doThis() } }
 
-	useEffect(() => {
-		if (currentSong && isLoaded && pathname === `/song/${currentSong?.id}`) {
-			controls.goToCurrentPage();
-		}
-	}, [currentSong, pathname]);
+	// useEffect(() => {
+	// 	if (currentSong && isLoaded && pathname === `/song/${currentSong?.id}`) {
+	// 		controls.goToCurrentPage();
+	// 	}
+	// }, [currentSong, pathname]);
 
 	useEffect(() => {
 		// If the path changes close Current Song Popup
@@ -79,9 +77,9 @@ export default function CurrentSongProvider({ children }) {
 	};
 
 	const controls = useMemo(() => ({
-		play: () => ifSongLoaded(() => setIsPlaying(true)),
-		pause: () => ifSongLoaded(() => setIsPlaying(false)),
-		togglePlay: () => ifSongLoaded(() => setIsPlaying(!isPlaying)),
+		play: () => setIsPlaying(true),
+		pause: () => setIsPlaying(false),
+		togglePlay: () => setIsPlaying(!isPlaying),
 		setSong: (song) => setCurrentSong(song),
 		next: () => {
 			setCurrentSong(nextSong);
@@ -127,7 +125,7 @@ export default function CurrentSongProvider({ children }) {
 			}, 500);
 			setIsControlling(true)
 		},
-	}), [isLoaded, loopState, shuffleState, currentTime, isPlaying, seeking, isControlling, pendCurrentPage]);
+	}), [isLoaded, loopState, shuffleState, currentTime, isPlaying, seeking, isControlling, isOpened]);
 
 	useEffect(() => {
 		setIsLoaded(false); // Reset load state when song changes

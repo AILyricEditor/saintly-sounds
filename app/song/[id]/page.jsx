@@ -11,8 +11,11 @@ export default function SongPage({ params }) {
 	const song = allSongs.find(s => s.id.toString() === params.id);
 
 	return (
-		<main className={`${styles.main} ${className}`}>
-			<h1 className={styles.title}>{song.title}</h1>
+		<main className={`${styles.main}`}>
+			<div className={styles.content}>
+				<h1 className={styles.title}>{song.title}</h1>
+				<h5 className={styles.message}>This is the {song.title}'s page. More content will be added soon!</h5>
+			</div>
 			<SongCover
 				className={`
 					${styles.songCover} 

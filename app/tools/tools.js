@@ -19,15 +19,9 @@ export function getClientX(e) {
 }
 
 export function isOnPage(targetHref, exceptions = []) {
-  // Set exact to true if you want to check for an exact match
   const pathname = usePathname();
 
   if (exceptions.includes(pathname)) return false;
 
-  // if (Array.isArray(targetHref)) {
-  //   return [targetHref].includes(pathname) ||
-  //    targetHref.some((href) => pathname.startsWith(`${href}/`));
-  // } else {
-    return pathname === targetHref || pathname.startsWith(`${targetHref}/`);
-  // }
+  return pathname === targetHref || pathname.startsWith(`${targetHref}/`);
 }
