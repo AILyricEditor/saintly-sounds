@@ -34,7 +34,7 @@ export default function MusicPage() {
 	));
 
 	return (
-		<main className={styles.main}>
+		<main className={styles.songsPage}>
 			{SongElements}
 		</main>
 	);

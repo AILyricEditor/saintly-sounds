@@ -1,4 +1,4 @@
-.main {
+.songsPage {
 	display: flex;
 	flex-wrap:wrap;
 	gap: 30px;
@@ -13,4 +13,8 @@
 	background-size: cover; /* Ensures the image covers the entire screen */
   background-position: center; /* Centers the image */
 	scroll-behavior: smooth;
+}
+
+.main {
+	padding-top: 70px;
 }

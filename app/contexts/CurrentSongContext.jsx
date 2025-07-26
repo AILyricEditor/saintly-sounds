@@ -51,11 +51,15 @@ export default function CurrentSongProvider({ children }) {
 
 	const ifSongLoaded = (doThis) => { if (isLoaded) { doThis() } }
 
-	// useEffect(() => {
-	// 	if (currentSong && isLoaded && pathname === `/song/${currentSong?.id}`) {
-	// 		controls.goToCurrentPage();
-	// 	}
-	// }, [currentSong, pathname]);
+	useEffect(() => {
+		// Preload the next and previous songs' images
+		// if (currentSong) {
+		// 	const img1 = new Image();
+		// 	const img2 = new Image();
+		// 	img1.src = prevSong.image;
+		// 	img2.src = nextSong.image;
+		// }
+	}, [currentSong])
 
 	useEffect(() => {
 		// If the path changes close Current Song Popup

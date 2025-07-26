@@ -8,7 +8,7 @@ export default function AmbientBG({ song, className, style, animation = true }) 
 
   return (
     <div
-      className={`${className} ${styles.background} ${animation && tools.isCurrentSong(song) && status.isPlaying && styles.animation}`}
+      className={`${className} ${styles.background} ${animation && status.isPlaying && styles.animation}`}
       style={{ ...style, backgroundImage: `url(${song.image})` }}
     />
   );

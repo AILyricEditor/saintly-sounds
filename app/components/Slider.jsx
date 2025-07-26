@@ -45,6 +45,7 @@ export default function Slider({
 
 	useEffect(() => {
 		function onMouseDown(e) {
+			e.stopPropagation();
 			setFillWidth(mousePosition.precise(e));
 			setIsDragging(true);
 			if (e.type == "mousedown") {
@@ -58,11 +59,13 @@ export default function Slider({
 		}
 
 		function onMouseMove(e) {
+			e.stopPropagation();
 			setFillWidth(mousePosition.precise(e));
 			if (onSlide) onSlide(mousePosition.approximate(e));
 		}
 
 		function onMouseUp(e) {
+			e.stopPropagation();
 			if (e.type == "mouseup") {
 				document.removeEventListener('mouseup', onMouseUp);
 				document.removeEventListener("mousemove", onMouseMove);

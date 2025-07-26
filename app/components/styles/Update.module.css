@@ -1,0 +1,72 @@
+.update {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.text > * {
+	font-size: 7em;
+	color: var(--accent2);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	transition: all 0.5s ease-in-out;
+}
+
+.v4 {
+	animation: slideUp 0.5s ease-in-out;
+}
+
+.v4.animateOut {
+	scale: 0.8;
+	opacity: 0;
+	transform: translateY(-100%);
+	visibility: hidden;
+}
+
+.v5 {
+	animation: slideUp 0.5s ease-in-out;
+}
+
+
+@keyframes slideUp {
+	0% {
+		scale: 0.8;
+		opacity: 0;
+		transform: translateY(100%);
+		visibility: hidden;
+
+	}
+	100% {
+		scale: 1;
+		opacity: 1;
+		transform: translateY(0);
+		visibility: visible;
+	}
+}
+
+@keyframes slideAway {
+	0% {
+		scale: 1;
+		opacity: 1;
+		transform: translateY(0);
+		visibility: visible;
+	}
+	100% {
+		scale: 0.8;
+		opacity: 0;
+		transform: translateY(-100%);
+		visibility: hidden;
+	}
+}

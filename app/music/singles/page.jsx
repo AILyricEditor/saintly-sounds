@@ -1,8 +1,10 @@
+import styles from "../layout.module.css";
+
 export default function SinglesPage() {
 	return (
-		<div>
+		<main className={styles.main}>
 			<h1>Singles</h1>
 			<p>List of singles will be displayed here.</p>
-		</div>
+		</main>
 	);
 }

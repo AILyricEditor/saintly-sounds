@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useCurrentSong } from "../../contexts/CurrentSongContext";
 import styles from './styles.module.css';
 import AmbientBG from './AmbientBG';
@@ -9,22 +9,33 @@ import SongCover from '../../components/SongCover';
 
 export default function CurrentSongPopup() {
 	const { currentSong, status, controls } = useCurrentSong();
-	const [animating, setAnimating] = useState(false);
-	const [animating2, setAnimating2] = useState(false);
-	const [lastSong, setLastSong] = useState(currentSong);
+	// const [animating, setAnimating] = useState(false);
+	// const [animating2, setAnimating2] = useState(false);
+	// const [lastSong, setLastSong] = useState(currentSong);
 	const [showPopup, setShowPopup] = useState(false);
 
-	useEffect(() => {
-		setAnimating(true);
-		setTimeout(() => {
-			setAnimating(false);
-			setAnimating2(true);
-			setLastSong(currentSong);
-		}, 500);
-		setTimeout(() => {
-			setAnimating2(false);
-		}, 500);
-	}, [currentSong]);
+	// useEffect(() => {
+	// 	let timeout1;
+
+	// 	setAnimating(true);
+
+	// 	timeout1 = setTimeout(() => {
+	// 		setAnimating(false);
+	// 		setLastSong(currentSong);
+	// 		// setAnimating2(true);
+	// 	}, 1000);
+
+	// 		// timeout2 = setTimeout(() => {
+	// 			// setAnimating2(false);
+	// 		// }, 500);
+
+	// 	// return () => {
+	// 	// 	clearTimeout(timeout1);
+	// 	// 	clearTimeout(timeout2);
+	// 	// 	setAnimating(false);
+	// 	// 	setAnimating2(false);
+	// 	// };
+	// }, [currentSong]);
 
 	useEffect(() => {
 		if (status.isOpened) {
@@ -37,17 +48,19 @@ export default function CurrentSongPopup() {
 	return (
 		<>
 			{showPopup && <main className={styles.container}>
-				<AmbientBG 
+				{/* {animating && lastSong && <AmbientBG 
 					song={lastSong} 
 					style={{
-						opacity: animating ? 0 : 1,
+						opacity: 0,
+						// backgroundPosition: bgPos,
 					}}
 					className={styles.transition}
-				/>
+				/>} */}
 				<AmbientBG 
 					song={currentSong} 
 					style={{
-						opacity: animating2 ? 0 : 1,
+						// opacity: 1,
+						// backgroundPosition: bgPos,
 					}}
 					className={styles.transition}
 				/>

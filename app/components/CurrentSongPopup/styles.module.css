@@ -43,7 +43,7 @@
 }
 
 .transition {
-	transition: all 0.5s ease-in-out;
+	transition: background-image 500ms ease-in-out;
 }
 
 .songControls {
@@ -54,7 +54,7 @@
 	width: 80%
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   0% {
     opacity: 0;
   }
@@ -82,7 +82,7 @@
 	100% {
 		opacity: 1;
 	}
-}
+} */
 
 @media (max-width: 425px) { 
 	.container {

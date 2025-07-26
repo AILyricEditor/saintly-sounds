@@ -1,14 +1,15 @@
 .nav {
+	grid-row: 1;
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 5px;
+	left: 5px;
 	z-index: 3;
 	grid-column: 2;
 	background: var(--secondary);
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin: 15px;
+	margin: 10px;
 	border: 1px solid var(--border-color);
 	border-radius: 10px;
 	box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.267);
@@ -21,6 +22,9 @@
 	align-items: center;
 	justify-content: center;
 	padding: 10px 25px;
+	width: 70px;
+	height: 40px;
+	font-size: 0.8em;
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
@@ -35,6 +39,8 @@
 
 @media (max-width: 425px) {
 	.nav {
+		right: 0;
+		left: auto;
 		grid-column: 1;
 	}
 	

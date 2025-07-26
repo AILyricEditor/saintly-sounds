@@ -14,7 +14,12 @@ export default function SongPage({ params }) {
 		<main className={`${styles.main}`}>
 			<div className={styles.content}>
 				<h1 className={styles.title}>{song.title}</h1>
-				<h5 className={styles.message}>This is the {song.title}'s page. More content will be added soon!</h5>
+				<br />
+				<h3>Lyrics</h3>
+				<h5 className={styles.lyrics}>{song.lyrics}</h5>
+				<br />
+				<br />
+				<h6>More coming soon...</h6>
 			</div>
 			<SongCover
 				className={`

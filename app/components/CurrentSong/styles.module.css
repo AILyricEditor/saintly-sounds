@@ -21,16 +21,7 @@
 }
 
 .topTarget {
-	position: absolute;
-	bottom: 10px;
-	left: 50%;
-	translate: -50% 0;
-	z-index: 4;
-	width: 95%;
-	height: 100px;
-	grid-row: 1 / 2;
-	/* background-color: rgba(255, 0, 0, 0.685); */
-	transition: all 0.5s ease-in-out;
+	display: none;
 }
 
 .arrow {
@@ -98,6 +89,19 @@
 		height: 70px;
 		grid-row: 1 / 2;
 		grid-column: 1;
+	}
+
+	.topTarget {
+		display: block;
+		position: absolute;
+		bottom: 10px;
+		left: 50%;
+		translate: -50% 0;
+		z-index: 4;
+		width: 95%;
+		height: 100px;
+		grid-row: 1 / 2;
+		transition: all 0.5s ease-in-out;
 	}
 
 	.handle {

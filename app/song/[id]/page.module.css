@@ -1,13 +1,11 @@
 .main {
 	position: relative;
-	z-index: 2;
 	display: grid;
 	grid-template-columns: auto 1fr 1fr;
 	grid-template-rows: auto 1fr;
 	gap: 25px;
 	padding: 100px;
-	/* width: 100%; */
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .content {
@@ -23,11 +21,6 @@
 	border: 1px solid var(--border-color);
 }
 
-/* .message {
-	grid-row: 2;
-	grid-column: 1;
-} */
-
 .title {
 	grid-column: 2;
 	/* margin-left: 10px; */
@@ -38,12 +31,21 @@
 	.main {
 		padding: 0;
 		padding-top: 100px;
+		padding-bottom: 250px;
 		grid-template-columns: 100%;
 		grid-template-rows: 250px 50px 50px;
 	}
 
 	.main :global(.SongCover) {
 		margin: auto;
+	}
+
+	.content {
+		grid-row: 2;
+		grid-column: 1;
+		margin: 0 50px;
+		text-wrap: balance;
+		text-align: center;
 	}
 
 	.songCover {

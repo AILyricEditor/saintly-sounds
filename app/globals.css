@@ -57,6 +57,14 @@ svg * {
 	border-radius: 10px;
 }
 
+main {	
+	padding: 20px;
+}
+
+.logo {
+	display: none;
+}
+
 .iconButton {
 	width: 2em;
 	height: 2em;
@@ -90,5 +98,18 @@ svg * {
 
 	::-webkit-scrollbar {
 		display: none;
+	}
+	
+	main {
+		padding-top: 70px;
+	}
+
+	.logo {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 5px;
+		z-index: 2;
+		filter: drop-shadow(0 0 15px rgb(0, 0, 0));
 	}
 }
