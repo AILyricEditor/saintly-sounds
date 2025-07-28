@@ -4,12 +4,10 @@ import styles from './styles.module.css';
 import { useState, useEffect, useRef } from 'react';
 import SongCover from '../SongCover';
 import { useCurrentSong } from '../../contexts/CurrentSongContext';
-// import SongTitle from '../SongTitleLink';
-// import { useRouter } from 'next/navigation';
-// import { useDrag } from '@use-gesture/react';
 import { usePathname } from 'next/navigation';
 import SongTimeline from '../shared/SongControls/SongTimeline';
 import SongControlButtons from '../shared/SongControls/SongControlButtons';
+import SongTitleLink from '../SongTitleLink';
 
 export default function CurrentSong() {
 	const { currentSong, status, controls } = useCurrentSong();
@@ -22,15 +20,8 @@ export default function CurrentSong() {
 	let timeout;
 
 	const startY = useRef(null);
-	// const ignoreSwipe = useRef(false);
 
 	function handleTouchStart(e) {
-		// const touchedInControls = e.target.closest('[data-stop-prop]');
-
-		// ignoreSwipe.current = !!touchedInControls;
-
-		// if (ignoreSwipe.current) return;
-
 		startY.current = e.touches[0].clientY;
 		setIsExpanding(true);
 	}
@@ -136,9 +127,10 @@ export default function CurrentSong() {
 						onClick={() => controls.openCurrent()}
 					/>
 					<div className={styles.songInfo}>
-						<h3 className="hoverUnderline" 
+						{/* <h3 className="hoverUnderline" 
 							onClick={() => controls.openCurrent()}>{currentSong.title}
-						</h3>
+						</h3> */}
+						<SongTitleLink maxWidth={'30vw'} song={currentSong}>{currentSong.title}</SongTitleLink>
 						<p onClick={() => controls.openCurrent()}>Artist: {currentSong.artist}</p>
 						<p onClick={() => controls.openCurrent()}>Album: {currentSong.album}</p>
 					</div>

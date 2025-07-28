@@ -1,6 +1,17 @@
 {
 	"songs": [
 		{
+			"title": "Out where creation sings His praise",
+			"artist": "Saint Hurtz & His Holy Kin",
+			"album": "Where the Light of Christ Shines",
+			"image": "/Out-where-creation-sings-His-praise.jpeg",
+			"audio": "/Out-where-creation-sings-His-praise.mp3",
+			"lyrics": "[Verse 1] \n\nOut where creation sings His praise,\nThe flowers bloom, clothed in His grace.\nMountains bow down, and skies proclaim,\nThe glory of His holy name.\n\n[Pre-Hook]\n\nThe Spirit moves like a gentle breeze,\nFilling us with the Truth that sets us free.\nIn His presence, I find peace,\nWhere all my fears and doubts will cease.\n\n[Hook]\n\nWhere the light of Christ shines bright,\nIn His love, we find our sight.\nWe walk the path He made,\nThrough the valley unafraid.\nIn fields of grace, we bloom,\nIn His arms, there’s room,\nFor every heart to rise,\nWhere the light of Christ shines.\n\n[Verse 2]\n\nThe shepherd leads us by still streams,\nHe makes us lay down in fields of green.\nHis mercy flows, so pure, so wide,\nHis love our never-failing guide.\n\n[Pre-Hook]\n\nThe heavens declare His majesty,\nIn His light, we’re set free.\nWith every step, His hand I hold,\nIn His presence, I am bold.\n\n(Hook)\n\nWhere the light of Christ shines bright,\nIn His love, we find our sight.\nWe walk the path He made,\nThrough the valley unafraid.\nIn fields of grace, we bloom,\nIn His arms, there’s room,\nFor every heart to rise,\nWhere the light of Christ shines.\n\n[Bridge]\n\nHis kingdom’s come, His will be done,\nOn earth as it is in Heaven above.\nIn every flower, in every tree,\nI see His love surrounding me.\n\n[Final Hook]\n\nWhere the light of Christ shines bright,\nIn His love, we find our sight.\nWe walk the path He made,\nThrough the valley unafraid.\nIn fields of grace, we bloom,\nIn His arms, there’s room,\nFor every heart to rise,\nWhere the light of Christ shines.\n\nYes, where the light of Christ shines.",
+			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
+			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
+			"id": 1
+		},
+		{
 			"title": "Leaf Counter",
 			"artist": "Prigida",
 			"album": "Album 1",
@@ -9,7 +20,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 1
+			"id": 2
 		},
 		{
 			"title": "Japanese Garden",
@@ -20,7 +31,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 2
+			"id": 3
 		},
 		{
 			"title": "Spirit Blossom",
@@ -31,7 +42,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 3
+			"id": 4
 		},
 		{
 			"title": "Wanted",
@@ -42,7 +53,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 4
+			"id": 5
 		},
 		{
 			"title": "Satellite",
@@ -53,7 +64,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 5
+			"id": 6
 		},
 		{
 			"title": "Deep Focus",
@@ -64,7 +75,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 6
+			"id": 7
 		},
 		{
 			"title": "Lofi Natural",
@@ -75,7 +86,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 7
+			"id": 8
 		},
 		{
 			"title": "Good Night",
@@ -86,7 +97,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 8
+			"id": 9
 		},
 		{
 			"title": "The Aesthetics",
@@ -97,7 +108,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 9
+			"id": 10
 		},
 		{
 			"title": "Cozy Place",
@@ -108,7 +119,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 10
+			"id": 11
 		},
 		{
 			"title": "Cozy Place",
@@ -119,7 +130,7 @@
 			"lyrics": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"inspiration": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
 			"credits": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore ipsa fugit magnam vero a eos enim doloremque! Tenetur in iusto magni, corporis nobis, tempora voluptatum modi aperiam mollitia, adipisci eum.",
-			"id": 11
+			"id": 12
 		}
 	]
 }

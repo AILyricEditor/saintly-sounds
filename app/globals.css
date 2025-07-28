@@ -17,6 +17,7 @@
 	box-sizing: border-box;
 	interpolate-size: allow-keywords;
 	-webkit-tap-highlight-color: transparent;
+	white-space: pre-line;
 }
 
 html, body {
@@ -88,6 +89,15 @@ main {
 
 .pointer {
 	cursor: pointer;
+}
+
+.truncate {
+	flex: 0 1 auto;                /* allow shrinking */
+  min-width: 0;                  /* IMPORTANT to allow overflow to be clipped */
+	display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 425px) {

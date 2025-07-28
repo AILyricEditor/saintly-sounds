@@ -52,16 +52,6 @@ export default function CurrentSongProvider({ children }) {
 	const ifSongLoaded = (doThis) => { if (isLoaded) { doThis() } }
 
 	useEffect(() => {
-		// Preload the next and previous songs' images
-		// if (currentSong) {
-		// 	const img1 = new Image();
-		// 	const img2 = new Image();
-		// 	img1.src = prevSong.image;
-		// 	img2.src = nextSong.image;
-		// }
-	}, [currentSong])
-
-	useEffect(() => {
 		// If the path changes close Current Song Popup
 		controls.closeCurrent();
 	}, [pathname]);
@@ -201,18 +191,24 @@ export default function CurrentSongProvider({ children }) {
 			></audio>}
 			{/* This preloads the next and prev songs audio */}
 			{nextSong && nextSong !== currentSong && (
-				<audio
-					src={nextSong.audio}
-					preload="auto"
-					style={{ display: "none" }}
-				/>
+				<>
+					<audio
+						src={nextSong.audio}
+						preload="auto"
+						style={{ display: "none" }}
+					/>
+					<img src={nextSong.image} alt="" style={{ display: "none" }} />
+				</>	
 			)}
 			{prevSong && prevSong !== currentSong && (
-				<audio
-					src={prevSong.audio}
-					preload="auto"
-					style={{ display: "none" }}
-				/>
+				<>
+					<audio
+						src={prevSong.audio}
+						preload="auto"
+						style={{ display: "none" }}
+					/>
+					<img src={nextSong.image} alt="" style={{ display: "none" }} />
+				</>
 			)}
 			{children}
 		</CurrentSongContext.Provider>

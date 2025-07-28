@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
               src="/saintly-sounds7.png"
               alt="Saintly Sounds Logo"
               width={115}
-              className="logo" 
+              className="logo"
             />
             <Navbar />
             <CurrentSong />

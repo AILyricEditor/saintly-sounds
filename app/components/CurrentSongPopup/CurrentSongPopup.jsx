@@ -6,36 +6,13 @@ import styles from './styles.module.css';
 import AmbientBG from './AmbientBG';
 import SongControls from '../../components/shared/SongControls/SongControls';
 import SongCover from '../../components/SongCover';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function CurrentSongPopup() {
 	const { currentSong, status, controls } = useCurrentSong();
-	// const [animating, setAnimating] = useState(false);
-	// const [animating2, setAnimating2] = useState(false);
-	// const [lastSong, setLastSong] = useState(currentSong);
 	const [showPopup, setShowPopup] = useState(false);
-
-	// useEffect(() => {
-	// 	let timeout1;
-
-	// 	setAnimating(true);
-
-	// 	timeout1 = setTimeout(() => {
-	// 		setAnimating(false);
-	// 		setLastSong(currentSong);
-	// 		// setAnimating2(true);
-	// 	}, 1000);
-
-	// 		// timeout2 = setTimeout(() => {
-	// 			// setAnimating2(false);
-	// 		// }, 500);
-
-	// 	// return () => {
-	// 	// 	clearTimeout(timeout1);
-	// 	// 	clearTimeout(timeout2);
-	// 	// 	setAnimating(false);
-	// 	// 	setAnimating2(false);
-	// 	// };
-	// }, [currentSong]);
+	const pathname = usePathname();
 
 	useEffect(() => {
 		if (status.isOpened) {
@@ -48,20 +25,8 @@ export default function CurrentSongPopup() {
 	return (
 		<>
 			{showPopup && <main className={styles.container}>
-				{/* {animating && lastSong && <AmbientBG 
-					song={lastSong} 
-					style={{
-						opacity: 0,
-						// backgroundPosition: bgPos,
-					}}
-					className={styles.transition}
-				/>} */}
 				<AmbientBG 
 					song={currentSong} 
-					style={{
-						// opacity: 1,
-						// backgroundPosition: bgPos,
-					}}
 					className={styles.transition}
 				/>
 				<button 
@@ -73,7 +38,15 @@ export default function CurrentSongPopup() {
 					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
 				</button>
 				<div className={`${styles.main} ${styles.transition}`}>
-					<h1 className={styles.title}>{currentSong.title}</h1>
+					<Link onClick={() => {
+							if (pathname === `/song/${currentSong.id}`) {
+								controls.closeCurrent();
+							}
+						}} 
+						className={styles.title} 
+						href={`/song/${currentSong.id}`}>
+							{currentSong.title}
+					</Link>
 					<SongCover
 						className={styles.songCover}
 						size={250}

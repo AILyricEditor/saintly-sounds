@@ -15,7 +15,9 @@ export default function SongPage({ params }) {
 			<div className={styles.content}>
 				<h1 className={styles.title}>{song.title}</h1>
 				<br />
-				<h3>Lyrics</h3>
+				<br />
+				<h2 className={styles.heading}>Lyrics</h2>
+				<br />
 				<h5 className={styles.lyrics}>{song.lyrics}</h5>
 				<br />
 				<br />

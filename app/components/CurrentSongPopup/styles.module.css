@@ -8,6 +8,7 @@
 }
 
 .main {
+	padding-top: 50px !important;
 	position: relative;
 	z-index: 2;
 	display: grid;
@@ -17,6 +18,10 @@
 	padding: 100px;
 	height: 100%;
 	overflow: scroll;
+}
+
+.main * {
+	text-shadow: 0 0 15px rgb(0, 0, 0);
 }
 
 .closeButton {
@@ -37,13 +42,21 @@
 }
 
 .title {
-	grid-column: 2;
+	font-size: 2em;
+	font-weight: 700;
+	grid-column: 2 / 4;
 	margin-left: 10px;
-	text-wrap: nowrap;
+	text-wrap: balance;
+	color: var(--text-color);
+	text-decoration: none;
+}
+
+.title:hover {
+	text-decoration: underline;
 }
 
 .transition {
-	transition: background-image 500ms ease-in-out;
+	transition: background-image 700ms ease-in-out;
 }
 
 .songControls {
@@ -51,38 +64,8 @@
 	position: absolute;
 	bottom: 25px;
 	gap: 10px;
-	width: 80%
+	width: 80%;
 }
-
-/* @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeInOut {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-	100% {
-		opacity: 1;
-	}
-} */
 
 @media (max-width: 425px) { 
 	.container {
@@ -99,7 +82,7 @@
 
 	.main {
 		padding: 0;
-		padding-top: 100px;
+		padding-top: 50px;
 		grid-template-columns: 100%;
 		grid-template-rows: 250px 50px 50px;
 	}
@@ -118,10 +101,11 @@
 		grid-column: 1;
 		font-size: 1.5em;
 		text-align: center;
+		margin: auto;
 	}
 
 	.songControls {
-		width: 80%; 
+		width: 90%; 
 		margin-top: 100px;
 	}
 }

@@ -50,7 +50,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 							size={isExpanded ? 100 : isPlaying ? 75 : 60}
 						></SongCoverPlayer>
 						<div className={styles.songInfo}>
-							<SongTitle song={song}/>
+							<SongTitle maxWidth={'40vw'} song={song}/>
 							<p>Artist: {song.artist}</p>
 							<p>Album: {song.album}</p>
 							{isPlaying && 
