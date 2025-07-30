@@ -25,11 +25,16 @@ export default function Player({ size = 35, song, style, onClick, fade = false }
 				}
 				e.stopPropagation();
 				controls.setSong(song);
-				controls.play();
-				if (!(song !== currentSong && status.isPlaying)) {
+				if (song?.id !== currentSong?.id && status.isPlaying) {
+					// In case of clicking a different song while playing
+					controls.play();
+				} else {
 					controls.togglePlay();
-					status.setControlling();
 				}
+				// if ((song !== currentSong && status.isPlaying)) {
+				// 	controls.togglePlay();
+				// 	status.setControlling();
+				// }
 			}}
 		>
 			{song?.id === currentSong?.id && status.isPlaying ?

@@ -108,12 +108,14 @@ export default function CurrentSong() {
 					touchAction: 'pan-y',
 					WebkitTapHighlightColor: 'transparent',
 				}}
-				onClick={e => {
-					if (!isExpanded && e.target.matches('[data-stop-prop]')) controls.openCurrent();
-				}}
+				// onClick={e => {
+				// 	if (!isExpanded && e.target.matches('[data-stop-prop]')) controls.openCurrent();
+				// 	// controls.openCurrent();
+				// }}
 				onTouchStart={(e) => {
 					e.stopPropagation();
 					handleTouchStart(e);
+					// if (!isExpanded && e.target.matches('[data-stop-prop]')) controls.openCurrent();
 				}}
 				onTouchEnd={(e) => {
 					e.stopPropagation();
@@ -125,16 +127,15 @@ export default function CurrentSong() {
 						className={`${styles.songCover} pointer`}
 						song={currentSong} 
 						onClick={() => controls.openCurrent()}
-					/>
+					>
+						<svg className={styles.openIcon} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H600v-80h160v-480H200v480h160v80H200Zm240 0v-246l-64 64-56-58 160-160 160 160-56 58-64-64v246h-80Z"/></svg>
+					</SongCover>
 					<div className={styles.songInfo}>
-						{/* <h3 className="hoverUnderline" 
-							onClick={() => controls.openCurrent()}>{currentSong.title}
-						</h3> */}
-						<SongTitleLink maxWidth={'30vw'} song={currentSong}>{currentSong.title}</SongTitleLink>
-						<p onClick={() => controls.openCurrent()}>Artist: {currentSong.artist}</p>
-						<p onClick={() => controls.openCurrent()}>Album: {currentSong.album}</p>
+						<SongTitleLink maxWidth={'30vw'} song={currentSong} data-stop-prop>{currentSong.title}</SongTitleLink>
+						<p>Artist: {currentSong.artist}</p>
+						<p>Album: {currentSong.album}</p>
 					</div>
-					<div className={styles.songControls} data-stop-prop >
+					<div className={styles.songControls} data-stop-prop>
 						<SongControlButtons />
 						<SongTimeline className={styles.timeline} />
 					</div>
