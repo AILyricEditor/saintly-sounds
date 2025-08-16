@@ -82,14 +82,13 @@ export default function Update() {
 		};
 	}, []);
 
-	if (!sessionStorage.getItem('introShown')) {
-			// Show your intro
-			setShowIntro(true);
-
-			// Mark it as shown for this session
-			sessionStorage.setItem('introShown', 'true');
-	}
-
+	useEffect(() => {
+		if (!sessionStorage.getItem('introShown')) {
+				setShowIntro(true);
+				sessionStorage.setItem('introShown', 'true');
+		}
+	}, []);
+	
 	return (
 		<>
 			{!end && showIntro && <main className={styles.update} style={{
