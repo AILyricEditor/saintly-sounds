@@ -30,7 +30,7 @@ export default function Navbar() {
 	return (
 		<>
 			<nav className={styles.nav}>
-				<img src="/saintly-sounds7.png" alt="Saintly Sounds" className={styles.logo} />
+				<img src="saintly-sounds7.png" alt="Saintly Sounds" className={styles.logo} />
 				<div className={`${styles.tabs}`}>
 					{links.map((link, index) => {
 						const parentIndex = index;
