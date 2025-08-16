@@ -1,0 +1,30 @@
+.title {
+	width: min-content;
+	display: block;
+	text-decoration: none;
+	color: var(--text-color);
+}
+
+.title:hover {
+ text-decoration: underline;
+}
+
+@media (max-width: 425px) {
+	.title {
+		/* display: block; */
+		font-size: 0.65rem;
+	}
+
+	/* .text {	
+		display: block;
+		width: 50%;
+	} */
+
+	.title:hover {
+		text-decoration: none;
+	}
+
+	.title:active {
+		text-decoration: underline;
+	}
+}

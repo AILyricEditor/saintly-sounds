@@ -7,7 +7,7 @@
 	--accent1: rgb(21, 0, 213);
 	--secondary: rgb(32, 32, 32);
 	--primary: rgb(15, 15, 15);
-	--border-color: #838383;
+	--border-color: #7c7c7c;
 	--text-color: #dfdfdf;
 }
 
@@ -17,6 +17,7 @@
 	box-sizing: border-box;
 	interpolate-size: allow-keywords;
 	-webkit-tap-highlight-color: transparent;
+	white-space: pre-line;
 }
 
 html, body {
@@ -29,9 +30,11 @@ body {
 	color: var(--text-color);
 	font-family: poppins;
 	display: grid;
-	grid-template-rows: 10% 90%;
+	grid-template-columns: 14% 87%;
 	overflow: hidden;
 	color: white;
+	user-select: none;
+	position: relative;
 }
 
 svg * {
@@ -55,6 +58,14 @@ svg * {
 	border-radius: 10px;
 }
 
+main {	
+	padding: 20px;
+}
+
+.logo {
+	display: none;
+}
+
 .iconButton {
 	width: 2em;
 	height: 2em;
@@ -67,4 +78,48 @@ svg * {
 
 .iconButton svg {
 	cursor: pointer;
+	width: 100%;
+	height: 100%;
+}
+
+.hoverUnderline:hover {
+ 	text-decoration: underline;
+	cursor: pointer;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.truncate {
+	flex: 0 1 auto;                /* allow shrinking */
+  min-width: 0;                  /* IMPORTANT to allow overflow to be clipped */
+	display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 425px) {
+	body {
+		grid-template-columns: 1fr;
+		grid-template-rows: 89% 11%;
+	}
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+	
+	main {
+		padding-top: 70px;
+	}
+
+	.logo {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 5px;
+		z-index: 2;
+		filter: drop-shadow(0 0 15px rgb(0, 0, 0));
+	}
 }

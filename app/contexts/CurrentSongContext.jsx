@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, createContext, useContext, useEffect, useRef } from 'react';
-import useAllSongs from '../hooks/useAllSongs';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { useState, createContext, useContext, useEffect, useRef, useMemo } from 'react';
+import { useAllSongs } from './AllSongsContext';
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { startTransition } from 'react';
 
 const CurrentSongContext = createContext();
 
@@ -20,12 +22,18 @@ export default function CurrentSongProvider({ children }) {
 	const [loopState, setLoopState] = useState(0);
 	const [shuffleState, setShuffleState] = useState(false);
 	const [seeking, setSeeking] = useState(false);
+	const [isControlling, setIsControlling] = useState(false);
+	const [loadedSong, setLoadedSong] = useState(null);
+	const [isOpened, setIsOpened] = useState(false);
 	const songRef = useRef(null);
-	const allSongs = useAllSongs(); // Fetch all songs using the custom hook
+	const allSongs = useAllSongs();
+	const pathname = usePathname();
 
 	const songIndex = currentSong ? songQueue.findIndex(song => song.id === currentSong.id) : -1;
 	const nextSong = songQueue ? songQueue[songIndex + 1] || songQueue[0] : null;
 	const prevSong = songQueue ? songQueue[songIndex - 1] || songQueue[songQueue.length - 1] : null;
+
+	let timeout;
 
 	useEffect(() => {
 		setSongQueue(allSongs);
@@ -41,34 +49,77 @@ export default function CurrentSongProvider({ children }) {
 		}
 	}, [isPlaying, currentSong, currentTime, isLoaded]);
 
-	const controls = {
+	const ifSongLoaded = (doThis) => { if (isLoaded) { doThis() } }
+
+	useEffect(() => {
+		// If the path changes close Current Song Popup
+		controls.closeCurrent();
+	}, [pathname]);
+
+	useEffect(() => {
+		if (currentSong !== loadedSong && isLoaded) {
+			setLoadedSong(currentSong);
+		}
+	}, [currentSong, isLoaded]);
+
+	const tools = {
+		isCurrentSong: (song) => {
+			if (isLoaded) {
+				return song.id === currentSong.id;
+			}
+		}
+	};
+
+	const controls = useMemo(() => ({
 		play: () => setIsPlaying(true),
 		pause: () => setIsPlaying(false),
 		togglePlay: () => setIsPlaying(!isPlaying),
 		setSong: (song) => setCurrentSong(song),
-		next: () => setCurrentSong(nextSong),
-		previous: () => setCurrentSong(prevSong),
+		next: () => {
+			setCurrentSong(nextSong);
+		},
+		previous: () => {
+			setCurrentSong(prevSong);
+		},
 		shuffle: () => setSongQueue(shuffle(allSongs)),
 		unShuffle: () => setSongQueue(allSongs),
+		replay: () => {
+			setCurrentTime(0);
+			ifSongLoaded(() => songRef.current.currentTime = time);
+		},
+		setLoop: (value) => setLoopState(value),
+		setShuffle: (value) => setShuffleState(value),
 		seekTo: (time) => {
 			setCurrentTime(time);
-			if (isLoaded) songRef.current.currentTime = time;
+			ifSongLoaded(() => songRef.current.currentTime = time);
 		},
-		replay: () => controls.seekTo(0),
-		setLoop: (value) => setLoopState(value),
-		setShuffle: (value) => setShuffleState(value)
-	}
+		openCurrent: () => setIsOpened(true),
+		closeCurrent: () => setIsOpened(false),
+	}), [isPlaying, nextSong, prevSong, allSongs, isLoaded]);
 
-	const status = {
+	const status = useMemo(() => ({
 		isLoaded: isLoaded,
 		loop: loopState,
 		shuffle: shuffleState,
 		currentTime: currentTime,
 		isPlaying: isPlaying,
-		setSeeking: (value) => setSeeking(value),
+		isSeeking: seeking,
+		isControlling: isControlling,
+		isOpened: isOpened,
+		setSeeking: (value) => {
+			setSeeking(value);
+			status.setControlling();
+		},
 		getDuration: () => isLoaded ? songRef.current.duration : null,
 		setTime: (time) => !seeking && setCurrentTime(time),
-	}
+		setControlling: () => {
+			if (timeout) clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				setIsControlling(false);
+			}, 500);
+			setIsControlling(true)
+		},
+	}), [isLoaded, loopState, shuffleState, currentTime, isPlaying, seeking, isControlling, isOpened]);
 
 	useEffect(() => {
 		setIsLoaded(false); // Reset load state when song changes
@@ -88,7 +139,8 @@ export default function CurrentSongProvider({ children }) {
 		<CurrentSongContext.Provider value={{ 
 			currentSong,
 			status,
-			controls
+			controls,
+			tools
 		}}>
 			{/* <div style={{
 				position: 'absolute',
@@ -137,6 +189,27 @@ export default function CurrentSongProvider({ children }) {
 				}}
 				onLoadedMetadata={(e) => setIsLoaded(true)}
 			></audio>}
+			{/* This preloads the next and prev songs audio */}
+			{nextSong && nextSong !== currentSong && (
+				<>
+					<audio
+						src={nextSong.audio}
+						preload="auto"
+						style={{ display: "none" }}
+					/>
+					<img src={nextSong.image} alt="" style={{ display: "none" }} />
+				</>	
+			)}
+			{prevSong && prevSong !== currentSong && (
+				<>
+					<audio
+						src={prevSong.audio}
+						preload="auto"
+						style={{ display: "none" }}
+					/>
+					<img src={nextSong.image} alt="" style={{ display: "none" }} />
+				</>
+			)}
 			{children}
 		</CurrentSongContext.Provider>
 	);

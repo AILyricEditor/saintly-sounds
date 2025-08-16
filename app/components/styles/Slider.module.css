@@ -1,0 +1,72 @@
+.targetContainer {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.timeBar {
+	width: 100%;
+	position: relative;
+	border-radius: 999px;
+	background: grey;
+}
+
+
+.timeBar, .timeBar > * {
+	user-select: none;
+	transition: 
+	  background-color 0.2s ease-in-out,
+	  scale 0.2s ease-in-out,
+	  box-shadow 0.2s ease-in-out,
+		opacity 0.5s ease-in-out,
+		height 0.2s ease-in-out
+}
+
+.targetContainer:not(.disabled):hover .timeBar > * {
+	background-color: color-mix(in srgb, var(--accent2) 80%, red 50%);
+}
+
+.targetContainer:hover .timeThumb, .targetContainer:focus .timeThumb {
+	opacity: 1;
+	scale: 1;
+}
+
+.timeBarFill {
+	height: inherit;
+	border-radius: 999px;
+	background-color: var(--accent2);
+	box-shadow: 5px 0px 10px 0 rgba(0, 0, 0, 0.534);
+}
+
+.timeThumb {
+	position: absolute;
+	/* bottom: 50%; */
+	top: 50%;
+	translate: -50% -50%;
+	/* width: 15px; */
+	/* height: 15px; */
+	border-radius: 999px;
+	background-color: var(--accent2);
+	box-shadow: 0 0 10px 1px black;
+	opacity: 0;
+	scale: 0;
+}
+
+/* .targetContainer:hover .timeThumb {
+	opacity: 1;
+} */
+
+@media (max-width: 425px) {
+	.timeThumb {
+		opacity: 1;
+		scale: 1;
+	}
+
+	.targetContainer:not(.disabled):hover .timeBar > * {
+		background-color: var(--accent2);
+	}
+
+	.targetContainer:not(.disabled):active .timeBar > * {
+		background-color: color-mix(in srgb, var(--accent2) 80%, red 50%);
+	}
+}

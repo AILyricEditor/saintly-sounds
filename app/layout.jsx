@@ -1,8 +1,11 @@
 import "./globals.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer";
-import CurrentSong from "./components/CurrentSong";
+import CurrentSong from "./components/CurrentSong/CurrentSong";
+import CurrentSongPopup from "./components/CurrentSongPopup/CurrentSongPopup";
 import CurrentSongProvider from "./contexts/CurrentSongContext";
+import AllSongsProvider from "./contexts/AllSongsContext";
+import Update from "./components/Update";
 
 export const metadata = {
   title: "Saintly Sounds",
@@ -13,12 +16,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <CurrentSongProvider>
-          <Navbar />
-          <CurrentSong />
-          <Footer />
-          {children}
-        </CurrentSongProvider>
+        <AllSongsProvider>
+          <CurrentSongProvider>
+            <Update />
+            <img
+              src="/saintly-sounds7.png"
+              alt="Saintly Sounds Logo"
+              width={115}
+              className="logo"
+            />
+            <Navbar />
+            <CurrentSong />
+            <CurrentSongPopup />
+            <Footer />
+            {children}
+          </CurrentSongProvider>
+        </AllSongsProvider>
       </body>
     </html>
   );

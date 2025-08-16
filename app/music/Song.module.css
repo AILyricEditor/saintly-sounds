@@ -4,7 +4,7 @@
 	grid-template-columns: 1fr;
 	width: 80%;
 	background: rgba(0, 0, 0, 0.144);
-	border: 2px solid rgba(255, 255, 255, 0.671);
+	border: 2px solid var(--border-color);
 	border-radius: 15px;
 	backdrop-filter: blur(7px);
 	padding: 15px;
@@ -107,5 +107,46 @@
 @media (max-width: 425px) {
 	.musicCard {
 		font-size: 0.65em;
+		view-timeline-name: --card-fade;
+		view-timeline-axis: block;
+		animation-timeline: --card-fade;
+		animation-range: entry 0% exit 100%;
+		animation-fill-mode: both;
+		animation-name: fadeInOut;
+		animation-timing-function: ease-out;
+		animation-duration: 1s;
 	}
+
+	@keyframes fadeInOut {
+  0% {
+    opacity: 0.6;
+		scale: 0.95;
+    transform: translateY(20px);
+  }
+	20% {
+		opacity: 1;
+		scale: 1;
+		transform: translateY(0px);
+	}
+  30% {
+    opacity: 1;
+		scale: 1;
+    transform: translateY(0px);
+  }
+  70% {
+    opacity: 1;
+		scale: 1;
+    transform: translateY(0px);
+  }
+	80% {
+		opacity: 1;
+		scale: 1;
+		transform: translateY(0px);
+	}
+  100% {
+    opacity: 0.6;
+		scale: 0.95;
+    transform: translateY(-20px);
+  }
+}
 }

@@ -8,14 +8,22 @@ import { formatTime } from '../tools/tools';
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useCurrentSong } from '../contexts/CurrentSongContext';
 import Slider from "../components/Slider";
+import SongTitle from '../components/SongTitleLink';
+import SongCoverPlayer from "../components/shared/SongCoverPlayer";
 
 export default function Song({ song, isExpanded, onExpand }) {
-	const [duration, setDuration] = useState(0);
-	const { currentSong, status, controls } = useCurrentSong();
+	const [duration, setDuration] = useState(null);
+	const { currentSong, status, tools } = useCurrentSong();
 	const audioRef = useRef(null);
 	const cardRef = useRef(null);
 
-	const isPlaying = currentSong && song.id === currentSong.id && status.isPlaying;
+	const isPlaying = currentSong && tools.isCurrentSong(song) && status.isPlaying;
+
+	useEffect(() => {
+		if (audioRef.current?.readyState >= 1) {
+			setDuration(audioRef.current.duration);
+		}
+	}, [song.audio]); // re-run when a new song is passed in
 
 	// TODO: when de-expanding the card when it is scrolled, the scroll position is not reset to the top
 	return (
@@ -30,35 +38,31 @@ export default function Song({ song, isExpanded, onExpand }) {
 				gridTemplateRows: "50px 1fr 1fr 1fr"
 			}}
 		>
-			<audio ref={audioRef} src={song.audio} preload="auto" 
+			<audio ref={audioRef} key={song.audio} src={song.audio} preload="auto" 
 				onLoadedMetadata={(e) => {
 					setDuration(e.currentTarget.duration);
 				}}
 			></audio>
-			{audioRef.current ?
 				<>
 					<div className={styles.songTopbar}>
-						<SongCover 
+						<SongCoverPlayer 
 							style={{
 								border: "1px solid var(--border-color)",
 								gridRow: "1 span 2",
 								gridColumn: "1"
 							}} 
 							song={song} 
-							className={styles.songCover} 
 							size={isExpanded ? 100 : isPlaying ? 75 : 60}
-						>
-							<Player size="50%" song={song} />
-						</SongCover>
+						></SongCoverPlayer>
 						<div className={styles.songInfo}>
-							<h3>{song.title}</h3>
+							<SongTitle maxWidth={'40vw'} song={song}/>
 							<p>Artist: {song.artist}</p>
 							<p>Album: {song.album}</p>
 							{isPlaying && 
 								<Slider className={styles.progress} width="95%" height={2} value={status.currentTime} max={status.getDuration()} disabled />
 							}
 						</div>
-						<p className={styles.songDuration}>{formatTime(duration)}</p>
+						{duration ? <p className={styles.songDuration}>{formatTime(duration)}</p> : null}
 					</div>
 					<div className={styles.songSections}>
 						<SongSection isExpanded={isExpanded} type="lyrics">
@@ -74,7 +78,7 @@ export default function Song({ song, isExpanded, onExpand }) {
 							<p>{song.credits}</p>
 						</SongSection>
 					</div>
-				</> : <LoadingSpinner size={20}/>}
+				</>
 			</section>
 	);
 }
