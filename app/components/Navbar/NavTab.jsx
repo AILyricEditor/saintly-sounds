@@ -1,15 +1,15 @@
 import Link from 'next/link';
 
-export default function NavTab({ link, children, className = '', onClick }) {
+export default function NavTab({link, active, children, className = '', onClick }) {
 	return (
 		<div className={`
 				${className}
 			`}
 			onClick={onClick}
 		>
-			{link.active() && link.icon ? link.activeIcon : link.icon}
+			{link.icon && active ? link.activeIcon : link.icon}		
 			<p>{link.label}</p>
-			{!link.active() && <Link href={link.href}></Link>}
+			{!active && <Link href={link.href}></Link>}
 			{children}
 		</div>
 	)

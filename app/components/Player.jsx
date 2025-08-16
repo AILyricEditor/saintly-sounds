@@ -31,10 +31,6 @@ export default function Player({ size = 35, song, style, onClick, fade = false }
 				} else {
 					controls.togglePlay();
 				}
-				// if ((song !== currentSong && status.isPlaying)) {
-				// 	controls.togglePlay();
-				// 	status.setControlling();
-				// }
 			}}
 		>
 			{song?.id === currentSong?.id && status.isPlaying ?

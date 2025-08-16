@@ -61,4 +61,12 @@
 		opacity: 1;
 		scale: 1;
 	}
+
+	.targetContainer:not(.disabled):hover .timeBar > * {
+		background-color: var(--accent2);
+	}
+
+	.targetContainer:not(.disabled):active .timeBar > * {
+		background-color: color-mix(in srgb, var(--accent2) 80%, red 50%);
+	}
 }

@@ -7,6 +7,7 @@ import confetti from "../../public/confetti.json"; // from LottieFiles
 import celebration from "../../public/celebrations-begin.json"; // from LottieFiles
 
 export default function Update() {
+	const [startIntro, setStartIntro] = useState(false);
 	const [hideIntro, setHideIntro] = useState(false);
 	const [animateOut, setAnimateOut] = useState(false);
 	const [showV5, setShowV5] = useState(false);
@@ -18,7 +19,6 @@ export default function Update() {
 	const [hidAll, setHidAll] = useState(false);
 	const [end, setEnd] = useState(false);
 
-	// const [windowWidth, setWindowWidth] = useState(null);
 	const [calcLeft, setCalcLeft] = useState(0);
 	const [calcWidth, setCalcWidth] = useState(0);
 
@@ -38,35 +38,38 @@ export default function Update() {
 	}, [showAlpha]);
 
 	useEffect(() => {
-		const timeout1 = setTimeout(() => {
-			setHideIntro(true);
-			const timeout2 = setTimeout(() => {
-				setAnimateOut(true);
-				const timeout3 = setTimeout(() => {
-					setShowV5(true);
-					const timeout4 = setTimeout(() => {
-					  setShowAlpha(true);
+		const timeout0 = setTimeout(() => {
+			setStartIntro(true);
+			const timeout1 = setTimeout(() => {
+				setHideIntro(true);
+				const timeout2 = setTimeout(() => {
+					setAnimateOut(true);
+					const timeout3 = setTimeout(() => {
+						setShowV5(true);
 						const timeout4 = setTimeout(() => {
-							setParticleBurst(true);
-							const timeout5 = setTimeout(() => {
-								setBlurVersion(true);
-								const timeout6 = setTimeout(() => {
-									setShowLogo(true);
-									const timeout7 = setTimeout(() => {
-										setHideLogo(true);
-										const timeout8 = setTimeout(() => {
-											setHidAll(true);
-											const timeout9 = setTimeout(() => {
-												setEnd(true);
-											}, 1000);
-										}, 500);
-									}, 1500);
-								}, 1000);
-							}, 1000)
+							setShowAlpha(true);
+							const timeout4 = setTimeout(() => {
+								setParticleBurst(true);
+								const timeout5 = setTimeout(() => {
+									setBlurVersion(true);
+									const timeout6 = setTimeout(() => {
+										setShowLogo(true);
+										const timeout7 = setTimeout(() => {
+											setHideLogo(true);
+											const timeout8 = setTimeout(() => {
+												setHidAll(true);
+												const timeout9 = setTimeout(() => {
+													setEnd(true);
+												}, 1000);
+											}, 500);
+										}, 1500);
+									}, 1000);
+								}, 1000)
+							}, 500);
 						}, 500);
-					}, 500);
-				}, 500);    
-			}, 1000);
+					}, 500);    
+				}, 1000);
+			}, 500);
 		}, 500);
 
 		return () => {
@@ -77,7 +80,8 @@ export default function Update() {
 	return (
 		<>
 			{!end && <main className={styles.update} style={{
-					opacity: hidAll ? 0 : 1
+					opacity: hidAll ? 0 : 1,
+					backgroundColor: !startIntro && 'black'
 				}}
 				onClick={() => {
 					setHidAll(true);
@@ -85,11 +89,12 @@ export default function Update() {
 						setEnd(true);
 					}, 1000);
 				}}>
-				<div className={styles.introOverlay} 
-					style={{opacity: hideIntro && 0, display: animateOut && 'none'}} />
+				{/* <div className={styles.introOverlay} 
+					style={{opacity: hideIntro && 0, display: animateOut && 'none'}} /> */}
 				<div className={styles.text} 
 					style={{
-						transform: showAlpha ? `translate(${calcWidth}px, -50%)` : 'translate(-50%, -50%)'
+						transform: showAlpha ? `translate(${calcWidth}px, -50%)` : 'translate(-50%, -50%)',
+						opacity: (blurVersion || !startIntro) && 0
 					}}
 					ref={textRef}>
 					<h1 className={styles.v} ref={vRef} style={{color: showV5 && 'rgb(0, 209, 0)'}}>v</h1>
@@ -97,8 +102,8 @@ export default function Update() {
 					{showV5 && <h1 className={`${styles.v5} ${styles.animateIn}`} ref={v5Ref}>5</h1>}
 					{showAlpha && <h1 className={styles.alpha} ref={alphaRef}>alpha</h1>}
 				</div> 
-				<div className={styles.blurVersion}
-					style={{background: blurVersion && 'black'}} />
+				{/* <div className={styles.blurVersion}
+					style={{background: blurVersion && 'black'}} /> */}
 				{particleBurst &&
 					<Lottie animationData={celebration} loop={false} 
 						style={{position: 'absolute'}}

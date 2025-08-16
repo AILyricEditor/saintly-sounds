@@ -12,10 +12,6 @@ export default function Navbar() {
 	const [activeLinks, setActiveLinks] = useState([]);
 	const [activeSublinks, setActiveSublinks] = useState([]);
 
-	// function isOnPage(regex) {
-	// 	return regex.test(pathname);
-	// }
-
 	useEffect(() => {
 		setActiveLinks(links.map((link) => {
 			return link.activePattern.test(pathname);
@@ -39,15 +35,17 @@ export default function Navbar() {
 					{links.map((link, index) => {
 						const parentIndex = index;
 						const anyActiveSublinks = activeSublinks[index]?.some((active) => active);
+						const active = activeLinks[index];
 
 						return (
 							<NavTab 
 								link={link} 
 								key={index}
+								active={active}
 								className={`
 									${styles.tab}
-									${activeLinks[index] && styles.active}
-									${activeLinks[index] && anyActiveSublinks && styles.expanded}
+									${active && styles.active}
+									${active && anyActiveSublinks && styles.expanded}
 								`}
 							>
 								{link.sublinks &&
@@ -61,6 +59,7 @@ export default function Navbar() {
 											<NavTab 
 												link={link} 
 												key={index}
+												active={isActive}
 												className={`
 													${styles.subTab}
 													${isActive && styles.active} 

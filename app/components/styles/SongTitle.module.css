@@ -1,4 +1,5 @@
 .title {
+	width: min-content;
 	display: block;
 	text-decoration: none;
 	color: var(--text-color);

@@ -61,15 +61,17 @@ export default function CurrentSong() {
 		}
 	}, [isExpanded, status.isControlling, arrowUp, active]);
 
+	function popupArrow() {
+		setArrowUp(true);
+		if (arrowUp) {
+			setActive(true);
+			setIsExpanded(!isExpanded);
+		}
+	}
+
 	return (
 		<>
-			{currentSong ? <div className={styles.topTarget} onClick={() => {
-					setArrowUp(true);
-					if (arrowUp) {
-						setActive(true);
-						setIsExpanded(!isExpanded);
-					}
-				}}
+			{currentSong ? <div className={styles.topTarget} onClick={popupArrow}
 				style={{ 
 					height: isExpanded ? '140px' : '110px',
 				}}
@@ -108,14 +110,12 @@ export default function CurrentSong() {
 					touchAction: 'pan-y',
 					WebkitTapHighlightColor: 'transparent',
 				}}
-				// onClick={e => {
-				// 	if (!isExpanded && e.target.matches('[data-stop-prop]')) controls.openCurrent();
-				// 	// controls.openCurrent();
-				// }}
+				onClick={(e) => {
+					popupArrow();
+				}}
 				onTouchStart={(e) => {
 					e.stopPropagation();
 					handleTouchStart(e);
-					// if (!isExpanded && e.target.matches('[data-stop-prop]')) controls.openCurrent();
 				}}
 				onTouchEnd={(e) => {
 					e.stopPropagation();
@@ -128,7 +128,11 @@ export default function CurrentSong() {
 						song={currentSong} 
 						onClick={() => controls.openCurrent()}
 					>
-						<svg className={styles.openIcon} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H600v-80h160v-480H200v480h160v80H200Zm240 0v-246l-64 64-56-58 160-160 160 160-56 58-64-64v246h-80Z"/></svg>
+						<svg className={styles.desktopOpen} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H600v-80h160v-480H200v480h160v80H200Zm240 0v-246l-64 64-56-58 160-160 160 160-56 58-64-64v246h-80Z"/></svg>
+						<div className={styles.expandIcon}>
+							<div className={styles.overlay} />
+							<svg className={styles.icon} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/></svg>
+						</div>
 					</SongCover>
 					<div className={styles.songInfo}>
 						<SongTitleLink maxWidth={'30vw'} song={currentSong} data-stop-prop>{currentSong.title}</SongTitleLink>
