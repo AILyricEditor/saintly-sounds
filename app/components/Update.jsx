@@ -5,10 +5,12 @@ import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import Lottie from "lottie-react";
 import confetti from "../../public/confetti.json"; // from LottieFiles
 import celebration from "../../public/celebrations-begin.json"; // from LottieFiles
+import { usePathname } from 'next/navigation';
 
 export default function Update() {
+	const [showIntro, setShowIntro] = useState(false);
 	const [startIntro, setStartIntro] = useState(false);
-	const [hideIntro, setHideIntro] = useState(false);
+	// const [hideIntro, setHideIntro] = useState(false);
 	const [animateOut, setAnimateOut] = useState(false);
 	const [showV5, setShowV5] = useState(false);
 	const [showAlpha, setShowAlpha] = useState(false);
@@ -26,6 +28,8 @@ export default function Update() {
 	const alphaRef = useRef(null);
 	const v5Ref = useRef(null);
 	const vRef = useRef(null);
+
+	const pathname = usePathname();
 
 	useLayoutEffect(() => {
 		if (showAlpha && textRef.current && alphaRef.current) {
@@ -60,6 +64,7 @@ export default function Update() {
 												setHidAll(true);
 												const timeout9 = setTimeout(() => {
 													setEnd(true);
+													setShowIntro(false);
 												}, 1000);
 											}, 500);
 										}, 1500);
@@ -77,9 +82,17 @@ export default function Update() {
 		};
 	}, []);
 
+	if (!sessionStorage.getItem('introShown')) {
+			// Show your intro
+			setShowIntro(true);
+
+			// Mark it as shown for this session
+			sessionStorage.setItem('introShown', 'true');
+	}
+
 	return (
 		<>
-			{!end && <main className={styles.update} style={{
+			{!end && showIntro && <main className={styles.update} style={{
 					opacity: hidAll ? 0 : 1,
 					backgroundColor: !startIntro && 'black'
 				}}
@@ -111,7 +124,7 @@ export default function Update() {
 					/>
 				}
 				{showLogo && <img
-					src="/saintly-sounds7.png"
+					src="saintly-sounds7.png"
 					alt="Saintly Sounds Logo"
 					className={`${styles.logo} ${hideLogo ? styles.hideLogo : ''}`}
 				/>}
