@@ -6,11 +6,12 @@ import Lottie from "lottie-react";
 import confetti from "../../public/confetti.json"; // from LottieFiles
 import celebration from "../../public/celebrations-begin.json"; // from LottieFiles
 import { usePathname } from 'next/navigation';
+import LoadingSpinner from './LoadingSpinner';
 
 export default function Update() {
-	const [showIntro, setShowIntro] = useState(false);
+	const [showIntro, setShowIntro] = useState(null);
 	const [startIntro, setStartIntro] = useState(false);
-	// const [hideIntro, setHideIntro] = useState(false);
+	const [hideIntro, setHideIntro] = useState(false);
 	const [animateOut, setAnimateOut] = useState(false);
 	const [showV5, setShowV5] = useState(false);
 	const [showAlpha, setShowAlpha] = useState(false);
@@ -64,7 +65,6 @@ export default function Update() {
 												setHidAll(true);
 												const timeout9 = setTimeout(() => {
 													setEnd(true);
-													setShowIntro(false);
 												}, 1000);
 											}, 500);
 										}, 1500);
@@ -83,11 +83,26 @@ export default function Update() {
 	}, []);
 
 	useEffect(() => {
-		if (!sessionStorage.getItem('introShown')) {
-				setShowIntro(true);
-				sessionStorage.setItem('introShown', 'true');
-		}
+		const hasSeenIntro = sessionStorage.getItem("introShown");
+    if (!hasSeenIntro) {
+      setShowIntro(true);               // show intro
+      sessionStorage.setItem("introShown", "true");
+    } else {
+      setShowIntro(false);              // skip intro
+    }
 	}, []);
+
+	if (showIntro === null) {
+		return <div style={{
+			position: 'absolute',
+			top: 0,
+			left: 0,
+			zIndex: 99999,
+			width: '100%',
+			height: '100%',
+			backgroundColor: 'black',
+		}}><LoadingSpinner /></div>;
+	}
 	
 	return (
 		<>

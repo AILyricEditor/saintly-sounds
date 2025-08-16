@@ -10,13 +10,3 @@ export default function LoadingSpinner({ size = 50 }) {
     </div>
   );
 }
-
-function Loader({ props }) {
-  return (
-    <div className={"flex flex-col"}>
-    <p>
-    <span></span>
-    </p>
-    </div>
-);
-}
