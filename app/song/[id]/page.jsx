@@ -29,11 +29,7 @@ export default function SongPage({ params }) {
 					songCover
 				`}
 				size={250}
-				song={{
-					...song,
-					image: `/saintly-sounds/${song.image}`, // <-- ensure absolute path from root
-					audio: `/saintly-sounds/${song.audio}`
-				}}
+				song={song}
 			>
 				<Player song={song} size={"35%"} />
 			</SongCover>
