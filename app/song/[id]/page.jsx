@@ -31,8 +31,8 @@ export default function SongPage({ params }) {
 				size={250}
 				song={{
 					...song,
-					image: `/${song.image}`, // <-- ensure absolute path from root
-					audio: `/${song.audio}`
+					image: `/saintly-sounds/${song.image}`, // <-- ensure absolute path from root
+					audio: `/saintly-sounds/${song.audio}`
 				}}
 			>
 				<Player song={song} size={"35%"} />
