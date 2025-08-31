@@ -6,6 +6,7 @@ import CurrentSongPopup from "./components/CurrentSongPopup/CurrentSongPopup";
 import CurrentSongProvider from "./contexts/CurrentSongContext";
 import AllSongsProvider from "./contexts/AllSongsContext";
 import Update from "./components/Update";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 export const metadata = {
   title: "Saintly Sounds",

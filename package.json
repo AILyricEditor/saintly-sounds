@@ -1,6 +1,6 @@
 {
   "name": "saintly-sounds",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "date-created": "2025-01-5",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@use-gesture/react": "^10.3.1",
+    "clsx": "^2.1.1",
     "lottie-react": "^2.4.1",
     "next": "^15.2.4",
     "particles-bg": "^2.5.5",
@@ -18,5 +19,19 @@
     "react-dom": "^19.0.0",
     "react-tsparticles": "^2.12.2",
     "tsparticles": "^3.8.1"
+  },
+  "description": "This is the template website for Saintly Sounds",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-classnames": "^0.8.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.12"
   }
 }
