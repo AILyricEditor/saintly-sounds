@@ -1,4 +1,3 @@
-import styles from './styles/Footer.module.css';
 import clsx from 'clsx';
 
 export default function Footer() {
@@ -7,18 +6,16 @@ export default function Footer() {
   return (
     <footer
       className={clsx(
-        `flex flex-row items-center absolute top-1 right-1 z-2 width-fit
-        height-fit p-2 text-[0.6em] letter-spacing-[3px]`,
-        update ? 'text-green-500' : "text-white"
+        `flex flex-row items-center gap-0.5 absolute top-auto md:top-1
+        md:bottom-auto bottom-1 right-1 z-2 p-2 text-[0.45em] md:text-[0.6em]
+        letter-spacing-[3px] font-bold`,
+        update ? 'text-green-500' : 'text-white'
       )}
     >
       <p>v0.6.0-alpha</p>
       {update && (
         <svg
-          className={clsx(
-            'width-[1.4em] height-[1.4em]',
-            update && 'fill-green-500'
-          )}
+          className={clsx('w-4 h-4 fill-green-500')}
           xmlns='http://www.w3.org/2000/svg'
           height='24px'
           viewBox='0 -960 960 960'

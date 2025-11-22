@@ -1,12 +1,11 @@
 import "./globals.css";
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer";
+import Version from "./components/Version";
 import CurrentSong from "./components/CurrentSong/CurrentSong";
 import CurrentSongPopup from "./components/CurrentSongPopup/CurrentSongPopup";
 import CurrentSongProvider from "./contexts/CurrentSongContext";
 import AllSongsProvider from "./contexts/AllSongsContext";
 import Update from "./components/Update";
-import LoadingSpinner from "./components/LoadingSpinner";
 
 export const metadata = {
   title: "Saintly Sounds",
@@ -29,7 +28,7 @@ export default function RootLayout({ children }) {
             <Navbar />
             <CurrentSong />
             <CurrentSongPopup />
-            <Footer />
+            <Version />
             {children}
           </CurrentSongProvider>
         </AllSongsProvider>

@@ -12,6 +12,6 @@
   "jsxSingleQuote": true,
   "bracketSameLine": false,
   "htmlWhitespaceSensitivity": "ignore",
-  "printWidth": 80,
+  "printWidth": 999,
   "tabWidth": 2
 }
