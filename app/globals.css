@@ -61,7 +61,8 @@ svg * {
 	border-radius: 10px;
 }
 
-main {	
+main {
+	position: relative;
 	padding: 20px;
 }
 
