@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
         <AllSongsProvider>
           <CurrentSongProvider>
             <Update />
+            {/* Testing! */}
             <img
               src="saintly-sounds7.png"
               alt="Saintly Sounds Logo"
